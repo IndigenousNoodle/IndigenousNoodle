@@ -17,28 +17,30 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > localhosts
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > People who want to get familiar with an area and enjoy themselves in a new location.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Imagine you're planning a trip to San Francisco and you want to find the best local attractions.  You decide to use the new app you heard about called localhosts.  You get in contact with locals in the area and will show you around.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Complicated vacation planning, spending a lot of time and money.  Seeing the main attractions and more.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Simplying vacation planning and ensuring user sees the most authenticate local experience of the locale.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "Vacation simplified."
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Sign up, search for local events, and send a request to join the event.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "I would have never gone to half of the awesome places if it wasn't for localhosts." - M.G.
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > go to localhosts.herokuapp.com and search for your next vacation.
+
+
