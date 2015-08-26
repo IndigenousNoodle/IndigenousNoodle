@@ -4,10 +4,7 @@ angular.module('app', [
 
 .config(router)
 
-
 router.$inject = ['$urlRouterProvider', '$stateProvider', '$httpProvider'];
-
-
 
 function router($urlRouterProvider, $stateProvider, $httpProvider) {
   $urlRouterProvider.otherwise("/");
