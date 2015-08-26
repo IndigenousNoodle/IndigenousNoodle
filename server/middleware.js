@@ -1,7 +1,13 @@
+var express = require('express');
 var bodyParser = require('body-parser');
+var usersRoutes = require('./users/usersRoutes');
+var eventsRoutes = require('./events/eventsRoutes');
+require('./db/db.js');
 
-module.exports = function(app, express){
+module.exports = function(app){
   app.use(bodyParser.json()); 
   app.use(bodyParser.urlencoded({extended: true})); 
   app.use(express.static(__dirname + '/../public'));
+  usersRoutes(app);
+  eventsRoutes(app);
 };
