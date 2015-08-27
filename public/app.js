@@ -1,5 +1,6 @@
 angular.module('app', [
-  'ui.router'
+  'ui.router',
+  'app.navbar'
   ])
 
 .config(router)
