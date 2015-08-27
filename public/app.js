@@ -40,5 +40,9 @@ function router($urlRouterProvider, $stateProvider, $httpProvider) {
     function getEventList($http, $stateParams, dataservice) {
       return dataservice.getEventList($stateParams.city);
     }
+    .state('signup',{
+      url: '/signup',
+      templateUrl: './signup/signupTemplate.html',
+      controller: 'signupController'
+    })
 }
-

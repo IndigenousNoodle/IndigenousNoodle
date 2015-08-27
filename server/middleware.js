@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var usersRoutes = require('./users/usersRoutes');
 var eventsRoutes = require('./events/eventsRoutes');
 var usersAndEventsRoutes = require('./usersAndEvents/usersAndEventsRoutes');
+var signupLoginRoutes = require('./signupLogin/signupLoginRoutes');
 require('./db/db.js');
 
 module.exports = function(app){
@@ -12,4 +13,5 @@ module.exports = function(app){
   usersRoutes(app);
   eventsRoutes(app);
   usersAndEventsRoutes(app);
+  signupLoginRoutes(app);
 };
