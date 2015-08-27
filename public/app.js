@@ -1,9 +1,11 @@
 angular.module('app', [
   'app.navbar',
   'app.createEvent',
-  'ui.router',
   'ui.bootstrap',
-  'homepage'
+  'homepage',
+  'ui.router',
+  'app.eventManager',
+  'app.userProfile'
   ])
 
 .config(router)
@@ -26,4 +28,32 @@ function router($urlRouterProvider, $stateProvider, $httpProvider) {
       controller: 'createEventController',
       controllerAs: 'event'
     })
+    .state('eventManager', {
+      url: '/events/eventManager',
+      templateUrl: './eventManager/eventManagerTemplate.html',
+      controller: 'eventManagerController',
+      controllerAs: 'event',
+      resolve: {
+        getEventsPrep: getEventsService
+      }
+    })
+    .state('userProfile', {
+      url:'/user/userProfile/:username',
+      templateUrl: './userProfile/userProfileTemplate.html',
+      controller: 'userProfileController',
+      controllerAs: 'user',
+      resolve: {
+        getProfilePrep: getProfileService
+      }
+    })
+}
+
+
+
+function getEventsService ($http) {
+  return $http({method: 'GET', url: '/user/eventsManager'});
+}
+
+function getProfileService ($http, $stateParams) {
+  return $http({method: 'GET', url: 'user/userProfile/' + $stateParams.username})
 }
