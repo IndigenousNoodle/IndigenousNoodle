@@ -2,7 +2,7 @@
 
 > Pithy project description
 
-## Team
+## Team 
 
   - __Product Owner__: teamMember
   - __Scrum Master__: teamMember
