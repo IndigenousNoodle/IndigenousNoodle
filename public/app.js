@@ -1,13 +1,11 @@
 angular.module('app', [
-  'ui.router'
+  'ui.router',
+  'app.navbar'
   ])
 
 .config(router)
 
-
 router.$inject = ['$urlRouterProvider', '$stateProvider', '$httpProvider'];
-
-
 
 function router($urlRouterProvider, $stateProvider, $httpProvider) {
   $urlRouterProvider.otherwise("/");
@@ -17,5 +15,10 @@ function router($urlRouterProvider, $stateProvider, $httpProvider) {
       url: '/',
       templateUrl: './homepage/homepageTemplate.html',
       controller: 'homepageController'
+    })
+    .state('navbar',{
+      url: '/navbar',
+      templateUrl: './components/navBar/navBarTemplate.html',
+      controller: 'navBarController'
     })
 }
