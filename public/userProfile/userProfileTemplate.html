@@ -1,0 +1,7 @@
+<div>
+  Username: {{user.user.username}} <br />
+  Reviews: 
+  <ul ng-repeat="reviews in user.user.reviews">
+    <li ng-repeat="review in reviews.review">{{review}}</li>
+  </ul>
+</div>
