@@ -16,9 +16,4 @@ function router($urlRouterProvider, $stateProvider, $httpProvider) {
       templateUrl: './homepage/homepageTemplate.html',
       controller: 'homepageController'
     })
-    .state('navbar',{
-      url: '/navbar',
-      templateUrl: './components/navBar/navBarTemplate.html',
-      controller: 'navBarController'
-    })
 }

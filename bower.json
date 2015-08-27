@@ -14,7 +14,8 @@
   ],
   "dependencies": {
     "angular": "~1.4.4",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "angular-bootstrap": "~0.13.3"
   },
   "directory": "public/lib"
 }
