@@ -36,7 +36,9 @@ var getProfile = function (req, res) {
 
 var confirmEvent = function (req, res) {
   var clientName = req.params.username
-}
+};
+
+
 
 module.exports = {
   getUser: getUser,
