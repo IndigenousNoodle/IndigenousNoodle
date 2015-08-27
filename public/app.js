@@ -1,7 +1,9 @@
 angular.module('app', [
-  'ui.router',
   'app.navbar',
   'app.createEvent'
+  'ui.router',
+  'ui.bootstrap',
+  'homepage'
   ])
 
 .config(router)
