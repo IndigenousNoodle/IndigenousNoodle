@@ -10,7 +10,6 @@ var postEvents = function(req, res){
       console.log("ERROR");
     }else{
       // try to update user
-      console.log("trying to update the user");
       Users.findOneAndUpdate(
         {"username": req.body.host},
         {$addToSet: {"hostedEvents": req.body}},
