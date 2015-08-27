@@ -147,7 +147,7 @@ Thanks for contributing!
 1. Run the [tests][] before submitting a pull request.
 1. Tests are very, very important. Submit tests if your pull request contains
    new, testable behavior.
-1. Your pull request is comprised of a single ([squashed][]) commit.
+
 
 ## Checklist:
 
@@ -178,4 +178,4 @@ no problem getting your changes merged in.
 [tools workflow diagram]: http://i.imgur.com/kzlrDj7.png
 [Git Flow]: http://nvie.com/posts/a-successful-git-branching-model/
 [GitHub Flow]: http://scottchacon.com/2011/08/31/github-flow.html
-[Squash]: http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html
+
