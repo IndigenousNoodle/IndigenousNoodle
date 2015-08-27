@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var usersRoutes = require('./users/usersRoutes');
 var eventsRoutes = require('./events/eventsRoutes');
+var usersAndEventsRoutes = require('./usersAndEvents/usersAndEventsRoutes');
 require('./db/db.js');
 
 module.exports = function(app){
@@ -10,4 +11,5 @@ module.exports = function(app){
   app.use(express.static(__dirname + '/../public'));
   usersRoutes(app);
   eventsRoutes(app);
+  usersAndEventsRoutes(app);
 };

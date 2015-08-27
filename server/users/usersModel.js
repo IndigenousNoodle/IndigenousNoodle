@@ -14,12 +14,15 @@ var UsersSchema = new mongoose.Schema({
     state: String,
     zipcode:  Number,
     reviews:[String],
+    time: String
   }],
   reviews:[{
     eventName: String,
     review: [String]
   }]
 });
+
+
 
 var Users = mongoose.model('Users', UsersSchema);
 

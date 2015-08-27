@@ -1,4 +1,6 @@
 var Events = require('./eventsModel');
+var Users = require('../users/usersModel');
+
 
 var getEvents = function(req, res) {
   Events.find().exec(function(err,data){
@@ -7,8 +9,8 @@ var getEvents = function(req, res) {
     } else {
       res.send(data);
     }
-  })
-}
+  });
+};
 
 module.exports = {
   getEvents: getEvents
