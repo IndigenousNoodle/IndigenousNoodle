@@ -1,4 +1,4 @@
-angular.module('app.navbar')
+angular.module('app.navbar', ['ui.bootstrap'])
   .directive('navigationBar', navBar);
 
 navBar.$inject = [];

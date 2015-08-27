@@ -1,15 +1,19 @@
-<div class="navbar navbar-inverse">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="brand">Example App</a>
-
-            <div class="nav-collapse">
-                <ul class="nav">
-                    <li class="active"><a href="home.html">Home</a></li>
-                    <li><a href="second.html">Second</a></li>
-                    <li><a href="third.html">Third</a></li>
-                </ul>
-            </div>
-        </div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+   <a class="navbar-brand" href="#">localhosts</a>
+    <div class="btn-group" id="dropdown" dropdown is-open="status.isopen">
+      <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
+        Button dropdown <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+        <li role="menuitem"><a href="#">Profile</a></li>
+        <li role="menuitem"><a href="#">Inbox</a></li>
+        <li role="menuitem"><a href="#">Tours</a></li>
+        <li role="menuitem"><a href="#">Hosted</a></li>
+        <li role="menuitem"><a href="#">Created</a></li>
+        <li class="divider"></li>
+        <li role="menuitem"><a href="#">Logout</a></li>
+      </ul>
     </div>
-</div>
+  </div><!-- /.container-fluid -->
+</nav>

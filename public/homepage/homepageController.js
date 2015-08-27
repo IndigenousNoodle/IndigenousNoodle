@@ -1,5 +1,5 @@
 angular.module("app")
-  .controller('homePageController', homePageController);
+  .controller('homepageController', homePageController);
 
 homePageController.$inject = [];
 
