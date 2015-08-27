@@ -7,7 +7,10 @@ angular.module('app', [
   'ui.bootstrap',
   'homepage',
   'eventList',
-  'app.dataservice'
+  'app.dataservice',
+  'homepage',
+  'app.eventManager',
+  'app.userProfile'
   ])
 
 .config(router)
@@ -51,7 +54,34 @@ function router($urlRouterProvider, $stateProvider, $httpProvider) {
       controller: 'signupLoginController',
       controllerAs: 'signupLogin'
     })
+    .state('eventManager', {
+      url: '/events/eventManager',
+      templateUrl: './eventManager/eventManagerTemplate.html',
+      controller: 'eventManagerController',
+      controllerAs: 'event',
+      resolve: {
+        getEventsPrep: getEventsService
+      }
+    })
+    .state('userProfile', {
+      url:'/user/userProfile/:username',
+      templateUrl: './userProfile/userProfileTemplate.html',
+      controller: 'userProfileController',
+      controllerAs: 'user',
+      resolve: {
+        getProfilePrep: getProfileService
+      }
+    })
     function getEventList($http, $stateParams, dataservice) {
       return dataservice.getEventList($stateParams.city);
     }
+    function getEventsService ($http) {
+      return $http({method: 'GET', url: '/user/eventsManager'});
+    }
+
+    function getProfileService ($http, $stateParams) {
+      return $http({method: 'GET', url: 'user/userProfile/' + $stateParams.username})
+    }
 }
+
+
