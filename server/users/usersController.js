@@ -11,12 +11,10 @@ var getUser = function(req, res) {
 };
 
 var getEvents = function(req, res) {
-  // username stored in session
   // var username = req.body.??
-
   // check if user is undefined
-
-  Users.findOne({username: 'kevin'}, 'hostedEvents', function (err, data) {
+  //'kevin is hardcoded value for development'
+  Users.findOne({username: 'kevin'}, function (err, data) {
     if (err) {
       res.send(500, err)
     } else {

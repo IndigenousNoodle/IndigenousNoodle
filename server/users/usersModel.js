@@ -23,6 +23,7 @@ var UsersSchema = new mongoose.Schema({
     title: String,
     description: String,
     city: String,
+    date: String,
     confirmed: Boolean
   }],
   reviews:[{
