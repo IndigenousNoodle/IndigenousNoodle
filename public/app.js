@@ -90,6 +90,12 @@
           getProfilePrep: getProfileService
         }
       })
+      .state('eventDetail', {
+        url: '/eventDetail',
+        templateUrl: './eventDetailPage/eventDetailTemplate.html',
+        controller: 'eventDetailController',
+        controllerAs: 'event'
+      })
       function getEventList($http, $stateParams, eventsService) {
         return eventsService.getEventList($stateParams.city);
       }
