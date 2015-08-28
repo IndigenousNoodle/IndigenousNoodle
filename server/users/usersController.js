@@ -24,7 +24,7 @@ var getEvents = function(req, res) {
 };
 
 var getProfile = function (req, res) {
-  var username = req.url.split('/')[3];
+  var username = req.params.username
   Users.findOne({username:username}, function (err,data) {
     if (err) {
       res.send(500, err)
@@ -35,7 +35,7 @@ var getProfile = function (req, res) {
 };
 
 var confirmEvent = function (req, res) {
-  var clientName = req.url.split('/')[3];
+  var clientName = req.params.username
 }
 
 module.exports = {
