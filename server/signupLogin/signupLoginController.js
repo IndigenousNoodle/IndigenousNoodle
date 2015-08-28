@@ -42,13 +42,37 @@ var signin = function(req, res) {
   // find user by username
   Users.findOne({username: req.body.username})
     .exec(function(err, data) {
-      
-    })
+      if (err) {
+        console.log("Post to signin err: ", err);
+      } 
+      if (!data) {
+        // console.log("Singin username doesn't exist");
+        res.send(null);
+      }
+      // compare passwords
+      if (data) {
+        bcrypt.compare(req.body.password, data.password, function(err, result) {
+          if (err) {
+            console.log("Password compare err: ", err);
+          }
+          if (result) {
+            console.log("Signin matched user data: ", data);
+            var token = jwt.encode(data, 'localHostsSecretHostlocal');
+            console.log("token: ", token);
+            res.json({token: token});
+          } else {
+            // console.log("wrong password");
+            res.send(null);
+          }
+        });
+      }
+    });
 
  
 
 }
 
 module.exports = {
-  signup: signup
+  signup: signup,
+  signin: signin
 };

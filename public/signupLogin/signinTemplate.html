@@ -1,12 +1,18 @@
 <div>
 	<div>Sign In</div>
 	<form>
-	  Username:<br>
+	  Username:
+	  <br>
 	  <input type="text" ng-model="user.username" value="username">
 	  <br>
-	  Password:<br>
+	  Password:
+	  <br>
 	  <input type="password" ng-model="user.password" value="password">
-	  <br><br>
-	  <input type="submit" ng-click="saveUser(user)" value="Submit">
+	  <br>
+	  <br>
+	  <input type="submit" ng-click="signin(user)" value="Submit">
 	</form>
+	<br>
+  Don't have an account? 
+  <a ui-sref="signup">Sign Up</a>
 </div>

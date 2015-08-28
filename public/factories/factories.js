@@ -21,7 +21,8 @@ angular.module('app.factories', [])
    var signin = function (user) {
     return $http.post('/signin', user)
     .then(function(res) {
-      return resp.data.token;
+      console.log("signin res: ", res.data.token);
+      return res.data.token;
     }, function(res) {
       console.log("factory signin err: ", res);
     });
