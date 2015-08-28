@@ -3,9 +3,9 @@
     angular.module("app.createEvent", [])
     .controller('createEventController', createEventController);
 
-  createEventController.$inject = ['$http', '$state', 'dataservice'];
+  createEventController.$inject = ['$state', 'dataservice'];
 
-  function createEventController($http, $state, dataservice){
+  function createEventController($state, dataservice){
     // use the navBarApp?
     var vm = this;
     vm.submit = submit;

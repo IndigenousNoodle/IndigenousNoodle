@@ -7,9 +7,10 @@
     'ui.bootstrap',
     'eventList',
     'homepage',
-    'app.dataservice',
     'app.eventManager',
-    'app.userProfile'
+    'app.userProfile',
+    'app.dataservice',
+    'app.eventDetail'
     ])
 
   .config(router)
