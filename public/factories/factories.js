@@ -8,7 +8,7 @@ angular.module('app.factories', [])
         console.log("factory signup post res.data: ", res.data);
         return res.data.token;
       }, function(res) { 
-        console.log("signup res err: ", res)
+        console.log("factory signup err: ", res)
       }); 
   };
 
@@ -18,8 +18,18 @@ angular.module('app.factories', [])
     console.log("signout user");
   };
 
+   var signin = function (user) {
+    return $http.post('/signin', user)
+    .then(function(res) {
+      return resp.data.token;
+    }, function(res) {
+      console.log("factory signin err: ", res);
+    });
+  };
+
   return {
     signup: signup,
-    signout: signout
+    signout: signout,
+    signin: signin
   }
 })
