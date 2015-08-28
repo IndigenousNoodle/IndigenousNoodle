@@ -1,5 +1,6 @@
 var Users = require('../users/usersModel');
 var bcrypt = require('bcrypt-nodejs');
+var jwt = require('jwt-simple');
 
 var signup = function(req, res) {
 	console.log("Post to saveUser: ", req.body);
@@ -15,13 +16,14 @@ var signup = function(req, res) {
             if (err) {
               console.log("saveUser bcrypt err: ", err);
             } else {
-              console.log("hashed password: ", hash);
       				var newUser = new Users({username: req.body.username, password: hash});
       				newUser.save(function(err, data) {
       					if (err) { // if save user err
       						console.log("saveUser .save error: ", err);
       					}
-                res.send("saveUser success");
+                // var token = jwt.encode(data, 'localHostsSecretHostlocal');
+                // console.log("token: ", token);
+                res.json({token: "token"});
       				});
             }
           });

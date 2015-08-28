@@ -1,6 +1,8 @@
 angular.module('app', [
   'app.navbar',
   'app.createEvent',
+  'app.signupLogin',
+  'app.factories',
   'ui.router',
   'ui.bootstrap',
   'homepage',
@@ -42,7 +44,7 @@ function router($urlRouterProvider, $stateProvider, $httpProvider) {
     }
     .state('signup',{
       url: '/signup',
-      templateUrl: './signup/signupTemplate.html',
-      controller: 'signupController'
+      templateUrl: './signupLogin/signupTemplate.html',
+      controller: 'signupLoginController'
     })
 }
