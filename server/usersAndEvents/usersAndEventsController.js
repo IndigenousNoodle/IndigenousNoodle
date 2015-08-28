@@ -25,6 +25,11 @@ var postEvents = function(req, res){
   });
 };
 
+var joinEvent = function(req, res){
+  console.log("joining event, req.body === ", req.body);
+};
+
 module.exports = {
-  postEvents: postEvents
+  postEvents: postEvents,
+  joinEvent: joinEvent
 };

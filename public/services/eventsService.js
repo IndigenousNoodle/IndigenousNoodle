@@ -8,8 +8,9 @@
   function eventsService ($http) {
     return {
       getEventList: getEventList,
-      joinEvent: joinEvent
-    }
+      joinEvent: joinEvent,
+      getEvent: getEvent
+    };
 
     function getEventList(city){
       return $http({method: 'GET', url: '/events/' + city});
@@ -29,6 +30,21 @@
         console.log("ERROR: ", error);
       }
     }
+
+    function getEvent() {
+      return $http.get('/events')
+        .then(getEventData)
+        .catch(eventDataFail);
+    
+      function getEventData(newData) {
+        return newData.data;
+      }
+      function eventDataFail(err) {
+        console.log(err);
+      }
+
+    }
+
   }
 
 }());
