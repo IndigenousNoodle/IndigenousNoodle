@@ -21,9 +21,12 @@ var signup = function(req, res) {
       					if (err) { // if save user err
       						console.log("saveUser .save error: ", err);
       					}
+                // console.log("newUser saved data: ", data);
                 // var token = jwt.encode(data, 'localHostsSecretHostlocal');
                 // console.log("token: ", token);
-                res.json({token: "token"});
+                // res.json({token: "token"});
+                res.json({data: data});
+
       				});
             }
           });

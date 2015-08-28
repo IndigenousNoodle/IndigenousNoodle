@@ -5,7 +5,7 @@ angular.module('app.signupLogin', [])
   $scope.saveUser = function(user) {
     Auth.signup(user)
       .then(function(token) {
-        console.log("token: ", token);
+        console.log("data: ", token);
         $window.localStorage.setItem('localHosts', token);
         console.log("$window.localStorage: ", $window.localStorage)
         $location.path('/');
@@ -15,5 +15,5 @@ angular.module('app.signupLogin', [])
       })
 	};
 
-  $scope.signout = Auth.signout();
+  $scope.signout = Auth.signout;
 })
