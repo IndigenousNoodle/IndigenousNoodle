@@ -39,7 +39,6 @@ var confirmEvent = function (req, res) {
 };
 
 
-
 module.exports = {
   getUser: getUser,
   getEvents: getEvents,

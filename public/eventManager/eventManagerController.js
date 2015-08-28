@@ -3,7 +3,7 @@
 
   .controller('eventManagerController', eventManagerController);
 
-  eventManagerController.$inject = ['getEventsPrep'];
+  eventManagerController.$inject = ['getEventsPrep', 'confirmEvent'];
 
   function eventManagerController (getEventsPrep, confirmEvent) {
     var vm = this;
