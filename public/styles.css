@@ -5,3 +5,21 @@
 .input-center {
   text-align: center;
 }
+
+.bg-img {
+  background: url(https://d276fqercnuq4h.cloudfront.net/assets/roma/main/main_barcelona2-4af6b4e193337900b13074db87ba154c07323fb2ef60deeeb48b10e0456b585e.jpg) no-repeat center center fixed;;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 50%;
+}
+
+.margin {
+  margin: 20em 0;
+}
+
+.header-title {
+  color: #fefefe;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
