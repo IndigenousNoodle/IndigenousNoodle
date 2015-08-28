@@ -3,31 +3,25 @@
     .controller('homepageController', homepageController)
     .directive('ngEnter', ngEnter);
 
-  // function homepageController($http) { 
-  //   var vm = this;
-  //   vm.getData = function() {
-  //     return $http.get('/events').success(function(data) {
-  //       vm.filteredData = data.filter(function(obj) {
-  //         if(obj.city.toLowerCase() === vm.findCity.toLowerCase()) {
-  //           return true;
-  //         }
-  //         return false;
-  //       });
-  //     });
-  //   };
-  // }
+  homepageController.$inject = ['getEvents'];
 
-  function homepageController($scope, $http) { 
-    $scope.getData = function() {
-      return $http.get('/events').success(function(data) {
-        $scope.filteredData = data.filter(function(obj) {
-          if(obj.city.toLowerCase() === $scope.findCity.toLowerCase()) {
+  function homepageController(getEvents) { 
+    var vm = this;
+    vm.filteredData;
+    vm.getData = getData;
+
+    function getData() {
+      getEvents.getEvent()
+      .then(function(data) {
+        console.log(data);
+        vm.filteredData = data.filter(function(obj) {
+          if(obj.city.toLowerCase() === vm.findCity.toLowerCase()) {
             return true;
           }
           return false;
         });
-      });
-    };
+      })
+    }
   }
 
   function ngEnter() {

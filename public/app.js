@@ -1,6 +1,6 @@
 angular.module('app', [
   'app.navbar',
-  'app.createEvent'
+  'app.createEvent',
   'ui.router',
   'ui.bootstrap',
   'homepage'
@@ -17,7 +17,8 @@ function router($urlRouterProvider, $stateProvider, $httpProvider) {
     .state('homepage',{
       url: '/',
       templateUrl: './homepage/homepageTemplate.html',
-      controller: 'homepageController'
+      controller: 'homepageController',
+      controllerAs: 'home'
     })
     .state('createEvent', {
       url: '/createEvent',

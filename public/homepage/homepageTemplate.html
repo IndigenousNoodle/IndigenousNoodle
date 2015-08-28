@@ -1,18 +1,15 @@
-<navigation-bar></navigation-bar>
-<div ng-controller='homepageController as home'>
   <div class="bg-img">
     <div class="container">
         <div class='text-center container margin header-title'>
-          <h2>Vacation simplified</h2>
-          <h4>Experience the most authenticate trip with local guide.</h4>
-          <form ng-submit='getData()'>
+          <h1>Vacation simplified</h1>
+          <h3>Experience the most authenticate trip with local guide.</h3>
+          <form ng-submit='home.getData()'>
             <div class='col-md-6 col-md-offset-3'>
-              <input ng-enter='getData()' ng-model='findCity' type='text' class='form-control input-center' placeholder='Where do you want to go?'></input>
-              <button type="button" class="btn btn-primary" ng-click="getData()">Submit</button>
+              <input ng-enter='home.getData()' ng-model='home.findCity' type='text' class='form-control input-center' placeholder='Where do you want to go?'></input>
+              <button type="button" class="btn btn-primary" ng-click="home.getData()">Submit</button>
             </div>
           </form>
-          <p>{{filteredData}}</p>
+          <p>{{home.filteredData}}</p>
         </div>
     </div>
   </div>
-</div>
