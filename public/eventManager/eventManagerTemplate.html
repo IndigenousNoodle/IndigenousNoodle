@@ -1,10 +1,10 @@
 <div>
   <div>
     <h3>Hosted Events:</h3>
-    <div ng-repeat="event in event.hosted">
-      <h5>{{event.title}}:</h5>
+    <div ng-repeat="hostedEvent in event.hosted">
+      <h5>{{hostedEvent.title}}:</h5>
       <ul>
-        <li ng-repeat="users in event.usersApplied"><a ui-sref="userProfile({username: users.username})">{{users.username}}  </a><button ng-class="{true: 'btn btn-success disabled', false: 'btn btn-primary'}[users.confirmed]" ng-disabled="users.confirmed" ng-click="users.confirmed = !users.confirmed">{{!users.confirmed && 'Accept' || 'Accepted'}}</button></li> 
+        <li ng-repeat="users in hostedEvent.usersApplied"><a ui-sref="userProfile({username: users.username})">{{users.username}}  </a><button ng-class="{true: 'btn btn-success disabled', false: 'btn btn-primary'}[users.confirmed]" ng-disabled="users.confirmed" ng-click="event.confirmUser(users.username); users.confirmed = !users.confirmed" >{{!users.confirmed && 'Accept' || 'Accepted'}}</button></li> 
       </ul>
     </div>
   </div>

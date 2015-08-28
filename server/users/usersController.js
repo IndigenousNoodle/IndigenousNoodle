@@ -32,10 +32,15 @@ var getProfile = function (req, res) {
       res.status(200).send(data);
     }
   });
+};
+
+var confirmEvent = function (req, res) {
+  var clientName = req.url.split('/')[3];
 }
 
 module.exports = {
   getUser: getUser,
   getEvents: getEvents,
-  getProfile: getProfile
+  getProfile: getProfile,
+  confirmEvent: confirmEvent
 };
