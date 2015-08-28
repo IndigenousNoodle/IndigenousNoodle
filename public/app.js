@@ -13,7 +13,6 @@
     'app.dataservice'
     ])
 
-
   .config(router)
 
   router.$inject = ['$urlRouterProvider', '$stateProvider', '$httpProvider'];
@@ -79,7 +78,6 @@
       function getEventsService ($http) {
         return $http({method: 'GET', url: '/user/eventsManager'});
       }
-
       function getProfileService ($http, $stateParams) {
         return $http({method: 'GET', url: 'user/userProfile/' + $stateParams.username})
       }
