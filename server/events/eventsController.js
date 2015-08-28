@@ -1,6 +1,4 @@
 var Events = require('./eventsModel');
-var Users = require('../users/usersModel');
-
 
 var getEvents = function(req, res) {
   var city = req.params.city.toLowerCase();
