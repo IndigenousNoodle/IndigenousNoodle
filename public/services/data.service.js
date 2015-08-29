@@ -32,7 +32,6 @@
         console.log("ERROR: ", error);
       }
     }
-  }
 
     function getUserEvents() {
       return $http.get('/user/eventsManager')
@@ -61,39 +60,10 @@
 
         }
     }
-
-  }
-
-    function getUserEvents() {
-      return $http.get('/user/eventsManager')
-        .then(getUserEventsComplete)
-        .catch(getUserEventsFailed)
-
-        function getUserEventsComplete (newData) {
-          return newData
-        }
-        function getUserEventsFailed(error) {
-          console.log("ERROR: ", error);
-        }
-    }
-
-    function getUserProfile(username) {
-      return $http.get('/user/userProfile/'  + username)
-        .then(getUserProfileComplete)
-        .catch(getUserPorfileFailed)
-
-        function getUserProfileComplete (newData) {
-          return newData;
-        }
-
-        function getUserPorfileFailed (error) {
-          console.log("ERROR: ", error);
-
-        }
-    }
-    
     function getEventList(city){
       return $http({method: 'GET', url: '/events/' + city});
+    }
+
   }
 
 })();
