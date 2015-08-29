@@ -1,4 +1,4 @@
-function(){
+(function(){
 
   angular.module('app', [
     'app.navbar',
@@ -8,7 +8,8 @@ function(){
     'homepage',
     'ui.router',
     'app.eventManager',
-    'app.userProfile'
+    'app.userProfile',
+    'app.dataservice'
     ])
 
   .config(router)
@@ -69,3 +70,4 @@ function(){
       }
   }
 })();
+

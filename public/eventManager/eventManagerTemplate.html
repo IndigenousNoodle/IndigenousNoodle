@@ -4,6 +4,9 @@
     <div ng-repeat="hostedEvent in event.hosted">
       <h5>{{hostedEvent.title}}:</h5>
       <ul>
+      <!--Link to user profile -->
+      <!--Toggle button to disable after accepting user to event -->
+      <!--Click button to confirm user and send data to server-->
         <li ng-repeat="users in hostedEvent.usersApplied"><a ui-sref="userProfile({username: users.username})">{{users.username}}  </a><button ng-class="{true: 'btn btn-success disabled', false: 'btn btn-primary'}[users.confirmed]" ng-disabled="users.confirmed" ng-click="event.confirmUser(users.username); users.confirmed = !users.confirmed" >{{!users.confirmed && 'Accept' || 'Accepted'}}</button></li> 
       </ul>
     </div>
