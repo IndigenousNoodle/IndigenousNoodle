@@ -32,9 +32,7 @@
       });
     }
 
-    function getEvent(){
-      
-    }
+    
   }
 
 })();

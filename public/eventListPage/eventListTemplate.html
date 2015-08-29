@@ -12,7 +12,7 @@
       <h2 class="text-muted">Tour List</h2>
     </div>
   </div>
-  <div class="card" ng-repeat="event in eventList.getEventList">
+  <div class="card" ng-click="eventList.toEventDetail(event)" ng-repeat="event in eventList.getEventList">
     <div class="content">
       <span class="title">{{event.title}}</span>
       <p>{{event.description}}</p>
