@@ -32,7 +32,6 @@
         console.log("ERROR: ", error);
       }
     }
-  }
 
     function getUserEvents() {
       return $http.get('/user/eventsManager')
@@ -61,8 +60,6 @@
 
         }
     }
-
-  }
 
     function getEventList(city){
       return $http({method: 'GET', url: '/events/' + city});
