@@ -3,7 +3,9 @@ angular.module('app', [
   'app.createEvent',
   'ui.router',
   'ui.bootstrap',
-  'homepage'
+  'homepage',
+  'eventList',
+  'app.dataservice'
   ])
 
 .config(router)
@@ -26,4 +28,17 @@ function router($urlRouterProvider, $stateProvider, $httpProvider) {
       controller: 'createEventController',
       controllerAs: 'event'
     })
+    .state('eventList', {
+      url:'/eventList/:city',
+      templateUrl: './eventListPage/eventListTemplate.html',
+      controller: 'eventListController',
+      controllerAs: 'eventList',
+      resolve: {
+        getEventList: getEventList
+      }
+    })
+    function getEventList($http, $stateParams, dataservice) {
+      return dataservice.getEventList($stateParams.city);
+    }
 }
+

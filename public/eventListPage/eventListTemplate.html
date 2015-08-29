@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="text-muted">Tour List</h2>
+    </div>
+  </div>
+<!--   <section class="row text-center">
+    <div class="col-md-4" ng-repeat="event in eventList.getEventList">
+      <h3>{{event.title}}</h3>
+      <p>{{event.city}}</p>
+      <p>{{event.host}}</p>
+    </div>
+  </section> -->
+  <div class="card" ng-repeat="event in eventList.getEventList">
+    <div class="content">
+      <span class="title">{{event.title}}</span>
+      <p>{{event.description}}</p>
+    </div>
+    <div class="action">
+      <p>{{event.city}}</p>
+      <p>{{event.host}}</p>
+    </div>
+  </div>
+
+</div>
+
