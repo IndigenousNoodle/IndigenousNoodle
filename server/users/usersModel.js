@@ -24,7 +24,7 @@ var UsersSchema = new mongoose.Schema({
     description: String,
     city: String,
     date: String,
-    confirmed: Boolean
+    confirmed: Boolean,
     time: String,
     confirmed: Boolean,
     usersApplied: [{username: String, userId: String, confirmed: Boolean}]
