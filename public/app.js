@@ -1,6 +1,8 @@
 angular.module('app', [
   'app.navbar',
   'app.createEvent',
+  'app.signupLogin',
+  'app.factories',
   'ui.router',
   'ui.bootstrap',
   'homepage',
@@ -37,8 +39,19 @@ function router($urlRouterProvider, $stateProvider, $httpProvider) {
         getEventList: getEventList
       }
     })
+    .state('signup',{
+      url: '/signup',
+      templateUrl: './signupLogin/signupTemplate.html',
+      controller: 'signupLoginController',
+      controllerAs: 'signupLogin'
+    })
+    .state('signin', {
+      url: '/signin',
+      templateUrl: './signupLogin/signinTemplate.html',
+      controller: 'signupLoginController',
+      controllerAs: 'signupLogin'
+    })
     function getEventList($http, $stateParams, dataservice) {
       return dataservice.getEventList($stateParams.city);
     }
 }
-
