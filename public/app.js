@@ -11,7 +11,8 @@
     'app.dataservice',
     'homepage',
     'app.eventManager',
-    'app.userProfile'
+    'app.userProfile',
+    'app.dataservice'
     ])
 
   .config(router)
@@ -84,5 +85,5 @@
         return $http({method: 'GET', url: 'user/userProfile/' + $stateParams.username})
       }
   }
-})();
 
+})();
