@@ -1,7 +1,7 @@
 (function(){
 
   angular
-      .module('app')
+      .module('app.dataservice', [])
       .factory('dataservice', dataservice)
 
   dataservice.$inject = ['$http'];
@@ -10,7 +10,8 @@
   function dataservice($http){
 
     return {
-      postEvent: postEvent
+      postEvent: postEvent,
+      getEventList: getEventList
     };
 
     /////////////////////////////
@@ -28,6 +29,10 @@
       function postEventsFailed(error){
         console.log("ERROR: ", error);
       }
+    }
+
+    function getEventList(city){
+      return $http({method: 'GET', url: '/events/' + city});
     }
   }
 })();
