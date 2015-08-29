@@ -14,7 +14,20 @@ var UsersSchema = new mongoose.Schema({
     state: String,
     zipcode:  Number,
     reviews:[String],
-    time: String
+    time: String,
+    confirmed: Boolean,
+    usersApplied: [{username: String, userId: String, confirmed: Boolean}]
+  }],
+  joinedEvents: [{
+    host: String,
+    title: String,
+    description: String,
+    city: String,
+    date: String,
+    confirmed: Boolean,
+    time: String,
+    confirmed: Boolean,
+    usersApplied: [{username: String, userId: String, confirmed: Boolean}]
   }],
   reviews:[{
     eventName: String,
@@ -23,8 +36,6 @@ var UsersSchema = new mongoose.Schema({
 });
 
 
-
 var Users = mongoose.model('Users', UsersSchema);
-
 
 module.exports = Users;
