@@ -1,5 +1,4 @@
 (function(){
-
   angular.module('app', [
     'app.navbar',
     'app.createEvent',
@@ -70,4 +69,3 @@
       }
   }
 })();
-

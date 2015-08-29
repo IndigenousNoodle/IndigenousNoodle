@@ -13,6 +13,7 @@
       postEvent: postEvent,
       getEventList: getEventList,
       getUserEvents: getUserEvents,
+      getUserEvents: getUserEvents,
       getUserProfile: getUserProfile
     };
 
