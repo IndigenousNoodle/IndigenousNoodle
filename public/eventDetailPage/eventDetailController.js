@@ -3,17 +3,20 @@
   angular.module("app.eventDetail", [])
     .controller('eventDetailController', eventDetailController);
 
-  eventDetailController.$inject = ['$state', 'dataservice'];
+  eventDetailController.$inject = ['$state', 'dataservice', 'sendEvent'];
 
-  function eventDetailController($state, dataservice){
+  function eventDetailController($state, dataservice, sendEvent){
     // use the navBarApp?
     var vm = this;
     vm.join = join;
 
+    vm.details = sendEvent.getCurrentEvent();
+
     /////////////////////////
 
-    // must have a get request for the event
     // must have a get request for information about the host
+    // might need to modify host schema for description of host
+    // get join button work
 
     function join(){
       // push user onto list of events
