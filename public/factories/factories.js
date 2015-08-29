@@ -18,12 +18,17 @@
 
     function signup(user) {
       return $http.post('/signup', user)
-        .then(function(res) {
-          console.log("factory signup post res.data: ", res.data);
-          return res.data.token;
-        }, function(res) { 
-          console.log("factory signup err: ", res)
-        }); 
+        .then(signupGetToken)
+        .catch(signupUserFaild);
+
+      function signupGetToken(res) {
+        console.log("factory signup post res.data: ", res.data);
+        return res.data.token;
+      }
+
+      function signupUserFaild(res) { 
+        console.log("factory signup err: ", res)
+      }
     };
 
     function signout() {
@@ -32,14 +37,19 @@
       console.log("signout user");
     };
 
-     function signin(user) {
+    function signin(user) {
       return $http.post('/signin', user)
-      .then(function(res) {
+      .then(signinGetToken)
+      .catch(signinUserFaild);
+
+      function signinGetToken(res) {
         console.log("signin res: ", res.data.token);
         return res.data.token;
-      }, function(res) {
+      }
+      function signinUserFaild(res) {
         console.log("factory signin err: ", res);
-      });
+      }
+
     };
   }
 })();

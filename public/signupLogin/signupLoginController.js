@@ -14,10 +14,12 @@
     function signup(user) {
       Auth.signup(user)
         .then(function(token) {
-          console.log("signup taken: ", token);
-          $window.localStorage.setItem('localHosts', token);
-          console.log("signup $window.localStorage: ", $window.localStorage);
-          $location.path('/');
+          if(token) {
+            console.log("signup taken: ", token);
+            $window.localStorage.setItem('localHosts', token);
+            console.log("signup $window.localStorage: ", $window.localStorage);
+            $location.path('/');
+          }
         })
         .catch(function(err) {
           console.log("signup err: ", err);

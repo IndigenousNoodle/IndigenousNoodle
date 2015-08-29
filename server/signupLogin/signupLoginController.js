@@ -30,7 +30,8 @@ var signup = function(req, res) {
           });
   			} else { // if user already exist
   				console.log("saveUser user already exist ", data);
-  				res.send("user already exist");
+          res.send(null);
+  				// res.send("user already exist");
   			}
   		}
   	});   
