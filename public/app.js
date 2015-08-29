@@ -6,7 +6,8 @@
     'homepage',
     'ui.router',
     'app.eventManager',
-    'app.userProfile'
+    'app.userProfile',
+    'app.dataservice'
     ])
 
   .config(router)
@@ -47,15 +48,13 @@
           getProfilePrep: getProfileService
         }
       })
+      function getEventsService ($http, dataservice) {
+         return dataservice.getUserEvents();
+      }
+
+      function getProfileService ($http, dataservice, $stateParams) {
+        return dataservice.getUserProfile($stateParams.username);
+      }
   }
 
-
-
-  function getEventsService ($http) {
-    return $http({method: 'GET', url: '/user/eventsManager'});
-  }
-
-  function getProfileService ($http, $stateParams) {
-    return $http({method: 'GET', url: 'user/userProfile/' + $stateParams.username})
-  }
 })();

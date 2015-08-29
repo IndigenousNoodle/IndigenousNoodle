@@ -1,7 +1,7 @@
 (function(){
 
   angular
-      .module('app')
+      .module('app.dataservice', [])
       .factory('dataservice', dataservice)
       .factory('getEvents', getEvents)
 
@@ -11,7 +11,9 @@
   function dataservice($http){
 
     return {
-      postEvent: postEvent
+      postEvent: postEvent,
+      getUserEvents: getUserEvents,
+      getUserProfile: getUserProfile
     };
 
     /////////////////////////////
@@ -30,6 +32,35 @@
         console.log("ERROR: ", error);
       }
     }
+
+    function getUserEvents() {
+      return $http.get('/user/eventsManager')
+        .then(getUserEventsComplete)
+        .catch(getUserEventsFailed)
+
+        function getUserEventsComplete (newData) {
+          return newData
+        }
+        function getUserEventsFailed(error) {
+          console.log("ERROR: ", error);
+        }
+    }
+
+    function getUserProfile(username) {
+      return $http.get('/user/userProfile/'  + username)
+        .then(getUserProfileComplete)
+        .catch(getUserPorfileFailed)
+
+        function getUserProfileComplete (newData) {
+          return newData;
+        }
+
+        function getUserPorfileFailed (error) {
+          console.log("ERROR: ", error);
+
+        }
+    }
+
   }
 
   function getEvents($http) {
