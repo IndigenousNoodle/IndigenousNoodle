@@ -31,6 +31,10 @@
         console.log("ERROR === ", err);
       });
     }
+
+    function getEvent(){
+      
+    }
   }
 
 })();

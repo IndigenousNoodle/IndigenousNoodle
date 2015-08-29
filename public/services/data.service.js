@@ -2,5 +2,4 @@
 
   angular.module('app.dataservice', [])
 
-
 })();
