@@ -18,7 +18,7 @@
 
         console.log("submiting");
 
-        var eventData = {host: this.host, title: this.title, city: this.city, time: this.time, description: this.description};
+        var eventData = {host: this.host, title: this.title, city: this.city.toLowerCase(), time: this.time, description: this.description};
         
         dataservice.postEvent(eventData)
         .then(function(data){
