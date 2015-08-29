@@ -35,17 +35,8 @@ var getProfile = function (req, res) {
 };
 
 var confirmEvent = function (req, res) {
-<<<<<<< HEAD
   var clientName = req.params.username
 };
-
-||||||| merged common ancestors
-  var clientName = req.url.split('/')[3];
-}
-=======
-  var clientName = req.params.username
-}
->>>>>>> (refactor) use request params to get username
 
 module.exports = {
   getUser: getUser,
