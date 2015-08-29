@@ -1,34 +1,42 @@
-angular.module('app.signupLogin', [])
+(function() {
+  angular.module('app.signupLogin', [])
+    .controller('signupLoginController', signupLoginController)
 
-.controller('signupLoginController', function($scope, $window, $location, Auth) {
-	
-  $scope.signup = function(user) {
-    Auth.signup(user)
-      .then(function(token) {
-        console.log("signup taken: ", token);
-        $window.localStorage.setItem('localHosts', token);
-        console.log("signup $window.localStorage: ", $window.localStorage);
-        $location.path('/');
-      })
-      .catch(function(err) {
-        console.log("signup err: ", err);
-      })
-	};
+  signupLoginController.$inject = ['$window', '$location', 'Auth'];
 
-  $scope.signin = function(user) {
-    Auth.signin(user)
-      .then(function(token) {
-        if (token) {
-          console.log("signin token: ", token);
+  function signupLoginController($window, $location, Auth) {
+    
+      var vm = this;
+      vm.signup = signup;
+      vm.signin = signin;
+      vm.signout = Auth.signout;
+
+    function signup(user) {
+      Auth.signup(user)
+        .then(function(token) {
+          console.log("signup taken: ", token);
           $window.localStorage.setItem('localHosts', token);
-          console.log("signin $window.localStorage: ", $window.localStorage);
+          console.log("signup $window.localStorage: ", $window.localStorage);
           $location.path('/');
-        }
-      })
-      .catch(function(err) {
-        console.log("signin err: ", err);
-      })
-  };
+        })
+        .catch(function(err) {
+          console.log("signup err: ", err);
+        })
+    }
 
-  $scope.signout = Auth.signout;
-})
+    function signin(user) {
+      Auth.signin(user)
+        .then(function(token) {
+          if (token) {
+            console.log("signin token: ", token);
+            $window.localStorage.setItem('localHosts', token);
+            console.log("signin $window.localStorage: ", $window.localStorage);
+            $location.path('/');
+          }
+        })
+        .catch(function(err) {
+          console.log("signin err: ", err);
+        })
+    } 
+  }
+})();
