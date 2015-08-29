@@ -60,6 +60,7 @@
 
         }
     }
+
     function getEventList(city){
       return $http({method: 'GET', url: '/events/' + city});
     }

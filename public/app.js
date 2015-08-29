@@ -1,5 +1,4 @@
 (function(){
-
   angular.module('app', [
     'app.navbar',
     'app.createEvent',
@@ -82,6 +81,5 @@
       function getProfileService ($http, $stateParams) {
         return $http({method: 'GET', url: 'user/userProfile/' + $stateParams.username})
       }
-  }
+    }
 })();
-
