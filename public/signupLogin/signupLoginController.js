@@ -13,32 +13,36 @@
 
     function signup(user) {
       Auth.signup(user)
-        .then(function(token) {
-          if(token) {
-            console.log("signup taken: ", token);
-            $window.localStorage.setItem('localHosts', token);
-            console.log("signup $window.localStorage: ", $window.localStorage);
-            $location.path('/');
-          }
-        })
+        .then(setSignupToken)
         .catch(function(err) {
           console.log("signup err: ", err);
         })
+
+      function setSignupToken(token) {
+        if(token) {
+          console.log("signup taken: ", token);
+          $window.localStorage.setItem('localHosts', token);
+          console.log("signup $window.localStorage: ", $window.localStorage);
+          $location.path('/');
+        }
+      }
     }
 
     function signin(user) {
       Auth.signin(user)
-        .then(function(token) {
-          if (token) {
-            console.log("signin token: ", token);
-            $window.localStorage.setItem('localHosts', token);
-            console.log("signin $window.localStorage: ", $window.localStorage);
-            $location.path('/');
-          }
-        })
+        .then(setSigninToken)
         .catch(function(err) {
           console.log("signin err: ", err);
         })
+
+      function setSigninToken(token) {
+        if (token) {
+          console.log("signin token: ", token);
+          $window.localStorage.setItem('localHosts', token);
+          console.log("signin $window.localStorage: ", $window.localStorage);
+          $location.path('/');
+        }
+      }
     } 
   }
 })();
