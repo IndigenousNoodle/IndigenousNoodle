@@ -75,11 +75,11 @@
       function getEventList($http, $stateParams, dataservice) {
         return dataservice.getEventList($stateParams.city);
       }
-      function getEventsService ($http) {
-        return $http({method: 'GET', url: '/user/eventsManager'});
+      function getEventsService ($http, dataservice) {
+        return dataservice.getUserEvents(window.localStorage.localHosts);
       }
-      function getProfileService ($http, $stateParams) {
-        return $http({method: 'GET', url: 'user/userProfile/' + $stateParams.username})
+      function getProfileService ($http, $stateParams, dataservice) {
+        return dataservice.getUserProfile(window.localStorage.localHosts);
       }
 
       $httpProvider.interceptors.push('AttachToken');

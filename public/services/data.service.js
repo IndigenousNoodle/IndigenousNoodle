@@ -33,8 +33,8 @@
       }
     }
 
-    function getUserEvents() {
-      return $http.get('/user/eventsManager')
+    function getUserEvents(token) {
+      return $http.post('/user/eventsManager', {token:token})
         .then(getUserEventsComplete)
         .catch(getUserEventsFailed)
 
@@ -46,8 +46,8 @@
         }
     }
 
-    function getUserProfile(username) {
-      return $http.get('/user/userProfile/'  + username)
+    function getUserProfile(token) {
+      return $http.post('/user/userProfile/', {token: token})
         .then(getUserProfileComplete)
         .catch(getUserPorfileFailed)
 

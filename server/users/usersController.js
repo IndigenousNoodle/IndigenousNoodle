@@ -1,4 +1,6 @@
 var Users = require('./usersModel');
+var jwt = require('jwt-simple');
+
 
 var getUser = function(req, res) {
   Users.find().exec(function(err,data){
@@ -11,10 +13,7 @@ var getUser = function(req, res) {
 };
 
 var getEvents = function(req, res) {
-  // var username = req.body.??
-  // check if user is undefined
-  //'kevin is hardcoded value for development'
-  Users.findOne({username: 'kevin'}, function (err, data) {
+  Users.findOne({_id: user._id}, function (err, data) {
     if (err) {
       res.send(500, err)
     } else {
@@ -24,8 +23,9 @@ var getEvents = function(req, res) {
 };
 
 var getProfile = function (req, res) {
-  var username = req.params.username
-  Users.findOne({username:username}, function (err,data) {
+  var token = req.body.token;
+  var user = jwt.decode(token, 'localHostsSecretHostlocal');
+  Users.findOne({_id: user._id}, function (err,data) {
     if (err) {
       res.send(500, err)
     } else {
