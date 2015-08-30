@@ -28,29 +28,30 @@ var postEvents = function(req, res){
 var joinEvent = function(req, res){
   console.log("joining event, req.body === ", req.body);
 
-  // {eventData: event, joiner: joiner, host: host}
-  // must use eventID to reference the same event
 
   // match the username
   // match the event id of an event (object) in hostedEvents (array)
   // push a user to the userApplied array
 
-  // must have an event with an id in eventData
+  // Users.update({username:'Michael', "hostedEvents._id": "1"},
+  //   {$addToSet: {"hostedEvents.$.usersApplied": {"username":"Lisa"}}});
+  
+  Users.findOne({username: "Michael", "hostedEvents._id": "1"}, function(err,doc){
+    for (var ev in doc.hostedEvents){
+      if (ev._id === req.body.id){
+        doc.hostedEvents.push(req.body);
+        doc.save();
+      }
+    }
+    console.log("doc === ", doc);
+  });
 
-// { eventData: { id: 1, val: 'hardcoded' },
-//   joiner: 'Lisa',
-//   host: 'Michael' }
+// Model.findOne({ name: 'borne' }, function (err, doc){
+//   doc.name = 'jason borne';
+//   doc.visits.$inc();
+//   doc.save();
+// });
 
-
-// { 
-//   "_id" : ObjectId("55e0ecf9422d86f0a3b37b8f"),
-//    "username" : "Lisa", 
-//    "hostedEvents" : [ { "_id" : 2, "usersApplied" : [ ] } ], 
-//    "joinedEvents" : [ { "confirmed" : false } ] 
-// }
-
-Users.update({username:'Michael', "hostedEvents._id": "1"},
-  {$addToSet: {"hostedEvents.$.usersApplied": {"username":"SDasdfFSDFKJDSFKJSDFKJDSFKLJDSFLJSDF"}}});
 
 };
 

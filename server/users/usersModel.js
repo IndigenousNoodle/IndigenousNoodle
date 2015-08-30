@@ -41,3 +41,15 @@ var UsersSchema = new mongoose.Schema({
 var Users = mongoose.model('Users', UsersSchema);
 
 module.exports = Users;
+
+
+// { 
+//   "_id" : ObjectId("55e0ecfa422d86f0a3b37b90"), 
+//   "username" : "Michael", 
+//   "hostedEvents" : [ 
+//     { "_id" : "1", "usersApplied" : [ ] } 
+//   ],
+//   "joinedEvents" : [ 
+//     { "confirmed" : false } 
+//   ] 
+// }
