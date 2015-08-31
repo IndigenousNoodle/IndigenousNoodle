@@ -10,6 +10,7 @@
       vm.signup = signup;
       vm.signin = signin;
       vm.signout = Auth.signout;
+      // vm.logCookies = logCookies;
 
     function signup(user) {
       Auth.signup(user)
@@ -43,6 +44,19 @@
           $location.path('/');
         }
       }
-    } 
+    }
+
+    // funtion for testing if token is attached to req and decoded in res
+    /*function logCookies() {
+      Auth.logCookie()
+        .then(function(data) {
+          console.log("logCookie: ", data);
+        })
+        .catch(function(err) {console.log(err);})
+    }*/
+
   }
 })();
+
+
+

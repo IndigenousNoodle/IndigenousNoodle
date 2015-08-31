@@ -81,5 +81,7 @@
       function getProfileService ($http, $stateParams) {
         return $http({method: 'GET', url: 'user/userProfile/' + $stateParams.username})
       }
+
+      $httpProvider.interceptors.push('AttachToken');
     }
 })();
