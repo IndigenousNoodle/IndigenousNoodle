@@ -2,9 +2,10 @@ var Events = require('../events/eventsModel');
 var Users = require('../users/usersModel');
 
 var postEvents = function(req, res){
+  console.log("req.body === ", req.body);
   Events.create(req.body, function(err, response){
     if (err){
-      console.log("ERROR");
+      console.log("ERROR", err);
     }else{
       // try to update user
       console.log("response === ", response);
@@ -25,28 +26,82 @@ var postEvents = function(req, res){
       //     }
       //   }
       // );
-      var eventResponse = "hostedEvents." + response._id;
+
       var setObj = {};
-      setObj[eventResponse] = req.body;
-      console.log("setObj === ", setObj);
-      
-      Users.findOneAndUpdate(
-        {"username": req.body.host},
-        {$set: setObj},
-        {safe: true, new: true},
-        function(err, model){
-          if (err){
-            console.log("ERROR: ", err);
-            res.send(500,err);
-          }else{
-            console.log("SUCCESS", model);
-            res.status(200).send(model);
+      var hostEvents = "hostedEvents." + response._id;
+      setObj[hostEvents] =
+        {"usersApplied":
+          {"Lisa":
+            {"confirmed": false}
           }
-        }
-      );
+        };
+
+      console.log("setObj === ", setObj);
+
+      Users.update(
+          {username: "Michael"},
+          {$set:
+            {"hostedEvents.56":
+              // {usersApplied:
+              //   {"Lisa":
+              //     {"confirmed": false}
+              //   }
+              // }
+              "Hello"
+            }
+          },
+          {safe: true, new: true, upsert: true},
+          function(err, model){
+            if (err){
+              console.log("ERROR: ", err);
+              res.status(500).send(err);
+            }else{
+              console.log("SUCCESS", model);
+              res.status(200).send(model);
+            }
+          }
+        );
     }
   });
 };
+
+// db.users.update(
+//   {username: "Michael"},
+//   {$set:
+//     {"hostedEvents.55e4a0003ea5f4fabe89f20d":
+//       {usersApplied:
+//         {"Lisa":
+//           {"confirmed": false}
+//         }
+//       }
+//     }
+//   }
+// );
+
+// var setObj = {$set: {"hostedEvents": {}}};
+
+//       var eventResponse = "hostedEvents." + response._id;
+//       var setObj = {};
+//       setObj[eventResponse] = req.body;
+//       console.log("setObj === ", setObj);
+      
+//       Users.findOneAndUpdate(
+//         {"username": req.body.host},
+//         {$set: setObj},
+//         {safe: true, new: true},
+//         function(err, model){
+//           if (err){
+//             console.log("ERROR: ", err);
+//             res.send(500,err);
+//           }else{
+//             console.log("SUCCESS", model);
+//             res.status(200).send(model);
+//           }
+//         }
+//       );
+//     }
+//   });
+// };
 
 
 
