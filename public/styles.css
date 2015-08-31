@@ -15,7 +15,23 @@
 }
 
 .margin {
-  margin: 18.7em 0;
+  margin: 16.9em 0;
+}
+
+.input-margin {
+  margin: 3em 0;
+}
+
+.add-on .input-group-btn > .btn {
+  border-left-width:0;left:-2px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+/* stop the glowing blue shadow */
+.add-on .form-control:focus {
+ box-shadow:none;
+ -webkit-box-shadow:none; 
+ border-color:#cccccc; 
 }
 
 .header-title {
@@ -23,6 +39,9 @@
   text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
+paper-input-container {
+  width: 25em;
+}
 
 @import url(//fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900);
 
