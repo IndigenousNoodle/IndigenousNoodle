@@ -38,33 +38,38 @@ var postEvents = function(req, res){
 
       console.log("setObj === ", setObj);
 
-      Users.update(
-          {username: "Michael"},
-          {$set:
-            {"hostedEvents.56":
-              // {usersApplied:
-              //   {"Lisa":
-              //     {"confirmed": false}
-              //   }
-              // }
-              "Hello"
-            }
-          },
-          {safe: true, new: true, upsert: true},
-          function(err, model){
-            if (err){
-              console.log("ERROR: ", err);
-              res.status(500).send(err);
-            }else{
-              console.log("SUCCESS", model);
-              res.status(200).send(model);
-            }
-          }
-        );
+      // Users.update({"username": "Michael"}, {$set: {"hostedEvents.69.usersApplied.Lisa.confirmed": false}});
+
+      // Users.update(
+      //     {username: "Michael"},
+      //     {safe: true, new: true, upsert: true},
+      //     function(err, model){
+      //       if (err){
+      //         console.log("ERROR: ", err);
+      //         res.status(500).send(err);
+      //       }else{
+      //         console.log("SUCCESS", model);
+      //         res.status(200).send(model);
+      //       }
+      //     }
+      //   );
     }
   });
 };
 
+
+          // {$set:
+          //   {"hostedEvents.56":
+          //     // {usersApplied:
+          //     //   {"Lisa":
+          //     //     {"confirmed": false}
+          //     //   }
+          //     // }
+          //     "Hello"
+          //   }
+          // },
+
+// db.users.update({"username": "Michael"}, {$set: {"hostedEvents.69.usersApplied.Lisa.confirmed": false}})
 // db.users.update(
 //   {username: "Michael"},
 //   {$set:
