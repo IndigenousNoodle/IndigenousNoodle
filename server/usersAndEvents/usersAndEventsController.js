@@ -7,9 +7,32 @@ var postEvents = function(req, res){
       console.log("ERROR");
     }else{
       // try to update user
+      console.log("response === ", response);
+
+      // find where the user name matches then simply $set on the user id
+
+      // Users.findOneAndUpdate(
+      //   {"username": req.body.host},
+      //   {$addToSet: {"hostedEvents": req.body}},
+      //   {safe: true, new: true},
+      //   function(err, model){
+      //     if (err){
+      //       console.log("ERROR: ", err);
+      //       res.send(500,err);
+      //     }else{
+      //       console.log("SUCCESS", model);
+      //       res.status(200).send(model);
+      //     }
+      //   }
+      // );
+      var eventResponse = "hostedEvents." + response._id;
+      var setObj = {};
+      setObj[eventResponse] = req.body;
+      console.log("setObj === ", setObj);
+      
       Users.findOneAndUpdate(
         {"username": req.body.host},
-        {$addToSet: {"hostedEvents": req.body}},
+        {$set: setObj},
         {safe: true, new: true},
         function(err, model){
           if (err){
@@ -25,6 +48,8 @@ var postEvents = function(req, res){
   });
 };
 
+
+
 var joinEvent = function(req, res){
   console.log("joining event, req.body === ", req.body);
 
@@ -36,15 +61,15 @@ var joinEvent = function(req, res){
   // Users.update({username:'Michael', "hostedEvents._id": "1"},
   //   {$addToSet: {"hostedEvents.$.usersApplied": {"username":"Lisa"}}});
   
-  Users.findOne({username: "Michael", "hostedEvents._id": "1"}, function(err,doc){
-    for (var ev in doc.hostedEvents){
-      if (ev._id === req.body.id){
-        doc.hostedEvents.push(req.body);
-        doc.save();
-      }
-    }
-    console.log("doc === ", doc);
-  });
+  // Users.findOne({username: "Michael", "hostedEvents._id": "1"}, function(err,doc){
+  //   for (var ev in doc.hostedEvents){
+  //     if (ev._id === req.body.id){
+  //       doc.hostedEvents.push(req.body);
+  //       doc.save();
+  //     }
+  //   }
+  //   console.log("doc === ", doc);
+  // });
 
 // Model.findOne({ name: 'borne' }, function (err, doc){
 //   doc.name = 'jason borne';
