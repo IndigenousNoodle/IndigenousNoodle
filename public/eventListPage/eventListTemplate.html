@@ -1,16 +1,17 @@
 <div class="container">
   <div class="row">
+    <form ng-submit='eventList.displayEvents()'>
+      <div class='col-md-4 col-md-offset-4'>
+        <paper-input-container>
+          <input is="iron-input" ng-model="eventList.findCity" placeholder="Where do you want to go?"></input>
+          <iron-icon suffix icon="search"></iron-icon>
+        </paper-input-container>
+      </div>
+    </form>
     <div class="col-md-12">
       <h2 class="text-muted">Tour List</h2>
     </div>
   </div>
-<!--   <section class="row text-center">
-    <div class="col-md-4" ng-repeat="event in eventList.getEventList">
-      <h3>{{event.title}}</h3>
-      <p>{{event.city}}</p>
-      <p>{{event.host}}</p>
-    </div>
-  </section> -->
   <div class="card" ng-repeat="event in eventList.getEventList">
     <div class="content">
       <span class="title">{{event.title}}</span>
@@ -21,6 +22,4 @@
       <p>{{event.host}}</p>
     </div>
   </div>
-
 </div>
-

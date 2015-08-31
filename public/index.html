@@ -3,7 +3,16 @@
 
   <head>
 
+    <script src="./lib/webcomponentsjs/webcomponents-lite.min.js"></script>
     <link rel="stylesheet" href="styles.css">
+
+    <link rel="import" href="./lib/polymer/polymer.html">
+    <link rel="import" href="./lib/iron-input/iron-input.html">
+    <link rel="import" href="./lib/paper-input/all-imports.html">
+    <link ref="import" href="./lib/paper-icon-button/paper-icon-button.html">
+    <link ref="import" href="./lib/paper-button/paper-button.html">
+    <link rel="import" href="./lib/iron-icon/iron-icon.html">
+    <link rel="import" href="./lib/iron-icons/iron-icons.html">
 
     <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css"></link>
     <script src="./lib/angular/angular.min.js"></script>
@@ -18,7 +27,6 @@
     <script src="./eventListPage/eventListController.js"></script>
     <script src="./createEventPage/createEventController.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <script src="./eventManager/eventManagerController.js"></script>
     <script src="./userProfile/userProfileController.js"></script>
     <script src="./services/confirmEvent.service.js"></script>
@@ -27,9 +35,8 @@
 
   <body>
     <navigation-bar></navigation-bar>
-
     <div ui-view></div>
 
   </body>
 
-</html> 
+</html>
