@@ -68,12 +68,32 @@ var signin = function(req, res) {
         });
       }
     });
+};
 
- 
-
+var checkAuth = function(req, res) {
+  console.log("inside checkAuth, req.body: ", req.body);
+  var token = req.headers['x-access-token'];
+  if (!token) {
+    console.log("checkAuth empty token");
+  } else {
+    var user = jwt.decode(token, 'localHostsSecretHostlocal');
+    Users.findOne({username: user.username})
+      .exec(function(err, data) {
+        if (err) {
+          console.log("checkAuth findOne err", err);
+        }
+        if (data) {
+          res.json(user);
+        }
+        if (!data) {
+          res.send("checkAuth, Username does not exist");
+        }
+      }); 
+  }
 }
 
 module.exports = {
   signup: signup,
-  signin: signin
+  signin: signin,
+  checkAuth: checkAuth
 };
