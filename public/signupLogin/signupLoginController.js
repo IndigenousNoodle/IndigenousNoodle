@@ -22,9 +22,9 @@
 
       function setSignupToken(token) {
         if(token) {
-          console.log("signup taken: ", token);
+          // console.log("signup taken: ", token);
           $window.localStorage.setItem('localHosts', token);
-          console.log("signup $window.localStorage: ", $window.localStorage);
+          // console.log("signup $window.localStorage: ", $window.localStorage);
           $state.go('homepage');
         }
       }
@@ -39,9 +39,9 @@
 
       function setSigninToken(token) {
         if (token) {
-          console.log("signin token: ", token);
+          // console.log("signin token: ", token);
           $window.localStorage.setItem('localHosts', token);
-          console.log("signin $window.localStorage: ", $window.localStorage);
+          // console.log("signin $window.localStorage: ", $window.localStorage);
           $state.go('homepage');
         }
       }

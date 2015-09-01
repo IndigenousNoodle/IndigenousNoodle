@@ -22,7 +22,7 @@
         .catch(signupUserFaild);
 
       function signupGetToken(res) {
-        console.log("factory signup post res.data: ", res.data);
+        // console.log("factory signup post res.data: ", res.data);
         return res.data.token;
       }
 
@@ -34,7 +34,6 @@
     function signout() {
       $window.localStorage.removeItem('localHosts');
       $location.path('/signup');
-      console.log("signout user");
     };
 
     function signin(user) {
@@ -43,7 +42,7 @@
       .catch(signinUserFaild);
 
       function signinGetToken(res) {
-        console.log("signin res: ", res.data.token);
+        // console.log("signin res: ", res.data.token);
         return res.data.token;
       }
       function signinUserFaild(res) {

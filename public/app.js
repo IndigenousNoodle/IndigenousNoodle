@@ -14,21 +14,11 @@
     ])
 
   .config(router)
-  .run(function ($rootScope, $state, Auth) {
-      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        console.log('inside $stateChangeStart, toState.url: ', toState.url);
-        if(toState.url === '/require' && !Auth.isAuth()) {
-          event.preventDefault();
-          $state.go('signin');
-          // console.log('inside if toState.url === /require');
-        }
-
-
-      });
-  })
+  .run(requireUserSignin)
 
 
   router.$inject = ['$urlRouterProvider', '$stateProvider', '$httpProvider'];
+  requireUserSignin.$inject = ['$rootScope','$state', 'Auth'];
 
   function router($urlRouterProvider, $stateProvider, $httpProvider) {
     $urlRouterProvider.otherwise("/");
@@ -67,14 +57,14 @@
         controller: 'signupLoginController',
         controllerAs: 'signupLogin'
       })
-      //
+      ///////////////////////////////////////////////////////
       .state('requireSignin', {
         url: '/require',
         templateUrl: './signupLogin/requireTemplate.html',
         controller: 'signupLoginController',
         controllerAs: 'signupLogin'
       })
-      //
+      ///////////////////////////////////////////////////////
       .state('eventManager', {
         url: '/events/eventManager',
         templateUrl: './eventManager/eventManagerTemplate.html',
@@ -136,6 +126,16 @@
       }
 
       $httpProvider.interceptors.push('AttachTokens');
+    }
+
+    // for .run() module, ask user to sign in if user is not signed in
+    function requireUserSignin($rootScope, $state, Auth) {
+      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        if(toState.url === '/require' && !Auth.isAuth()) {
+          event.preventDefault();
+          $state.go('signin');
+        }
+      });
     }
 
 })();
