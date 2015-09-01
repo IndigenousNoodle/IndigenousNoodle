@@ -4,30 +4,38 @@
     .directive('navigationBar', navBar);
 
   navBar.$inject = [];
-  navController.$inject = ['$scope', '$state', 'Auth'];
-
-  function navController($scope, $state, Auth){
-  
-    $scope.checkAuth = function() {
-      if (Auth.isAuth()) {
-        $scope.signinoutMessage = 'Sign Out';
-        $scope.signinout = Auth.signout;
-      } else {
-        $scope.signinoutMessage = 'Sign In';
-        $scope.signinout = function() {
-          $state.go('signin');
-        };
-      }
-    }
-  }
 
   function navBar(Auth){
     return {
       restrict: "E",
       replace: true,
       transclude: true,
-      templateUrl: "./components/navBar/navBarTemplate.html"
+      templateUrl: "./components/navBar/navBarTemplate.html",
+      controller: navController,
+      controllerAs: 'navController'
     };
+  }
+
+  navController.$inject = ['$state', 'Auth'];
+
+  function navController($state, Auth){
+
+    var vm = this;
+    vm.checkAuth = checkAuth;
+
+    function checkAuth() {
+      if (Auth.isAuth()) {
+        vm.signinoutMessage = 'Sign Out';
+        vm.signinout = Auth.signout;
+      } else {
+        vm.signinoutMessage = 'Sign In';
+        vm.signinout = signinout;
+
+        function signinout() {
+          $state.go('signin');
+        };
+      }
+    }
   }
 })();
 
