@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <h3>Joined Events:</h3>
+    <h4>Confirmed</h4>
+      <div class="col-md-4" ng-repeat="joinedEvent in event.joinedConfirmed">
+        <table class="table">
+          <caption>
+            {{joinedEvent.title}}
+          </caption>
+          <tr>
+            <td>Host:</td>
+            <td>{{joinedEvent.host}}</td>
+          </tr>
+          <tr>
+            <td>Description:</td>
+            <td>{{joinedEvent.description}}</td>
+          </tr>
+          <tr>
+            <td>Location:</td>
+            <td>{{joinedEvent.city}}</td>
+          </tr>
+          <tr>
+            <td>Time:</td>
+            <td>{{joinedEvent.time}}</td>
+          </tr>
+        </table>
+      </div>
+  </div>
+  <div class="row">
+    <h4>WaitListed</h4>
+      <div class="col-md-4" ng-repeat="joinedEvent in event.joinedWaitListed">
+        <table class="table">
+          <caption>
+            {{joinedEvent.title}}
+          </caption>
+          <tr>
+            <td>Host:</td>
+            <td>{{joinedEvent.host}}</td>
+          </tr>
+          <tr>
+            <td>Description:</td>
+            <td>{{joinedEvent.description}}</td>
+          </tr>
+          <tr>
+            <td>Location:</td>
+            <td>{{joinedEvent.city}}</td>
+          </tr>
+          <tr>
+            <td>Time:</td>
+            <td>{{joinedEvent.time}}</td>
+          </tr>
+        </table>
+      </div>
+   </div> 
+</div>

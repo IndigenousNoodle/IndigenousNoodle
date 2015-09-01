@@ -1,38 +1,6 @@
-<div>
-  <div>
-    <h3>Hosted Events:</h3>
-    <div ng-repeat="(eventId, hostedEvent) in event.hosted">
-      <h5>{{hostedEvent.title}}</h5>
-      <ul>
-      <!--Link to user profile -->
-      <!--Toggle button to disable after accepting user to event -->
-      <!--Click button to confirm user and send data to server-->
-        <li ng-repeat="(key, users) in hostedEvent.usersApplied"><a ui-sref="userProfile({username: users.username})">{{key}}  </a><button ng-class="{true: 'btn btn-success disabled', false: 'btn btn-primary'}[users.confirmed]" ng-disabled="users.confirmed" ng-click="event.confirmUser(key, eventId); users.confirmed = !users.confirmed" >{{!users.confirmed && 'Accept' || 'Accepted'}}</button></li> 
-      </ul>
-    </div>
-  </div>
-  <div>
-    <h3>Joined Events:</h3>
-    <h4>Confirmed</h4>
-    <div ng-repeat="joinedEvent in event.joinedConfirmed">
-      <h5>Event: {{joinedEvent.title}}:</h5>
-      <p>host: {{joinedEvent.host}}</p>
-      <p>description: {{joinedEvent.description}}</p>
-      <p>location: {{joinedEvent.city}}</p>
-      <p>time: {{joinedEvent.time}}</p>
-      <br />
-      <br />
-    </div>
-    <h4>WaitListed</h4>
-    <div ng-repeat="joinedEvent in event.joinedWaitListed">
-      <h5>Event: {{joinedEvent.title}}:</h5>
-      <p>host: {{joinedEvent.host}}</p>
-      <p>description: {{joinedEvent.description}}</p>
-      <p>location: {{joinedEvent.city}}</p>
-      <p>time: {{joinedEvent.time}}</p>
-      <br />
-      <br />
-    </div>
-  </div>
+<div class="container">
+    <a class="btn btn-primary" ui-sref="eventManager.joinedEvents">Joined Events</a>
+    <a class="btn btn-primary" ui-sref="eventManager.hostedEvents">Hosted Events</a>
+    <div ui-view></div>
 </div>
 
