@@ -15,6 +15,7 @@
 
   .config(router)
 
+
   router.$inject = ['$urlRouterProvider', '$stateProvider', '$httpProvider'];
 
   function router($urlRouterProvider, $stateProvider, $httpProvider) {
@@ -76,12 +77,12 @@
         return dataservice.getEventList($stateParams.city);
       }
       function getEventsService ($http, dataservice) {
-        return dataservice.getUserEvents(window.localStorage.localHosts);
+        return dataservice.getUserEvents();
       }
       function getProfileService ($http, $stateParams, dataservice) {
-        return dataservice.getUserProfile(window.localStorage.localHosts);
+        return dataservice.getUserProfile();
       }
 
-      $httpProvider.interceptors.push('AttachToken');
+      $httpProvider.interceptors.push('AttachTokens');
     }
 })();

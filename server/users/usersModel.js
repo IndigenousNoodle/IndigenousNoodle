@@ -7,32 +7,34 @@ var UsersSchema = new mongoose.Schema({
   },
   password: String,
   profileUrl: String,
-  hostedEvents:[{
-    title: String,
-    description: String,
-    city: String,
-    state: String,
-    zipcode:  Number,
-    reviews:[String],
-    time: String,
-    confirmed: Boolean,
-    usersApplied: [{username: String, userId: String, confirmed: Boolean}]
-  }],
-  joinedEvents: [{
-    host: String,
-    title: String,
-    description: String,
-    city: String,
-    date: String,
-    confirmed: Boolean,
-    time: String,
-    confirmed: Boolean,
-    usersApplied: [{username: String, userId: String, confirmed: Boolean}]
-  }],
-  reviews:[{
-    eventName: String,
-    review: [String]
-  }]
+  hostedEvents: {
+    eventId: {
+      title: String,
+      description: String,
+      city: String,
+      state: String,
+      zipcode:  Number,
+      reviews:[String],
+      time: String,
+      confirmed: Boolean,
+      usersApplied: {
+        username: {
+          confirmed: Boolean
+        }
+      }
+    }
+  },
+  joinedEvents: {
+    eventId: {
+      host: String,
+      title: String,
+      description: String,
+      city: String,
+      date: String,
+      confirmed: Boolean,
+      time: String
+    }
+  }
 });
 
 

@@ -10,8 +10,8 @@
       confirmEvent: confirmEvent
     };
     
-    function confirmEvent(username){
-      return $http.post('/user/confirmEvent/' + username)
+    function confirmEvent(acceptedUser, eventId){
+      return $http.post('/user/confirmEvent/', {acceptedUser: acceptedUser, eventId: eventId})
         .then(confirmEventComplete)
         .catch(confirmEventFailed);
 
