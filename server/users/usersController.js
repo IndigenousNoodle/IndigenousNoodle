@@ -44,10 +44,19 @@ var confirmEvent = function (req, res) {
   var eventId = req.body.eventId;
   var hostedEventUpdateQuery = "hostedEvents." + eventId + ".usersApplied." + acceptedUser+ ".confirmed";
   var joinedEventUpdateQuery = "joinedEvents." + eventId + ".confirmed";
-  db.instance.collection('users').update({username: 'kevin'}, {$set: {'hostedEvents.55e49b957ca483398f47c67a.usersApplied.lisa.confirmed':true}}, function(err, data){
-    console.log(data);
-    console.log(err);
-
+  var hostedQuery = {};
+  var joinedQuery = {};
+  hostedQuery[hostedEventUpdateQuery] = true;
+  joinedQuery[joinedEventUpdateQuery] = true
+  db.instance.collection('users').update({username: user.username}, {$set: hostedQuery}, function(err, data){
+    if (err) {
+      console.log(err);
+    } else {
+      db.instance.collection('users').update({username: acceptedUser}, {$set: joinedQuery}, function(err, data){
+        res.status(200).send(data);
+      });
+    }
+  })
 };
 
 module.exports = {
