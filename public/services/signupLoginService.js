@@ -12,7 +12,6 @@
       signout: signout,
       signin: signin,
       isAuth: isAuth,
-      // logCookie: logCookie
     };
 
     //////////////////////////////////////////////////////
@@ -55,15 +54,6 @@
     function isAuth() {
       return !!$window.localStorage.getItem('localHosts');
     }
-
-    // funtion for testing if token is attached to req and decoded in res 
-    /*function logCookie() {
-      return $http.post('/logCookie')
-      .then(function(res) {
-        console.log("logCookie res: ", res.data);
-        return res.data;
-      })
-    }*/
   }
 
 }());
