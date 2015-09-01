@@ -1,9 +1,8 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" ng-controller="navController">
   <div class="container-fluid">
    <a class="navbar-brand" ui-sref="homepage">localhosts</a>
-   <a class="navbar-brand" ui-sref="signin">Sign In</a>
     <div class="btn-group" id="dropdown" dropdown is-open="status.isopen">
-      <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
+      <button ng-click="checkAuth()" id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
         Button dropdown <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
@@ -14,7 +13,7 @@
         <li role="menuitem"><a ui-sref="createEvent">Create Event</a></li>
         <li role="menuitem"><a href="#">Created</a></li>
         <li class="divider"></li>
-        <li ng-click="signout()" role="menuitem"><a href="#">Sign Out</a></li>
+        <li ng-click="signinout()" role="menuitem"><a href="#">{{signinoutMessage}}</a></li>
       </ul>
     </div>
   </div><!-- /.container-fluid -->
