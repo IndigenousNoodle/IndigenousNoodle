@@ -33,7 +33,7 @@
 
     function signout() {
       $window.localStorage.removeItem('localHosts');
-      $location.path('/signup');
+      $location.path('/signin');
     };
 
     function signin(user) {
