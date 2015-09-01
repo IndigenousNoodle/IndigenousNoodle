@@ -1,7 +1,10 @@
-<div>
-  Username: {{user.user.username}} <br />
-  Reviews: 
-  <ul ng-repeat="reviews in user.user.reviews">
-    <li ng-repeat="review in reviews.review">{{review}}</li>
-  </ul>
+<div class="container">
+  <div class="row">
+    <a class="btn btn-primary" ui-sref="eventManager.hostedEvents">Back to Event Manager</a> <br />
+    Username: {{user.user.username}} <br />
+    Reviews: 
+    <ul ng-repeat="reviews in user.user.reviews">
+      <li ng-repeat="review in reviews.review">{{review}}</li>
+    </ul>
+  </div>
 </div>
