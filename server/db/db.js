@@ -8,4 +8,7 @@ db.once('open', function() {
   console.log('Mongo connection open');
 });
 
+
+
+
 module.exports = db;

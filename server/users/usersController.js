@@ -1,5 +1,6 @@
 var Users = require('./usersModel');
 var jwt = require('jwt-simple');
+var db = require('../db/mongodb.js');
 
 
 var getUser = function(req, res) {
@@ -43,41 +44,12 @@ var confirmEvent = function (req, res) {
   var eventId = req.body.eventId;
   var hostedEventUpdateQuery = "hostedEvents." + eventId + ".usersApplied." + acceptedUser+ ".confirmed";
   var joinedEventUpdateQuery = "joinedEvents." + eventId + ".confirmed";
-  // console.log(joinedEventUpdateQuery)
-  // console.log(eventId)
+  db.instance.collection('users').update({username: 'kevin'}, {$set: {'hostedEvents.55e49b957ca483398f47c67a.usersApplied.lisa.confirmed':true}}, function(err, data){
+    console.log(data);
+    console.log(err);
 
-
-  Users.update({username:'lisa'}, {$set:{'hostedEvents["eventId"]["confirmed"]':false}}, function(err,data){
-    // console.log(err)
-    console.log(data)
-    res.send(data)
-    res.end()
-  })
-
-  // Users.findOne({username:'lisa'}, 'joinedEvents', function(err,data){
-  //   console.log(data)
-  // })
-
-  // Users.findOne({username: "lisa"}, function (err,user) {
-  //   if (err) {
-  //     res.send(500, err)
-  //   } else {
-  //     user.joinedEvents.confirmed = true
-  //     user.save(function(err){
-  //       console.log(err)
-  //     })
-  //       Users.update({username: user.username},{$set:{"hostedEvents.55e49b957ca483398f47c67a.usersApplied.lisa.confirmed":true}}, function (err,data) {
-  //         if (err) {
-  //           res.send(500, err)
-  //         } else {
-  //           res.status(200).send(data);
-  //         }
-  //       });
-  //   }
-  // });
 };
-// db.users.update({username: 'kevin'}, {$set: {'hostedEvents.55e49b957ca483398f47c67a.usersApplied.lisa.confirmed':true}})
-// db.users.update({username:'lisa'}, {$set:{joinedEvents.55e49b957ca483398f47c67a.confirmed:true}})
+
 module.exports = {
   getUser: getUser,
   getEvents: getEvents,
