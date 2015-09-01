@@ -3,14 +3,13 @@
     'app.navbar',
     'app.createEvent',
     'app.signupLogin',
-    'app.factories',
     'ui.router',
     'ui.bootstrap',
     'eventList',
     'homepage',
+    'app.dataservice',
     'app.eventManager',
-    'app.userProfile',
-    'app.dataservice'
+    'app.userProfile'
     ])
 
   .config(router)
@@ -73,14 +72,14 @@
           getProfilePrep: getProfileService
         }
       })
-      function getEventList($http, $stateParams, dataservice) {
-        return dataservice.getEventList($stateParams.city);
+      function getEventList($http, $stateParams, eventsService) {
+        return eventsService.getEventList($stateParams.city);
       }
-      function getEventsService ($http, dataservice) {
-        return dataservice.getUserEvents();
+      function getEventsService ($http, usersService) {
+        return usersService.getUserEvents();
       }
-      function getProfileService ($http, $stateParams, dataservice) {
-        return dataservice.getUserProfile();
+      function getProfileService ($http, $stateParams, usersService) {
+        return usersService.getUserProfile();
       }
 
       $httpProvider.interceptors.push('AttachTokens');

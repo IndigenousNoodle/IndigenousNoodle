@@ -3,9 +3,9 @@
 
   .controller('eventManagerController', eventManagerController);
 
-  eventManagerController.$inject = ['getEventsPrep', 'confirmEvent'];
+  eventManagerController.$inject = ['getEventsPrep', 'usersService'];
 
-  function eventManagerController (getEventsPrep, confirmEvent) {
+  function eventManagerController (getEventsPrep, usersService) {
     var vm = this;
     vm.confirmUser = confirmUser;
     vm.eventData = getEventsPrep.data;
@@ -14,7 +14,7 @@
     vm.joinedWaitListed = waitListedEvents(vm.eventData.joinedEvents);
 
     function confirmUser (acceptedUser, eventId) {
-      confirmEvent.confirmEvent(acceptedUser, eventId);
+      usersService.confirmEvent(acceptedUser, eventId);
     }
 
     function confirmedEvents (events) {
