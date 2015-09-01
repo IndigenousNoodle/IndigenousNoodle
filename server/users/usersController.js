@@ -26,9 +26,8 @@ var getEvents = function(req, res) {
 };
 
 var getProfile = function (req, res) {
-  var token = req.headers['x-access-token'];
-  var user = jwt.decode(token, 'localHostsSecretHostlocal');
-  Users.findOne({username: user.username}, function (err,data) {
+  var username = req.body.username;
+  Users.findOne({username: username}, function (err,data) {
     if (err) {
       res.send(500, err)
     } else {

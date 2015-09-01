@@ -8,7 +8,7 @@
           </caption>
           <tr ng-repeat="(key, users) in hostedEvent.usersApplied">
             <td>
-              <a ui-sref="userProfile({username: users.username})">{{key}}</a>
+              <a ui-sref="userProfile({username: key})">{{key}}</a>
             </td>
             <td>
               <button ng-class="{true: 'btn btn-success disabled', false: 'btn btn-primary'}[users.confirmed]" ng-disabled="users.confirmed" ng-click="event.confirmUser(key, eventId); users.confirmed = !users.confirmed" >

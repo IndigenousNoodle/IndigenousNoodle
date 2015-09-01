@@ -97,7 +97,7 @@
         return usersService.getUserEvents();
       }
       function getProfileService ($http, $stateParams, usersService) {
-        return usersService.getUserProfile();
+        return usersService.getUserProfile($stateParams.username);
       }
 
       $httpProvider.interceptors.push('AttachTokens');
