@@ -3,7 +3,6 @@
     'app.navbar',
     'app.createEvent',
     'app.signupLogin',
-    'app.factories',
     'ui.router',
     'ui.bootstrap',
     'eventList',
