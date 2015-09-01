@@ -46,8 +46,8 @@
         }
     }
 
-    function getUserProfile(username) {
-      return $http.get('/user/userProfile/'  + username)
+    function getUserProfile(token) {
+      return $http.get('/user/userProfile/')
         .then(getUserProfileComplete)
         .catch(getUserPorfileFailed)
 
