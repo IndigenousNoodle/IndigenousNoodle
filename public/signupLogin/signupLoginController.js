@@ -2,14 +2,15 @@
   angular.module('app.signupLogin', [])
     .controller('signupLoginController', signupLoginController)
 
-  signupLoginController.$inject = ['$window', '$location', 'Auth'];
+  signupLoginController.$inject = ['$rootScope', '$window', '$state', 'Auth'];
 
-  function signupLoginController($window, $location, Auth) {
+  function signupLoginController($rootScope, $window, $state, Auth) {
     
       var vm = this;
       vm.signup = signup;
       vm.signin = signin;
       vm.signout = Auth.signout;
+      vm.requireLogin = requireLogin;
       // vm.logCookies = logCookies;
 
     function signup(user) {
@@ -24,7 +25,7 @@
           console.log("signup taken: ", token);
           $window.localStorage.setItem('localHosts', token);
           console.log("signup $window.localStorage: ", $window.localStorage);
-          $location.path('/');
+          $state.go('homepage');
         }
       }
     }
@@ -41,9 +42,13 @@
           console.log("signin token: ", token);
           $window.localStorage.setItem('localHosts', token);
           console.log("signin $window.localStorage: ", $window.localStorage);
-          $location.path('/');
+          $state.go('homepage');
         }
       }
+    }
+
+    function requireLogin() {
+      $state.go('requireSignin');
     }
 
     // funtion for testing if token is attached to req and decoded in res

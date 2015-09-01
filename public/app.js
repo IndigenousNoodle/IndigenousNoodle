@@ -14,6 +14,18 @@
     ])
 
   .config(router)
+  .run(function ($rootScope, $state, Auth) {
+      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        console.log('inside $stateChangeStart, toState.url: ', toState.url);
+        if(toState.url === '/require' && !Auth.isAuth()) {
+          event.preventDefault();
+          $state.go('signin');
+          // console.log('inside if toState.url === /require');
+        }
+
+
+      });
+  })
 
 
   router.$inject = ['$urlRouterProvider', '$stateProvider', '$httpProvider'];
@@ -55,6 +67,14 @@
         controller: 'signupLoginController',
         controllerAs: 'signupLogin'
       })
+      //
+      .state('requireSignin', {
+        url: '/require',
+        templateUrl: './signupLogin/requireTemplate.html',
+        controller: 'signupLoginController',
+        controllerAs: 'signupLogin'
+      })
+      //
       .state('eventManager', {
         url: '/events/eventManager',
         templateUrl: './eventManager/eventManagerTemplate.html',
@@ -117,4 +137,5 @@
 
       $httpProvider.interceptors.push('AttachTokens');
     }
+
 })();
