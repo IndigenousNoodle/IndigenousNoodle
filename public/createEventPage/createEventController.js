@@ -3,9 +3,9 @@
     angular.module("app.createEvent", [])
     .controller('createEventController', createEventController);
 
-  createEventController.$inject = ['$state', 'dataservice'];
+  createEventController.$inject = ['$state', 'usersAndEventsService'];
 
-  function createEventController($state, dataservice){
+  function createEventController($state, usersAndEventsService){
     // use the navBarApp?
     var vm = this;
     vm.submit = submit;
@@ -25,7 +25,7 @@
 
         var eventData = {title: this.title, city: this.city.toLowerCase(), time: this.time, description: this.description};
         
-        dataservice.postEvent(eventData)
+        usersAndEventsService.postEvent(eventData)
         .then(function(data){
           $state.go('homepage');
         }, function(err){

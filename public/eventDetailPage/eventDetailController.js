@@ -3,9 +3,9 @@
   angular.module("app.eventDetail", [])
     .controller('eventDetailController', eventDetailController);
 
-  eventDetailController.$inject = ['$state', 'dataservice', 'getEvent'];
+  eventDetailController.$inject = ['$state', 'eventsService', 'getEvent'];
 
-  function eventDetailController($state, dataservice, getEvent){
+  function eventDetailController($state, eventsService, getEvent){
     // use the navBarApp?
     var vm = this;
     vm.join = join;
@@ -25,7 +25,7 @@
 
       var eventData = vm.details;
 
-      dataservice.joinEvent(eventData)
+      eventsService.joinEvent(eventData)
       .then(function(data){
         $state.go("homepage");
       }, function(err){

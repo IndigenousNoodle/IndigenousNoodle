@@ -100,6 +100,7 @@
           getEvent: getEvent
         }
       })
+      
       function getEventList($http, $stateParams, eventsService) {
         return eventsService.getEventList($stateParams.city);
       }
@@ -109,9 +110,9 @@
       function getProfileService ($http, $stateParams, usersService) {
         return usersService.getUserProfile($stateParams.username);
       }
-      function getEvent($http, $stateParams, dataservice){
+      function getEvent($http, $stateParams, eventsService){
         console.log("$stateParams", $stateParams);
-        return dataservice.getEvent($stateParams.eventId);
+        return eventsService.getEvent($stateParams.eventId);
       }
 
       $httpProvider.interceptors.push('AttachTokens');
