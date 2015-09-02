@@ -131,7 +131,7 @@
     // for .run() module, ask user to sign in if user is not signed in
     function requireUserSignin($rootScope, $state, Auth) {
       $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        if(toState.url === '/require' && !Auth.isAuth()) {
+        if(toState.url === '/' && !Auth.isAuth()) {
           event.preventDefault();
           $state.go('signin');
         }

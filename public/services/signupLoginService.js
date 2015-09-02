@@ -4,7 +4,6 @@
       .factory('Auth', Auth)
 
   Auth.$inject = ['$http', '$state', '$window'];
-  AttachToken.$inject = ['$window'];
 
   function Auth($http, $state, $window) {
 
@@ -12,7 +11,8 @@
       signup: signup,
       signout: signout,
       signin: signin,
-      isAuth: isAuth,
+      isAuth: isAuth
+      // logCookie: logCookie
     };
 
     //////////////////////////////////////////////////////
