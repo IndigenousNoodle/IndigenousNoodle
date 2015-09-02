@@ -11,10 +11,9 @@
     vm.submit = submit;
 
     // Testing
-    vm.title = "Hiking";
-    vm.city = "San Francisco";
-    vm.description = "Come with me to hike in Yosemite";
-    // vm.time = "2015-08-29T09:00:00";
+    // vm.title = "Hiking";
+    // vm.city = "San Francisco";
+    // vm.description = "Come with me to hike in Yosemite";
 
 
     /////////////////////////////////

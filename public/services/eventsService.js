@@ -9,15 +9,12 @@
     return {
       getEventList: getEventList,
       joinEvent: joinEvent,
+      getEvents: getEvents,
       getEvent: getEvent
     };
 
-    function getEventList(city){
-      return $http({method: 'GET', url: '/events/' + city});
-    }
-
-    function joinEvent(eventData, userData){
-      return $http.post('/joinEvent', {eventData: eventData, userData: userData})
+    function joinEvent(eventUserData){
+      return $http.post('/joinEvent', eventUserData)
         .then(joinEventComplete)
         .catch(joinEventFailed);
     
@@ -29,6 +26,10 @@
       function joinEventFailed(error){
         console.log("ERROR: ", error);
       }
+    }
+
+    function getEventList(city){
+      return $http({method: 'GET', url: '/events/' + city});
     }
 
     function getEvents($http) {
@@ -46,15 +47,12 @@
       }
     }
 
-
     function getEvent(id){
-      console.log("getting event", id);
       return $http.post('/getEvent', {id: id})
         .then(getEventComplete)
         .catch(getEventFailed);
 
       function getEventComplete(eventData){
-        console.log("getting event complete");
         return eventData;
       }
 

@@ -12,8 +12,6 @@
 
     vm.details = getEvent.data;
 
-    console.log(vm.details);
-
     /////////////////////////
 
     // must have a get request for information about the host
@@ -29,7 +27,6 @@
 
       dataservice.joinEvent(eventData)
       .then(function(data){
-        console.log("DATA === ", data);
         $state.go("homepage");
       }, function(err){
         console.log("ERROR === ", err);
