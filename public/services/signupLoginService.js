@@ -3,15 +3,16 @@
       .module('app.dataservice')
       .factory('Auth', Auth)
 
-  Auth.$inject = ['$http', '$location', '$window'];
+  Auth.$inject = ['$http', '$state', '$window'];
 
-  function Auth($http, $location, $window) {
+  function Auth($http, $state, $window) {
 
     return {
       signup: signup,
       signout: signout,
       signin: signin,
-      isAuth: isAuth,
+      isAuth: isAuth
+      // logCookie: logCookie
     };
 
     //////////////////////////////////////////////////////
@@ -22,7 +23,7 @@
         .catch(signupUserFaild);
 
       function signupGetToken(res) {
-        console.log("factory signup post res.data: ", res.data);
+        // console.log("factory signup post res.data: ", res.data);
         return res.data.token;
       }
 
@@ -33,8 +34,7 @@
 
     function signout() {
       $window.localStorage.removeItem('localHosts');
-      $location.path('/signup');
-      console.log("signout user");
+      $state.go('signin');
     };
 
     function signin(user) {
@@ -43,7 +43,7 @@
       .catch(signinUserFaild);
 
       function signinGetToken(res) {
-        console.log("signin res: ", res.data.token);
+        // console.log("signin res: ", res.data.token);
         return res.data.token;
       }
       function signinUserFaild(res) {
