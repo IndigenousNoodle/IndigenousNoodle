@@ -16,7 +16,7 @@ var signup = function(req, res) {
             if (err) {
               console.log("signup bcrypt err: ", err);
             } else {
-              var newUser = new Users({username: req.body.username, password: hash});
+              var newUser = new Users({username: req.body.username, password: hash, hostedEvents: {}, joinedEvents: {}});
               newUser.save(function(err, data) {
                 if (err) { // if save user err
                   console.log("signup .save error: ", err);

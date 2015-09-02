@@ -7,9 +7,10 @@
     'ui.bootstrap',
     'eventList',
     'homepage',
-    'app.dataservice',
     'app.eventManager',
-    'app.userProfile'
+    'app.userProfile',
+    'app.dataservice',
+    'app.eventDetail',
     ])
 
   .config(router)
@@ -90,6 +91,16 @@
           getProfilePrep: getProfileService
         }
       })
+      .state('eventDetail', {
+        url: '/eventDetail/:eventId',
+        templateUrl: './eventDetailPage/eventDetailTemplate.html',
+        controller: 'eventDetailController',
+        controllerAs: 'event',
+        resolve: {
+          getEvent: getEvent
+        }
+      })
+      
       function getEventList($http, $stateParams, eventsService) {
         return eventsService.getEventList($stateParams.city);
       }
@@ -98,6 +109,10 @@
       }
       function getProfileService ($http, $stateParams, usersService) {
         return usersService.getUserProfile($stateParams.username);
+      }
+      function getEvent($http, $stateParams, eventsService){
+        console.log("$stateParams", $stateParams);
+        return eventsService.getEvent($stateParams.eventId);
       }
 
       $httpProvider.interceptors.push('AttachTokens');

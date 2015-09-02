@@ -3,24 +3,29 @@
     angular.module("app.createEvent", [])
     .controller('createEventController', createEventController);
 
-  createEventController.$inject = ['$http', '$state', 'dataservice'];
+  createEventController.$inject = ['$state', 'usersAndEventsService'];
 
-  function createEventController($http, $state, dataservice){
+  function createEventController($state, usersAndEventsService){
     // use the navBarApp?
     var vm = this;
     vm.submit = submit;
+
+    // Testing
+    // vm.title = "Hiking";
+    // vm.city = "San Francisco";
+    // vm.description = "Come with me to hike in Yosemite";
 
 
     /////////////////////////////////
 
     function submit(valid){
-      if (valid && this.host && this.title && this.city && this.description){
+      if (valid && this.title && this.city && this.description){
 
         console.log("submiting");
 
-        var eventData = {host: this.host, title: this.title, city: this.city.toLowerCase(), time: this.time, description: this.description};
+        var eventData = {title: this.title, city: this.city.toLowerCase(), time: this.time, description: this.description};
         
-        dataservice.postEvent(eventData)
+        usersAndEventsService.postEvent(eventData)
         .then(function(data){
           $state.go('homepage');
         }, function(err){
