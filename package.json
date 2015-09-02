@@ -19,12 +19,11 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-   "del": "^1.1.1",
-   "gulp": "^3.8.11",
-   "gulp-inject": "^1.2.0",
-   "gulp-jshint": "^1.11.2",
-   "gulp-serve": "^1.0.0",
-   "gulp-nodemon": "2.0.4",
-   "run-sequence": "^1.0.2"
- }
+    "del": "^2.0.0",
+    "gulp": "^3.9.0",
+    "gulp-inject": "^1.5.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-nodemon": "^2.0.4",
+    "run-sequence": "^1.1.2"
+  }
 }
