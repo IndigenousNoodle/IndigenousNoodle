@@ -31,18 +31,36 @@
       }
     }
 
-    function getEvent() {
+    function getEvents($http) {
+      
       return $http.get('/events')
         .then(getEventData)
         .catch(eventDataFail);
-    
+      
       function getEventData(newData) {
         return newData.data;
       }
+      
       function eventDataFail(err) {
         console.log(err);
       }
+    }
 
+
+    function getEvent(id){
+      console.log("getting event", id);
+      return $http.post('/getEvent', {id: id})
+        .then(getEventComplete)
+        .catch(getEventFailed);
+
+      function getEventComplete(eventData){
+        console.log("getting event complete");
+        return eventData;
+      }
+
+      function getEventFailed(error){
+        console.log("ERR === ", error);
+      }
     }
 
   }

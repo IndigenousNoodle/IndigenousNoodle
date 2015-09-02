@@ -11,6 +11,22 @@ var getEvents = function(req, res) {
   });
 };
 
+var getEvent = function(req, res){
+  // return the event with the id
+  console.log("GETTING EVENT");
+
+  Events.findOne({_id: req.body._id}).exec(function(err, data){
+    if (err){
+      console.log("ERR", err);
+      res.send(500, err);
+    }else{
+      console.log("SUCCESS", data);
+      res.send(data);
+    }
+  });
+};
+
 module.exports = {
-  getEvents: getEvents
+  getEvents: getEvents,
+  getEvent: getEvent
 };

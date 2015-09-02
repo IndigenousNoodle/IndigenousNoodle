@@ -3,14 +3,16 @@
   angular.module("app.eventDetail", [])
     .controller('eventDetailController', eventDetailController);
 
-  eventDetailController.$inject = ['$state', 'dataservice', 'sendEvent'];
+  eventDetailController.$inject = ['$state', 'dataservice', 'getEvent'];
 
-  function eventDetailController($state, dataservice, sendEvent){
+  function eventDetailController($state, dataservice, getEvent){
     // use the navBarApp?
     var vm = this;
     vm.join = join;
 
-    vm.details = sendEvent.getCurrentEvent();
+    vm.details = getEvent.data;
+
+    console.log(vm.details);
 
     /////////////////////////
 
@@ -23,13 +25,12 @@
       // update users joined events
       console.log("joining");
 
-      var eventData = {id: 1, val: "hardcoded"};
-      var joiner = "Lisa";
-      var host = "Michael";
+      var eventData = vm.details;
 
-      dataservice.joinEvent({eventData: eventData, joiner: joiner, host: host})
+      dataservice.joinEvent(eventData)
       .then(function(data){
         console.log("DATA === ", data);
+        $state.go("homepage");
       }, function(err){
         console.log("ERROR === ", err);
       });

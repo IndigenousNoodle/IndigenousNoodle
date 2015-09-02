@@ -1,8 +1,16 @@
 var Events = require('../events/eventsModel');
 var Users = require('../users/usersModel');
+var jwt = require('jwt-simple');
+var db = require('../db/mongodb.js');
 
 var postEvents = function(req, res){
   console.log("req.body === ", req.body);
+
+  var token = req.headers['x-access-token'];
+  var hoster = jwt.decode(token, 'localHostsSecretHostlocal');
+
+  req.body["host"] = hoster.username;
+
   Events.create(req.body, function(err, response){
     if (err){
       console.log("ERROR", err);
@@ -10,133 +18,72 @@ var postEvents = function(req, res){
       // try to update user
       console.log("response === ", response);
 
+      var hostedEventIDQuery = "hostedEvents." + response._id + ".usersApplied";
+      var hostedQuery = {};
+      hostedQuery[hostedEventIDQuery] = {};
+
       // find where the user name matches then simply $set on the user id
-
-      // Users.findOneAndUpdate(
-      //   {"username": req.body.host},
-      //   {$addToSet: {"hostedEvents": req.body}},
-      //   {safe: true, new: true},
-      //   function(err, model){
-      //     if (err){
-      //       console.log("ERROR: ", err);
-      //       res.send(500,err);
-      //     }else{
-      //       console.log("SUCCESS", model);
-      //       res.status(200).send(model);
-      //     }
-      //   }
-      // );
-
-      var setObj = {};
-      var hostEvents = "hostedEvents." + response._id;
-      setObj[hostEvents] =
-        {"usersApplied":
-          {"Lisa":
-            {"confirmed": false}
-          }
-        };
-
-      console.log("setObj === ", setObj);
-
-      // Users.update({"username": "Michael"}, {$set: {"hostedEvents.69.usersApplied.Lisa.confirmed": false}});
-
-      Users.update(
-          {username: "Michael"},
-          {$set:
-            {"hostedEvents.56":
-              {usersApplied:
-                {"Lisa":
-                  {"confirmed": false}
-                }
-              }
-            }
-          },
-          {safe: true, new: true, upsert: true},
-          function(err, model){
-            if (err){
-              console.log("ERROR: ", err);
-              res.status(500).send(err);
-            }else{
-              console.log("SUCCESS", model);
-              res.status(200).send(model);
-            }
-          }
-        );
+      db.instance.collection('users').update(
+        {username: response.host},
+        {$set:
+          hostedQuery
+        },
+        function(err, data){
+          if (err){ console.log("ERROR === ", err);}
+          res.status(200).send(data);
+        }
+      );
     }
   });
 };
 
 
-
-// db.users.update({"username": "Michael"}, {$set: {"hostedEvents.69.usersApplied.Lisa.confirmed": false}})
-// db.users.update(
-//   {username: "Michael"},
-//   {$set:
-//     {"hostedEvents.55e4a0003ea5f4fabe89f20d":
-//       {usersApplied:
-//         {"Lisa":
-//           {"confirmed": false}
-//         }
-//       }
-//     }
-//   }
-// );
-
-// var setObj = {$set: {"hostedEvents": {}}};
-
-//       var eventResponse = "hostedEvents." + response._id;
-//       var setObj = {};
-//       setObj[eventResponse] = req.body;
-//       console.log("setObj === ", setObj);
-      
-//       Users.findOneAndUpdate(
-//         {"username": req.body.host},
-//         {$set: setObj},
-//         {safe: true, new: true},
-//         function(err, model){
-//           if (err){
-//             console.log("ERROR: ", err);
-//             res.send(500,err);
-//           }else{
-//             console.log("SUCCESS", model);
-//             res.status(200).send(model);
-//           }
-//         }
-//       );
-//     }
-//   });
-// };
-
+// must send the id to the below method
+// then must add to joined events the id information
 
 
 var joinEvent = function(req, res){
-  console.log("joining event, req.body === ", req.body);
+  var token = req.headers['x-access-token'];
+  var joiner = jwt.decode(token, 'localHostsSecretHostlocal');
+  console.log("joiner === ", joiner);
 
+  console.log("joining event, req.body === ", req.body);
 
   // match the username
   // match the event id of an event (object) in hostedEvents (array)
   // push a user to the userApplied array
+  if (req.body.host !== joiner.username){
+    var hostedEventIDQuery = "hostedEvents." + req.body._id + ".usersApplied." + joiner.username + ".confirmed";
+    var hostedQuery = {};
+    hostedQuery[hostedEventIDQuery] = false;
 
-  // Users.update({username:'Michael', "hostedEvents._id": "1"},
-  //   {$addToSet: {"hostedEvents.$.usersApplied": {"username":"Lisa"}}});
-  
-  // Users.findOne({username: "Michael", "hostedEvents._id": "1"}, function(err,doc){
-  //   for (var ev in doc.hostedEvents){
-  //     if (ev._id === req.body.id){
-  //       doc.hostedEvents.push(req.body);
-  //       doc.save();
-  //     }
-  //   }
-  //   console.log("doc === ", doc);
-  // });
+    db.instance.collection('users').update(
+        {username: req.body.host},
+        {$set:
+          hostedQuery
+        },
+        function(err, data){
+          if (err){ console.log("ERROR ==== ", err);}
+          // query to set the joined 
 
-// Model.findOne({ name: 'borne' }, function (err, doc){
-//   doc.name = 'jason borne';
-//   doc.visits.$inc();
-//   doc.save();
-// });
+          var joinedEventIDQuery = "joinedEvents." + req.body._id;
+          var joinedQuery = {};
+          console.log("req.body === ", req.body);
+          joinedQuery[joinedEventIDQuery] = req.body;
 
-
+          db.instance.collection('users').update(
+              {username: joiner.username},
+              {$set:
+                joinedQuery
+              },
+              function(err, data){
+                if (err){ console.log("ERROR === ", err);}
+                res.status(200).send(data);
+              }
+            );
+        }
+      );
+  }
 };
 
 module.exports = {
@@ -144,35 +91,3 @@ module.exports = {
   joinEvent: joinEvent
 };
 
-  // Users.findOneAndUpdate(
-  //     {"username": req.body.host},
-  //     {$addToSet: {"usersApplied": req.body.eventData}},
-  //     {safe: true, new: true},
-  //     function(err, host){
-  //       if (err){
-  //         console.log("ERROR: ", err);
-  //         res.send(500,err);
-  //       }else{
-  //         // now we must find a joining user and push into the joinedEvents the eventData
-  //         // console.log("host === ", host);
-  //         // Users.findOneAndUpdate(
-  //         //   {"username": req.body.joiner},
-  //         //   {$addToSet: {"joinedEvents": req.body.eventData}},
-  //         //   {safe: true, new: true},
-  //         //   function(err, joiner){
-  //         //     if (err){
-  //         //       console.log("ERROR: ", err);
-  //         //       res.send(500, err);
-  //         //     }else{
-  //         //       console.log("Joiner === ", joiner);
-  //         //     }
-  //         //   }
-  //         // );
-  //       }
-  //     }
-  //   );
-
-  // find the host user
-  // then push into users applied the eventData
-  // find the joining user
-  // push into the joinedEvents the eventData
