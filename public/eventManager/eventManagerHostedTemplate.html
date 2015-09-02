@@ -1,0 +1,22 @@
+ <div class="container"> 
+  <div class="row">
+    <h3>Hosted Events:</h3>
+      <div class="col-md-4" ng-repeat="(eventId, hostedEvent) in event.hosted">
+        <table class="table">
+          <caption>
+            {{hostedEvent.title}}
+          </caption>
+          <tr ng-repeat="(key, users) in hostedEvent.usersApplied">
+            <td>
+              <a ui-sref="userProfile({username: key})">{{key}}</a>
+            </td>
+            <td>
+              <button ng-class="{true: 'btn btn-success disabled', false: 'btn btn-primary'}[users.confirmed]" ng-disabled="users.confirmed" ng-click="event.confirmUser(key, eventId); users.confirmed = !users.confirmed" >
+                {{!users.confirmed && 'Accept' || 'Accepted'}}
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+  </div>
+</div>

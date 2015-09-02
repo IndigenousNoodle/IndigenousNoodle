@@ -63,6 +63,24 @@
           getEventsPrep: getEventsService
         }
       })
+      .state('eventManager.joinedEvents', {
+        url: '/joinedEvents',
+        templateUrl: './eventManager/eventManagerJoinedTemplate.html',
+        controller: 'eventManagerController',
+        controllerAs: 'event',
+        resolve: {
+          getEventsPrep: getEventsService
+        }
+      })
+      .state('eventManager.hostedEvents', {
+        url: '/hostedEvents',
+        templateUrl: './eventManager/eventManagerHostedTemplate.html',
+        controller: 'eventManagerController',
+        controllerAs: 'event',
+        resolve: {
+          getEventsPrep: getEventsService
+        }
+      })
       .state('userProfile', {
         url:'/user/userProfile/:username',
         templateUrl: './userProfile/userProfileTemplate.html',
@@ -79,7 +97,7 @@
         return usersService.getUserEvents();
       }
       function getProfileService ($http, $stateParams, usersService) {
-        return usersService.getUserProfile();
+        return usersService.getUserProfile($stateParams.username);
       }
 
       $httpProvider.interceptors.push('AttachTokens');
