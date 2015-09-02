@@ -19,6 +19,7 @@ module.exports = {
       './build/public/services/usersService.js',
       './build/public/components/navBar/navBarDirective.js',
       './build/public/homepage/homepageController.js',
+      './build/public/eventDetailPage/eventDetailController.js',
       './build/public/eventListPage/eventListController.js',
       './build/public/createEventPage/createEventController.js',
       './build/public/eventManager/eventManagerController.js',
