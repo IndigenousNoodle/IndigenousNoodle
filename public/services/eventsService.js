@@ -19,7 +19,6 @@
         .catch(joinEventFailed);
     
       function joinEventComplete(data){
-        console.log("joining event complete");
         return data;
       }
 

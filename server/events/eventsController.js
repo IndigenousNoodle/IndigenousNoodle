@@ -13,7 +13,6 @@ var getEvents = function(req, res) {
 
 var getEvent = function(req, res){
   // return the event with the id
-  console.log("GETTING EVENT", req.body.id);
 
   Events.findOne({_id: req.body.id}).exec(function(err, data){
     if (err){

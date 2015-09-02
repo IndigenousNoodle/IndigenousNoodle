@@ -21,8 +21,6 @@
     function submit(valid){
       if (valid && this.title && this.city && this.description){
 
-        console.log("submiting");
-
         var eventData = {title: this.title, city: this.city.toLowerCase(), time: this.time, description: this.description};
         
         usersAndEventsService.postEvent(eventData)
