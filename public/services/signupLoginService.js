@@ -3,9 +3,10 @@
       .module('app.dataservice')
       .factory('Auth', Auth)
 
-  Auth.$inject = ['$http', '$location', '$window'];
+  Auth.$inject = ['$http', '$state', '$window'];
+  AttachToken.$inject = ['$window'];
 
-  function Auth($http, $location, $window) {
+  function Auth($http, $state, $window) {
 
     return {
       signup: signup,
@@ -33,7 +34,7 @@
 
     function signout() {
       $window.localStorage.removeItem('localHosts');
-      $location.path('/signin');
+      $state.go('signin');
     };
 
     function signin(user) {
