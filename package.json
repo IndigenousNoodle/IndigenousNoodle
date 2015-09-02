@@ -19,12 +19,18 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-   "del": "^1.1.1",
-   "gulp": "^3.8.11",
-   "gulp-inject": "^1.2.0",
-   "gulp-jshint": "^1.11.2",
-   "gulp-serve": "^1.0.0",
-   "gulp-nodemon": "2.0.4",
-   "run-sequence": "^1.0.2"
- }
+    "del": "^2.0.0",
+    "gulp": "^3.9.0",
+    "gulp-inject": "^1.5.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-nodemon": "^2.0.4",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.9",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6",
+    "karma-junit-reporter": "^0.3.4",
+    "karma-nyan-reporter": "^0.2.2",
+    "karma-unicorn-reporter": "^0.1.4",
+    "run-sequence": "^1.1.2"
+  }
 }
