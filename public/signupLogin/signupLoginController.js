@@ -47,9 +47,9 @@
       }
     }
 
-    function requireLogin() {
-      $state.go('requireSignin');
-    }
+    // function requireLogin() {
+    //   $state.go('requireSignin');
+    // }
 
     // funtion for testing if token is attached to req and decoded in res
     /*function logCookies() {
