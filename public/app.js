@@ -9,10 +9,10 @@
     'homepage',
     'app.eventManager',
     'app.userProfile',
-    'app.dataservice',
     'app.eventDetail',
+    'app.dataservice',
+    'ngAnimate'
     ])
-
   .config(router)
   .run(requireUserSignin)
 

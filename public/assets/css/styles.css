@@ -1,0 +1,76 @@
+#dropdown{
+  float:right;
+}
+
+.input-center {
+  text-align: center;
+}
+
+.bg-img {
+  background: url(https://d276fqercnuq4h.cloudfront.net/assets/roma/main/main_barcelona2-4af6b4e193337900b13074db87ba154c07323fb2ef60deeeb48b10e0456b585e.jpg) no-repeat center center fixed;;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.margin {
+  margin: 16.9em 0;
+}
+
+.input-margin {
+  margin: 3em 0;
+}
+
+.add-on .input-group-btn > .btn {
+  border-left-width:0;left:-2px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+/* stop the glowing blue shadow */
+.add-on .form-control:focus {
+ box-shadow:none;
+ -webkit-box-shadow:none; 
+ border-color:#cccccc; 
+}
+
+.header-title {
+  color: #fefefe;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+paper-input-container {
+  width: 25em;
+}
+
+@import url(//fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900);
+
+.card {
+    display: inline-block;
+    vertical-align: top;
+    width: 350px;
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    background: #FFF;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    color: #272727;
+    border-radius: 2px;
+  }
+.card .title {
+  line-height: 48px;
+  font-size: 24px;
+  font-weight: 300;
+}
+.card .content {
+  padding: 20px;
+  font-weight: 300;
+  border-radius: 0 0 2px 2px;
+}
+.card p {
+  margin: 0;
+}
+.card .action {
+  border-top: 1px solid rgba(160, 160, 160, 0.2);
+  padding: 20px;
+}
