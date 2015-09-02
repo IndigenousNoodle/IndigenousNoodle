@@ -4,7 +4,6 @@ var jwt = require('jwt-simple');
 var db = require('../db/mongodb.js');
 
 var postEvents = function(req, res){
-  console.log("req.body === ", req.body);
 
   var token = req.headers['x-access-token'];
   var hoster = jwt.decode(token, 'localHostsSecretHostlocal');
@@ -18,9 +17,11 @@ var postEvents = function(req, res){
       // try to update user
       console.log("response === ", response);
 
-      var hostedEventIDQuery = "hostedEvents." + response._id + ".usersApplied";
       var hostedQuery = {};
-      hostedQuery[hostedEventIDQuery] = {};
+      var hostedQueryUpdate = "hostedEvents." + response._id;
+      hostedQuery[hostedQueryUpdate] = req.body;
+
+      console.log("HostedQuery === ", hostedQuery);
 
       // find where the user name matches then simply $set on the user id
       db.instance.collection('users').update(
@@ -45,9 +46,6 @@ var postEvents = function(req, res){
 var joinEvent = function(req, res){
   var token = req.headers['x-access-token'];
   var joiner = jwt.decode(token, 'localHostsSecretHostlocal');
-  console.log("joiner === ", joiner);
-
-  console.log("joining event, req.body === ", req.body);
 
   // match the username
   // match the event id of an event (object) in hostedEvents (array)
@@ -70,6 +68,7 @@ var joinEvent = function(req, res){
           var joinedQuery = {};
           console.log("req.body === ", req.body);
           joinedQuery[joinedEventIDQuery] = req.body;
+          joinedQuery[joinedEventIDQuery]["confirmed"] = false;
 
           db.instance.collection('users').update(
               {username: joiner.username},

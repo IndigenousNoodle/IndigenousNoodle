@@ -21,7 +21,6 @@
     function join(){
       // push user onto list of events
       // update users joined events
-      console.log("joining");
 
       var eventData = vm.details;
 

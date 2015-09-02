@@ -121,7 +121,6 @@
         return usersService.getUserProfile($stateParams.username);
       }
       function getEvent($http, $stateParams, eventsService){
-        console.log("$stateParams", $stateParams);
         return eventsService.getEvent($stateParams.eventId);
       }
 

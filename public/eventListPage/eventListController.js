@@ -16,7 +16,6 @@
 
       function toEventDetail(hostEvent){
         // must pass the event and host data to the next screen
-        console.log("event === ", hostEvent);
         $state.go('eventDetail', {eventId: hostEvent._id});
       }
 
