@@ -10,7 +10,7 @@
       vm.signup = signup;
       vm.signin = signin;
       vm.signout = Auth.signout;
-      vm.requireLogin = requireLogin;
+      // vm.requireLogin = requireLogin;
       // vm.logCookies = logCookies;
 
     function signup(user) {
