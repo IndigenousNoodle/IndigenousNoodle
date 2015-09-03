@@ -38,6 +38,8 @@ module.exports = function(config) {
     reporters: ['nyan','unicorn'],
 
 
+    plugin: ['karma-phantomjs-launcher'],
+
     // web server port
     port: 9876,
 
@@ -57,7 +59,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'PhantomJS'],
+    browsers: ['PhantomJS'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
