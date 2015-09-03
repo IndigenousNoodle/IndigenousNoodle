@@ -1,18 +1,18 @@
  <div class="container"> 
   <div class="row">
     <h3>Hosted Events:</h3>
-      <div class="col-md-4" ng-repeat="(eventId, hostedEvent) in event.hosted">
+      <div class="col-md-4" ng-repeat="hostedEvent in event.eventData.hostedEvents">
         <table class="table">
           <caption>
             {{hostedEvent.title}}
           </caption>
-          <tr ng-repeat="(key, users) in hostedEvent.usersApplied">
+          <tr ng-repeat="user in hostedEvent.usersJoined">
             <td>
-              <a ui-sref="userProfile({username: key})">{{key}}</a>
+              <a ui-sref="userProfile({username: user.username})">{{user.username}}</a>
             </td>
             <td>
-              <button ng-class="{true: 'btn btn-success disabled', false: 'btn btn-primary'}[users.confirmed]" ng-disabled="users.confirmed" ng-click="event.confirmUser(key, eventId); users.confirmed = !users.confirmed" >
-                {{!users.confirmed && 'Accept' || 'Accepted'}}
+              <button ng-class="{true: 'btn btn-success disabled', false: 'btn btn-primary'}[user.confirmed]" ng-disabled="user.confirmed" ng-click="event.confirmUser(user.userId, user.eventId); user.confirmed = !user.confirmed" >
+                {{!user.confirmed && 'Accept' || 'Accepted'}}
               </button>
             </td>
           </tr>
