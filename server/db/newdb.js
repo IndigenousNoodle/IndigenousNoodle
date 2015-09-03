@@ -30,15 +30,24 @@ var Reviews = sequelize.define('reviews', {
 
 var JoinersEvents = sequelize.define('joinersevents', {
   confirmed: Sequelize.BOOLEAN
-})
+});
 
 Users.belongsToMany(Events, {through: 'joinersevents'});
 Events.belongsToMany(Users, {through: 'joinersevents'});
 Users.hasMany(Reviews, {foreignKey: 'usersHostId'});
 Users.hasMany(Reviews, {foreignKey: 'usersJoinId'});
 Events.hasMany(Reviews);
-Users.hasMany(Events, {foreignKey: 'hostId'})
+Users.hasMany(Events, {foreignKey: 'hostId'});
 
+Users.sync();
+Events.sync();
+Reviews.sync();
+JoinersEvents.sync();
 
-module.exports = sequelize;
+module.exports = {
+  Users: Users,
+  Events: Events,
+  Reviews: Reviews,
+  JoinersEvents: JoinersEvents
+};
 
