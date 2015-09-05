@@ -30,7 +30,8 @@
     "paper-toast": "PolymerElements/paper-toast#^1.0.0",
     "paper-toggle-button": "PolymerElements/paper-toggle-button#^1.0.0",
     "paper-tooltip": "PolymerElements/paper-tooltip#^1.0.0",
-    "angular-animate": "~1.4.5"
+    "angular-animate": "~1.4.5",
+    "angular-mocks": "~1.4.5"
   },
   "directory": "public/lib"
 }

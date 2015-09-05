@@ -14,8 +14,28 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [
-      'test/unit/**/*.js'
+    files: ['./public/lib/angular/angular.min.js',
+        './public/lib/angular-mocks/angular-mocks.js',
+        './public/lib/angular-animate/angular-animate.min.js',
+        './public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
+        './public/lib/angular-ui-router/release/angular-ui-router.min.js',
+        './public/signupLogin/signupLoginController.js',
+        './public/app.js',
+        './public/services/data.service.js',
+        './public/services/attachTokenService.js',
+        './public/services/eventsService.js',
+        './public/services/signupLoginService.js',
+        './public/services/usersAndEventsService.js',
+        './public/services/usersService.js',
+        './public/components/navBar/navBarDirective.js',
+        './public/homepage/homepageController.js',
+        './public/eventDetailPage/eventDetailController.js',
+        './public/eventListPage/eventListController.js',
+        './public/createEventPage/createEventController.js',
+        './public/eventManager/eventManagerController.js',
+        './public/userProfile/userProfileController.js',
+        './public/app.js',
+        './test/unit/**/*.js'
     ],
 
 

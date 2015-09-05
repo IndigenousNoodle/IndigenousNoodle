@@ -4,6 +4,7 @@ module.exports = {
   app_files: {
     js: ['public/**/*.js', 'server/**/*.js', '!public/lib/**/*'],
     tpl_src: ['./build/public/lib/angular/angular.min.js',
+      './build/public/lib/angular-mocks/angular-mocks.js',
       './build/public/lib/angular-animate/angular-animate.min.js',
       './build/public/lib/webcomponentsjs/webcomponents-lite.min.js',
       './build/public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',

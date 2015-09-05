@@ -7,7 +7,6 @@
     function eventListController($state, getEventList) {
       var vm = this;
       vm.getEventList = getEventList.data;
-
       vm.toEventDetail = toEventDetail;
 
       vm.displayEvents = displayEvents;

@@ -1,14 +1,15 @@
 var Events = require('./eventsModel');
+var Eventst = require('../db/newdb').Events;
 
 var getEvents = function(req, res) {
   var city = req.params.city.toLowerCase();
-  Events.find({city: city}).exec(function(err,data){
-    if (err) {
-      res.send(500, err);
-    } else {
-      res.send(data);
-    }
-  });
+  
+  Eventst.findAll({
+    where: { city: city },
+  })
+    .then(function(events) {
+      res.json(events);
+    })
 };
 
 var getEvent = function(req, res){

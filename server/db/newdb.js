@@ -16,6 +16,7 @@ var Events = sequelize.define('events', {
 
 });
 
+
 var Users = sequelize.define('users', {
   username: {type: Sequelize.STRING, unique: true},
   password: Sequelize.STRING,
@@ -50,4 +51,3 @@ module.exports = {
   Reviews: Reviews,
   JoinersEvents: JoinersEvents
 };
-
