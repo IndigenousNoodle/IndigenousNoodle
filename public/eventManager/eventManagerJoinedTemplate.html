@@ -2,7 +2,7 @@
   <div class="row">
     <h3>Joined Events:</h3>
     <h4>Confirmed</h4>
-      <div class="col-md-4" ng-repeat="joinedEvent in event.joinedConfirmed">
+      <div class="col-md-4" ng-repeat="joinedEvent in event.eventData.joinedEvents | filter: {confirmed: true}">
         <table class="table">
           <caption>
             {{joinedEvent.title}}
@@ -28,7 +28,7 @@
   </div>
   <div class="row">
     <h4>WaitListed</h4>
-      <div class="col-md-4" ng-repeat="joinedEvent in event.joinedWaitListed">
+      <div class="col-md-4" ng-repeat="joinedEvent in event.eventData.joinedEvents | filter:{confirmed: false}">
         <table class="table">
           <caption>
             {{joinedEvent.title}}
