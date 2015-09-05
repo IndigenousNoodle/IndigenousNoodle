@@ -5,11 +5,13 @@ var inject = require('gulp-inject');
 var jshint = require('gulp-jshint');
 var nodemon = require('gulp-nodemon')
 var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
+var node;
 
 var files = require('./gulp/gulp.config.js');
 
 gulp.task('default', function(callback) {
-  runSequence('build', 'watch', 'server', callback);
+  runSequence('mongo', 'build', 'watch', callback);
 });
 
 gulp.task('build', function (callback) {
@@ -17,6 +19,7 @@ gulp.task('build', function (callback) {
     'lint',
     'copy-build',
     'index',
+    'server',
     callback);
 });
 
@@ -59,11 +62,18 @@ gulp.task('start', function () {
   })
 });
 
-gulp.task('server', function() {
+gulp.task('mongo', function() {
   exec('mongod', function(err,stdout,stderr){
     console.log(stdout);
   });
-  exec('node ./build/server/server.js', function(err,stdout,stderr){
-    console.log(stdout);
-  });
 });
+
+gulp.task('server', function() {
+  if (node) node.kill();
+  node = spawn('node', ['./build/server/server.js'], {stdio: 'inherit'})
+  node.on('close', function (code) {
+    if (code === 8) {
+      gulp.log('Error detected, waiting for changes...');
+    }
+  });
+})
