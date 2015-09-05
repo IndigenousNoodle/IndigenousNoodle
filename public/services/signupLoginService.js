@@ -34,7 +34,7 @@
 
     function signout() {
       $window.localStorage.removeItem('localHosts');
-      $state.go('signin');
+      // $state.go('signin');
     }
 
     function signin(user) {
