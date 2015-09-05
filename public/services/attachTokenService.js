@@ -5,7 +5,7 @@
 
 
       .factory('AttachTokens', function ($window) {
-        console.log('MAKING AN AJAX REQUEST')
+        console.log('MAKING AN AJAX REQUEST');
         // this is an $httpInterceptor
         // its job is to stop all out going request
         // then look in local storage and find the user's token
@@ -21,7 +21,7 @@
           }
         };
         return attach;
-      })
+      });
 
   AttachToken.$inject = ['$window'];
 

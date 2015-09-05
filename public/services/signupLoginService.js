@@ -28,14 +28,14 @@
       }
 
       function signupUserFaild(res) { 
-        console.log("factory signup err: ", res)
+        console.log("factory signup err: ", res);
       }
-    };
+    }
 
     function signout() {
       $window.localStorage.removeItem('localHosts');
       $state.go('signin');
-    };
+    }
 
     function signin(user) {
       return $http.post('/signin', user)
@@ -49,7 +49,7 @@
       function signinUserFaild(res) {
         console.log("factory signin err: ", res);
       }
-    };
+    }
 
     function isAuth() {
       return !!$window.localStorage.getItem('localHosts');
