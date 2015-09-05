@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./server/server.js",
+    "bower": "bower install",
     "test": "karma start karma.config.js"
   },
   "dependencies": {
