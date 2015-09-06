@@ -16,10 +16,10 @@ var getUser = function(req, res) {
 //hardcoded userId  change line 22 and 39 to user ID
 var getEvents = function(req, res) {
   var token = req.headers['x-access-token'];
-  var user = jwt.decode(token, 'localHostsSecretHostlocal');
+  var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
   var data = {hostedEvents:[], joinedEvents:[]};
   var getJoinedEvents = function () {
-    newdb.JoinersEvents.findAll({where: {userId: 1}, raw:true}).then(function(joinedEvents){
+    newdb.JoinersEvents.findAll({where: {userId: userInfo.id }, raw:true}).then(function(joinedEvents){
       joinedEvents.forEach(function(joinedEvent, joinedEventidx){
         newdb.Events.findOne({where: {id: joinedEvent.eventId}, raw:true}).then(function(event){
           event.confirmed = joinedEvent.confirmed
@@ -36,7 +36,10 @@ var getEvents = function(req, res) {
     })
   };
   
-  newdb.Events.findAll({where:{hostId:1}, raw:true}).then(function(events){
+  newdb.Events.findAll({where:{hostId:userInfo.id}, raw:true}).then(function(events){
+    if (events.length === 0) {
+      res.send()
+    }
     events.forEach(function(event, eventidx){
       data.hostedEvents.push(event);
     })
