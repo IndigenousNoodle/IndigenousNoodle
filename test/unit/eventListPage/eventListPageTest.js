@@ -13,20 +13,9 @@ describe("eventListController", function() {
       'hostEvent': hostEvent
     });
   }));
-  
-  it('should have displayEvents function', function () {
-    expect(eventListController.displayEvents).toBeDefined();
-  });
 
   beforeEach(inject(function ($state) {
     spyOn($state, 'go');
-  }));
-
-  it('should display eventList mached with user search', inject(function($state) {
-    eventListController.findCity = 'san francisco';
-    eventListController.displayEvents();
-
-    expect($state.go).toHaveBeenCalledWith('eventsDisplay.eventList', {city: eventListController.findCity});
   }));
 
   it('should move to the eventDetail page after clicking a event', inject(function($state) {

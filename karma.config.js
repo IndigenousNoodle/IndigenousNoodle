@@ -21,6 +21,7 @@ module.exports = function(config) {
         './public/lib/angular-animate/angular-animate.min.js',
         './public/lib/angular-material/angular-material.min.js',
         './public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
+        './public/lib/angular-material-icons/angular-material-icons.min.js',
         './public/lib/angular-ui-router/release/angular-ui-router.min.js',
         './public/lib/lodash/lodash.min.js',
         './public/lib/gm.datepicker-multi-select/dist/gm.datepickerMultiSelect.min.js',
