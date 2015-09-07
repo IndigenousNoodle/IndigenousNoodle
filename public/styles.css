@@ -74,14 +74,6 @@ paper-input-container {
   border-top: 1px solid rgba(160, 160, 160, 0.2);
   padding: 20px;
 }
-/*
-.angular-google-map-container { height: 400px; }
-.mapMain{
-  width: 400px;
-  height: 400px;
-}*/
-
-/*#mapper{
-  width: 400px;
-  height: 400px;
-}*/
+.importantHeader {
+  font-weight:bold;
+}

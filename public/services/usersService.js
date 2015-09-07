@@ -15,7 +15,8 @@
       getHostedEvents: getHostedEvents,
       getProfile: getProfile,
       uploadImage: uploadImage,
-      getUsername: getUsername
+      getUsername: getUsername,
+      uploadAboutMe: uploadAboutMe
     };
 
     function getUsername() {
@@ -146,6 +147,20 @@
       function getUrlFailed (err) {
         console.log("ERROR: ", err)
       }
+    }
+
+    function uploadAboutMe(aboutMe){
+      return $http.post('/user/aboutMe', {aboutMe: aboutMe})
+        .then(uploadAboutMeComplete)
+        .catch(uploadAboutMeFailed);
+
+        function uploadAboutMeComplete(){
+          console.log("complete upload");
+        }
+
+        function uploadAboutMeFailed(err){
+          console.log("failed upload with error", err);
+        }
     }
 
 

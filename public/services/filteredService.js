@@ -20,7 +20,7 @@
           filtered = [];
         }
         return filtered;
-      }
+      };
 
     }      
 

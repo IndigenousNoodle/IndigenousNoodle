@@ -18,7 +18,8 @@ var Events = sequelize.define('events', {
 var Users = sequelize.define('users', {
   username: {type: Sequelize.STRING, unique: true},
   password: Sequelize.STRING,
-  photoUrl: {type: Sequelize.TEXT, defaultValue: "https://s3-us-west-2.amazonaws.com/localhosts/profileImagePlaceholder.png"}
+  photoUrl: {type: Sequelize.TEXT, defaultValue: "https://s3-us-west-2.amazonaws.com/localhosts/profileImagePlaceholder.png"},
+  aboutMe: Sequelize.STRING(1024) // set arbitrary cutoff for the size of aboutMe
 });
 
 

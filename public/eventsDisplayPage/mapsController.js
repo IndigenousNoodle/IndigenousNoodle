@@ -9,7 +9,7 @@
     // use the navBarApp?
     var vm = this;
 
-    vm.filtered = filteredService.getFiltered()
+    vm.filtered = filteredService.getFiltered();
     vm.filteredMarker = null;
 
     var makeMap = initializeGoogleMaps(getMaps, getCity, getEventList, $state, googleMap);
