@@ -24,6 +24,8 @@ module.exports = {
       './build/public/eventListPage/eventListController.js',
       './build/public/createEventPage/createEventController.js',
       './build/public/eventManager/eventManagerController.js',
+      './build/public/eventManager/eventManagerJoinedController.js',
+      './build/public/eventManager/eventManagerHostedController.js',
       './build/public/userProfile/userProfileController.js',
       './build/public/lib/iron-icons/iron-icons.html',
       './build/public/lib/iron-icon/iron-icon.html',
