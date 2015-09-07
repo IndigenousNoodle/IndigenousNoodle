@@ -19,9 +19,14 @@
     /////////////////////////////////
 
     function submit(validTime){
-      if (validTime && this.title && this.city && this.description){
+      if (validTime && this.title && this.city && this.description && this.address && this.price){
 
-        var eventData = {title: this.title, city: this.city.toLowerCase(), time: this.time, description: this.description};
+        var eventData = {title: this.title,
+                        city: this.city.toLowerCase(),
+                        time: this.time,
+                        description: this.description,
+                        address: this.address,
+                        price: this.price};
         
         usersAndEventsService.postEvent(eventData)
         .then(function(data){

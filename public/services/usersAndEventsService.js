@@ -9,7 +9,7 @@
 
     return {
       postEvent: postEvent
-    }
+    };
 
     function postEvent(eventData){
       return $http.post('/postEvents', eventData)

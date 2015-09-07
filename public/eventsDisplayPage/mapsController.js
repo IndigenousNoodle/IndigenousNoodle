@@ -17,7 +17,6 @@
   ///////////////////////////////////////////////////
 
   function initializeGoogleMaps(getMaps, getCity, getEventList, $state, googleMap){
-    console.log("getMaps === ", getMaps);
 
     // can refactor to getInitialMap to googleMapService
     map = new getMaps.Map(document.getElementById('map'), googleMap.getMapObject());

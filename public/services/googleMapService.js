@@ -17,11 +17,9 @@
 
     ///////////////////////////////////////////
     function getMapApi(){
-      console.log("getmapapi");
       return uiGmapGoogleMapApi.then(getMaps);
 
       function getMaps(maps){
-        console.log("getting the map", maps);
         return maps;
       }
     }
@@ -35,7 +33,6 @@
         var address = ev.address;
         var city = ev.city;
 
-        console.log("address ===", address);
         geocoder.geocode({'address': address + " " + city}, setMarkers);
 
         function setMarkers(results, status){
@@ -45,7 +42,6 @@
                 map: map,
                 position: results[0].geometry.location
             });
-            console.log("eventsData[i] ===", ev);
 
             // same event being marked everytime
             markerToEventDetail($state, marker, ev);
