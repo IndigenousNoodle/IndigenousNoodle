@@ -19,7 +19,7 @@
       }
 
       function displayEvents() {
-        $state.go('eventList', {city: vm.findCity});
+        $state.go('eventsDisplay.eventList', {city: vm.findCity});
       }
 
     }

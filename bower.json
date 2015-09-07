@@ -31,7 +31,9 @@
     "paper-toggle-button": "PolymerElements/paper-toggle-button#^1.0.0",
     "paper-tooltip": "PolymerElements/paper-tooltip#^1.0.0",
     "angular-animate": "~1.4.5",
-    "angular-mocks": "~1.4.5"
+    "angular-mocks": "~1.4.5",
+    "angular-google-maps": "~2.2.0",
+    "angular-simple-logger": "~0.0.1"
   },
   "directory": "public/lib"
 }

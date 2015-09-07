@@ -19,7 +19,7 @@ describe("homepageController", function() {
     homepageController.findCity = 'seoul';
     homepageController.displayEvents();
 
-    expect($state.go).toHaveBeenCalledWith('eventList', {city: homepageController.findCity});
+    expect($state.go).toHaveBeenCalledWith('eventsDisplay.eventList', {city: homepageController.findCity});
   })); 
 
 });
