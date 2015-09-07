@@ -84,19 +84,40 @@ paper-input-container {
 
 .review-thumb {
   width: 50px;
-  height: auto;
+  height: 50px;
   float: left;
-  margin-right: 15px;
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
 }
 
 .review {
-  margin-top: 60px;
-  width: 665px;
+  margin-top: 20px;
+  /*width: 665px;*/
+  /*width: 100px;*/
 }
 
-.review-text-block {
+.review-text-block{
+  margin: 0 0 0 60px;
   float: left;
   width: 600px;
+}
+
+@media (max-width: 625px) {
+  .review-text-block { 
+    width: 450px;
+  }
+}
+
+@media (max-width: 525px){
+  .review-text-block{
+    width: 400px;
+  }
+}
+
+@media (max-width: 460px){
+  .review-text-block{
+    width: 300px;
+  }
 }
 
 .review-username {
@@ -105,5 +126,54 @@ paper-input-container {
 
 .review-eventTitle {
   margin-right: 10px;
-
 }
+
+.important-header {
+  font-weight:bold;
+}
+
+#profile-image {
+  width: 100px;
+  height: 100px;
+  background-size: 100px 100px;
+  background-repeat: no-repeat;
+  border: 1px solid black;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.writeAboutMe{
+  margin: 30px 0 15px 0;
+}
+
+#review-block{
+  margin: 40px 0 0 0;
+}
+.review-row{
+  margin: 0 0 40px 0;
+}
+
+
+
+/*.review-text{
+  margin-right: 10px;
+}
+*/

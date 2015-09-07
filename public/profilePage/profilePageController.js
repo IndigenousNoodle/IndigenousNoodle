@@ -12,8 +12,7 @@
     console.log("vm.user === ", vm.user);
     vm.reviews = getUserReviewsServicePrep.data.reviewsData;
 
-    vm.uploadImage = uploadImage;
-    vm.uploadAboutMe = uploadAboutMe;
+    vm.save = save;
 
 
     ///////////////////////////
@@ -24,6 +23,17 @@
 
     function uploadAboutMe(aboutMe) {
       usersService.uploadAboutMe(aboutMe);
+    }
+    
+    function save(aboutMe){
+      console.log("this.aboutMe", aboutMe);
+      if (aboutMe !== undefined){
+        uploadAboutMe(aboutMe);
+      }
+      // remove the text from teh aboutMe after submission
+      $("#aboutMe").val('');
+      amazonS3Service.uploadImageUser();
+
     }
   }
 })();
