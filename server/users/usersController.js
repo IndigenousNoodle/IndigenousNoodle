@@ -49,7 +49,7 @@ var getJoinedEvents = function (req, res) {
       })
     })
   }).catch(function(err){
-    res.status(500).send(err)
+    res.status(500).send(err);
   })
 
 
@@ -61,7 +61,7 @@ var getHostedEvents = function (req, res) {
   var data = {hostedEvents:[], joinedEvents:[]};
   db.Events.findAll({where:{hostId:userInfo.id}, raw:true}).then(function(events){
     if (events.length === 0) {
-      res.send()
+      res.send();
     }
     events.forEach(function(event, eventidx){
       event.usersJoined = [];
@@ -71,7 +71,7 @@ var getHostedEvents = function (req, res) {
         }
         if (data.hostedEvents.length === events.length) {
           res.status(200);
-          res.json(data)
+          res.json(data);
         }
         joinedUser.forEach(function(user, useridx){
           db.Users.findOne({where: {id: user.userId}, raw:true}).then(function(joinedUsername){
