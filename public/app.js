@@ -67,29 +67,24 @@
       ///////////////////////////////////////////////////////
       .state('eventManager', {
         url: '/events/eventManager',
-        templateUrl: './eventManager/eventManagerTemplate.html',
-        controller: 'eventManagerController',
-        controllerAs: 'event',
-        resolve: {
-          getEventsPrep: getEventsService
-        }
+        templateUrl: './eventManager/eventManagerTemplate.html'
       })
       .state('eventManager.joinedEvents', {
         url: '/joinedEvents',
         templateUrl: './eventManager/eventManagerJoinedTemplate.html',
-        controller: 'eventManagerController',
+        controller: 'eventManagerJoinedController',
         controllerAs: 'event',
         resolve: {
-          getEventsPrep: getEventsService
+          getJoinedEventsPrep: getJoinedEventsService
         }
       })
       .state('eventManager.hostedEvents', {
         url: '/hostedEvents',
         templateUrl: './eventManager/eventManagerHostedTemplate.html',
-        controller: 'eventManagerController',
+        controller: 'eventManagerHostedController',
         controllerAs: 'event',
         resolve: {
-          getEventsPrep: getEventsService
+          getHostedEventsPrep: getHostedEventsService
         }
       })
       .state('userProfile', {
@@ -122,6 +117,12 @@
       }
       function getEvent($http, $stateParams, eventsService){
         return eventsService.getEvent($stateParams.eventId);
+      }
+      function getJoinedEventsService ($http, usersService) {
+        return usersService.getJoinedEvents();
+      }
+      function getHostedEventsService ($http, usersService) {
+        return usersService.getHostedEvents();
       }
 
       $httpProvider.interceptors.push('AttachTokens');

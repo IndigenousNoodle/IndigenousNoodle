@@ -10,7 +10,9 @@
     return {
       getUserEvents: getUserEvents,
       getUserProfile: getUserProfile,
-      confirmEvent: confirmEvent
+      confirmEvent: confirmEvent,
+      getJoinedEvents: getJoinedEvents,
+      getHostedEvents: getHostedEvents
     };
 
 
@@ -54,6 +56,32 @@
       function confirmEventFailed(error){
         console.log("ERROR: ", error);
       }
+    }
+
+    function getJoinedEvents() {
+      return $http.get('/user/joinedEventsManager')
+        .then(getJoinedEventsComplete)
+        .catch(getJoinedEventsFailed)
+
+        function getJoinedEventsComplete (joinedEvents) {
+          return joinedEvents;
+        }
+        function getJoinedEventsFailed(error) {
+          console.log("ERROR: ", error);
+        }
+    }
+
+    function getHostedEvents() {
+      return $http.get('/user/hostedEventsManager')
+        .then(getHostedEventsComplete)
+        .catch(getHostedEventsFailed)
+
+        function getHostedEventsComplete (hostedEvents) {
+          return hostedEvents;
+        }
+        function getHostedEventsFailed(error) {
+          console.log("ERROR: ", error);
+        }
     }
 
   }

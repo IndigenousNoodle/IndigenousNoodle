@@ -13,29 +13,40 @@ var getUser = function(req, res) {
   })
 };
 
-//hardcoded userId  change line 22 and 39 to user ID
+
 var getEvents = function(req, res) {
+
+};
+
+var getJoinedEvents = function (req, res) {
   var token = req.headers['x-access-token'];
   var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
   var data = {hostedEvents:[], joinedEvents:[]};
-  var getJoinedEvents = function () {
-    newdb.JoinersEvents.findAll({where: {userId: userInfo.id }, raw:true}).then(function(joinedEvents){
-      joinedEvents.forEach(function(joinedEvent, joinedEventidx){
-        newdb.Events.findOne({where: {id: joinedEvent.eventId}, raw:true}).then(function(event){
-          event.confirmed = joinedEvent.confirmed
-          newdb.Users.findOne({where:{id:event.hostId}, raw: true }).then(function(user){
-            event.host = user.username;
-            data.joinedEvents.push(event);
-            if (joinedEventidx === joinedEvents.length - 1) {
-              res.status(200);
-              res.json(data);
-            }
-          })
+  newdb.JoinersEvents.findAll({where: {userId: userInfo.id }, raw:true}).then(function(joinedEvents){
+    joinedEvents.forEach(function(joinedEvent, joinedEventidx){
+      newdb.Events.findOne({where: {id: joinedEvent.eventId}, raw:true}).then(function(event){
+        event.confirmed = joinedEvent.confirmed
+        newdb.Users.findOne({where:{id:event.hostId}, raw: true }).then(function(user){
+          event.host = user.username;
+          data.joinedEvents.push(event);
+          if (joinedEventidx === joinedEvents.length - 1) {
+            res.status(200);
+            res.json(data);
+          }
         })
       })
     })
-  };
-  
+  }).catch(function(err){
+    res.status(500).send(err)
+  })
+
+
+};
+
+var getHostedEvents = function (req, res) {
+  var token = req.headers['x-access-token'];
+  var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
+  var data = {hostedEvents:[], joinedEvents:[]};
   newdb.Events.findAll({where:{hostId:userInfo.id}, raw:true}).then(function(events){
     if (events.length === 0) {
       res.send()
@@ -47,12 +58,17 @@ var getEvents = function(req, res) {
     data.hostedEvents.forEach(function(event, idx){
       event.usersJoined = []
       newdb.JoinersEvents.findAll({where: {eventId:event.id}, raw:true}).then(function(joinedUser){
+        if (joinedUser.length === 0) {
+          res.status(200);
+          res.json(data);
+        }
         joinedUser.forEach(function(user, useridx){
           newdb.Users.findOne({where: {id: user.userId}, raw:true}). then(function(joinedUsername){
             user.username = joinedUsername.username;
             event.usersJoined.push(user);
             if (idx === data.hostedEvents.length - 1) {
-              getJoinedEvents();
+              res.status(200);
+              res.json(data)
            }
           })
         })
@@ -61,6 +77,8 @@ var getEvents = function(req, res) {
   }).catch(function(err){
     res.status(500).send(err);
   })
+
+
 };
 
 var getProfile = function (req, res) {
@@ -89,5 +107,8 @@ module.exports = {
   getUser: getUser,
   getEvents: getEvents,
   getProfile: getProfile,
-  confirmEvent: confirmEvent
+  confirmEvent: confirmEvent,
+  getHostedEvents: getHostedEvents,
+  getJoinedEvents: getJoinedEvents
 };
+
