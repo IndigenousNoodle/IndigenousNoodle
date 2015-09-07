@@ -3,7 +3,7 @@
     angular.module("app.maps", [])
     .controller('mapsController', createMapsController);
 
-  createMapsController.$inject = ['$state', 'usersAndEventsService', 'getMaps', 'getCity', 'getEventList', 'googleMap', 'filteredService', '$scope'];
+  createMapsController.$inject = ['$state', 'usersAndEventsService', 'getMaps', 'getCity', 'getEventList', 'googleMap', 'filteredService', '$rootScope'];
 
   function createMapsController($state, usersAndEventsService, getMaps, getCity, getEventList, googleMap, filteredService, $scope){
     // use the navBarApp?
@@ -15,7 +15,7 @@
     var makeMap = initializeGoogleMaps(getMaps, getCity, getEventList, $state, googleMap);
 
     $scope.$watchCollection(
-      function watchFiltered( scope ) {
+      function watchFiltered( $scope ) {
         // Return the "result" of the watch expression.
         return( vm.filtered );
       },
@@ -39,6 +39,11 @@
         }
     });
 
+    getMaps.event.addDomListener(window, 'resize', function(){
+      var center = vm.map.getCenter();
+      getMaps.event.trigger(vm.map, 'resize');
+      vm.map.setCenter(center);
+    });
 
     getMaps.event.trigger(map, 'resize');
 
@@ -47,8 +52,9 @@
       // can refactor to getInitialMap to googleMapService
       vm.map = new getMaps.Map(document.getElementById('map'), googleMap.getMapObject());
 
-      document.getElementById('map').style.height = "600px";
-      document.getElementById('map').style.width = "600px";
+
+      document.getElementById('map').style.height = "500px";
+      document.getElementById('map').style.width = "100%";
       
       vm.geocoder = new getMaps.Geocoder();
 

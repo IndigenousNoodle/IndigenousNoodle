@@ -1,6 +1,8 @@
 (function() {
   angular.module('homepage', [])
-    .controller('homepageController', homepageController)
+    .controller('homepageController', homepageController);
+
+  homepageController.$inject = ['$state'];
 
   function homepageController($state) {
     $('#nav-header').removeClass("nav-color")
