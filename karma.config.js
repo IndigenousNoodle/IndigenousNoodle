@@ -33,6 +33,8 @@ module.exports = function(config) {
         './public/eventListPage/eventListController.js',
         './public/createEventPage/createEventController.js',
         './public/eventManager/eventManagerController.js',
+        './public/eventManager/eventManagerJoinedController.js',
+        './public/eventManager/eventManagerHostedController.js',
         './public/userProfile/userProfileController.js',
         './test/unit/**/*.js'
     ],
