@@ -18,13 +18,14 @@
 
     /////////////////////////////////
 
-    function submit(valid){
-      if (valid && this.title && this.city && this.description){
+    function submit(validTime){
+      if (validTime && this.title && this.city && this.description){
 
         var eventData = {title: this.title, city: this.city.toLowerCase(), time: this.time, description: this.description};
         
         usersAndEventsService.postEvent(eventData)
         .then(function(data){
+          console.log("going homepage");
           $state.go('homepage');
         }, function(err){
           console.log("ERROR === ",err);
