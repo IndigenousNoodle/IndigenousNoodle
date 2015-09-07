@@ -5,7 +5,7 @@ describe("eventListController", function() {
   
   getEventList = [{title: 'Yosemiti', city: 'San Francisco'}, {title: 'Napa Valley', city: 'San Francisco'}];
 
-  hostEvent = {title: 'Tempus', city: 'San Francisco', _id: 1};
+  hostEvent = {title: 'Tempus', city: 'San Francisco', id: 1};
 
   beforeEach(inject(function ($controller) {
     eventListController = $controller('eventListController', {
@@ -32,7 +32,7 @@ describe("eventListController", function() {
   it('should move to the eventDetail page after clicking a event', inject(function($state) {
     eventListController.toEventDetail(hostEvent);
 
-    expect($state.go).toHaveBeenCalledWith('eventDetail', {eventId: hostEvent._id});
+    expect($state.go).toHaveBeenCalledWith('eventDetail', {eventId: hostEvent.id});
   }));
 
 });

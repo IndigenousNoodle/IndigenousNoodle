@@ -51,4 +51,3 @@ module.exports = {
   Reviews: Reviews,
   JoinersEvents: JoinersEvents
 };
-
