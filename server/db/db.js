@@ -13,7 +13,6 @@ var Events = sequelize.define('events', {
   time: Sequelize.STRING,
   address: Sequelize.STRING,
   photoUrl: Sequelize.TEXT
-
 });
 
 

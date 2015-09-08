@@ -9,6 +9,7 @@
     var vm = this;
     vm.user = getUserProfilePrep.data;
     vm.uploadImage = uploadImage;
+    console.log("user: ", vm.user);
 
     function uploadImage () {
       usersService.uploadImage();

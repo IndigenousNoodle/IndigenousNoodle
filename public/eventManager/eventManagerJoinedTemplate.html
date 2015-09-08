@@ -6,6 +6,8 @@
         <table class="table">
           <caption>
             {{joinedEvent.title}}
+            <!-- review button -->
+            <input type="submit" ng-click="event.reviewModal(joinedEvent)" value="Review">
           </caption>
           <tr>
             <td>Host:</td>

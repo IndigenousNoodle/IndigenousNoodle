@@ -2,7 +2,6 @@
 
   angular.module("app.eventDetail", [])
     .controller('eventDetailController', eventDetailController);
-
   eventDetailController.$inject = ['$state', 'eventsService', 'getEvent'];
 
   function eventDetailController($state, eventsService, getEvent){
