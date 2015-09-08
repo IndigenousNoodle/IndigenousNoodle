@@ -6,7 +6,7 @@
   eventDetailController.$inject = ['$state', 'eventsService', 'getEvent'];
 
   function eventDetailController($state, eventsService, getEvent){
-    // use the navBarApp?
+
     var vm = this;
     vm.join = join;
 
@@ -14,13 +14,7 @@
 
     /////////////////////////
 
-    // must have a get request for information about the host
-    // might need to modify host schema for description of host
-    // get join button work
-
     function join(){
-      // push user onto list of events
-      // update users joined events
 
       var eventData = vm.details;
 
