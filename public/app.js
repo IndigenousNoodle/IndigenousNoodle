@@ -15,7 +15,10 @@
     'app.profilePage',
     'uiGmapgoogle-maps',
     'app.maps',
-    'ngAnimate'
+    'ngAnimate',
+    'message',
+    'messageList',
+    'ngMaterial'
     ])
   .config(router)
   .run(requireUserSignin)
@@ -34,6 +37,25 @@
         templateUrl: './homepage/homepageTemplate.html',
         controller: 'homepageController',
         controllerAs: 'home'
+      })
+      .state('message', {
+        url: '/message/:receiver',
+        templateUrl: './messagePage/messagePageTemplate.html',
+        controller: 'messageController',
+        controllerAs: 'message',
+        resolve: {
+          getUsername: getUsername,
+          getMessages: getMessages
+        }
+      })
+      .state('messageList', {
+        url: '/messageList',
+        templateUrl: './messageListPage/messageListPageTemplate.html',
+        controller: 'messageListController',
+        controllerAs: 'messageList',
+        resolve: {
+          getAllMessages: getAllMessages
+        }
       })
       .state('createEvent', {
         url: '/createEvent',
@@ -135,34 +157,43 @@
         }
       })
 
-    // resolve functions
-    function getEventList($http, $stateParams, eventsService) {
-      return eventsService.getEventList($stateParams.city);
-    }
-    function getEventsService ($http, usersService) {
-      return usersService.getUserEvents();
-    }
-    function getProfileService ($http, $stateParams, usersService) {
-      return usersService.getUserProfile($stateParams.username);
-    }
-    function getEvent($http, $stateParams, eventsService){
-      return eventsService.getEvent($stateParams.eventId);
-    }
-    function getJoinedEventsService ($http, usersService) {
-      return usersService.getJoinedEvents();
-    }
-    function getHostedEventsService ($http, usersService) {
-      return usersService.getHostedEvents();
-    }
-    function getUserProfileService ($http, usersService) {
-      return usersService.getProfile();
-    }
-    function getMaps (googleMap){
-      return googleMap.getMapApi();
-    }
-    function getCity($stateParams){
-      return $stateParams.city;
-    }
+      // resolve functions
+      function getAllMessages($http, messagesService) {
+        return messagesService.getAllMessages();
+      }
+      function getMessages($http, messagesService, $stateParams) {
+        return messagesService.getMessages($stateParams.receiver);
+      }
+      function getUsername($http, usersService) {
+        return usersService.getUsername();
+      }
+      function getEventList($http, $stateParams, eventsService) {
+        return eventsService.getEventList($stateParams.city);
+      }
+      function getEventsService ($http, usersService) {
+        return usersService.getUserEvents();
+      }
+      function getProfileService ($http, $stateParams, usersService) {
+        return usersService.getUserProfile($stateParams.username);
+      }
+      function getEvent($http, $stateParams, eventsService){
+        return eventsService.getEvent($stateParams.eventId);
+      }
+      function getJoinedEventsService ($http, usersService) {
+        return usersService.getJoinedEvents();
+      }
+      function getHostedEventsService ($http, usersService) {
+        return usersService.getHostedEvents();
+      }
+      function getUserProfileService ($http, usersService) {
+        return usersService.getProfile();
+      }
+      function getMaps (googleMap){
+        return googleMap.getMapApi();
+      }
+      function getCity($stateParams){
+        return $stateParams.city;
+      }
 
     // token authentication
     $httpProvider.interceptors.push('AttachTokens');

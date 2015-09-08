@@ -1,7 +1,6 @@
-<div>
-  
+<div>  
   <h2>Event Page</h2>
-  <h3>{{event.details.host}}</h3>
+  <h3>{{event.details.username}}</h3>
   <rating ng-init="rate = 4" ng-model="rate" max="5" readonly="isReadonly"></rating>
   <br/>
   <button ng-click="event.join()">Join</button>
@@ -11,6 +10,5 @@
   <h3>{{event.details.title}}</h3>
   <h3>{{event.details.city}}</h3>
   <p>{{event.details.description}}</p>
-
-
+  <a ui-sref="message({receiver:event.details.username})" class="btn btn-default">Inquire for Booking</a>
 </div>

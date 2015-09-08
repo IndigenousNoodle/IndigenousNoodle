@@ -16,9 +16,16 @@ var getEvent = function(req, res){
   db.Events.findOne({
     where: {
       id: req.body.id
-    }
+    }, raw: true
   }).then(function(ev){
-    res.send(ev);
+    db.Users.findOne({
+      where: {
+        id: ev.hostId
+      }
+    }).then(function(user) {
+      ev.username = user.username;
+      res.send(ev);
+    })
   }).catch(function(err){
     console.log("ERROR GETTING EVENT === ", err);
     res.send(500,err);

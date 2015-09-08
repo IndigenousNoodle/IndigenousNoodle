@@ -1,0 +1,6 @@
+<ul id="messages">
+  <li ng-repeat="msg in message.getMessages"><span ng-show="msg.sender === message.userId">{{message.username}}: </span><span ng-hide="msg.sender === message.userId">{{message.receiver}}: </span>{{msg.text}}</li>
+</ul>
+<form class="messagebox" ng-submit="message.emitMessage()">
+  <input class="messageInput" ng-model="message.text" id="m" autocomplete="off" /><button class="messageButton">Send</button>
+</form>

@@ -11,7 +11,7 @@ var node;
 var files = require('./gulp/gulp.config.js');
 
 gulp.task('default', function(callback) {
-  runSequence('mongo', 'build', 'watch', callback);
+  runSequence('postgres', 'build', 'watch', callback);
 });
 
 gulp.task('build', function (callback) {
@@ -62,8 +62,8 @@ gulp.task('start', function () {
   })
 });
 
-gulp.task('mongo', function() {
-  exec('mongod', function(err,stdout,stderr){
+gulp.task('postgres', function() {
+  exec('postgres -D /usr/local/var/postgres', function(err,stdout,stderr){
     console.log(stdout);
   });
 });

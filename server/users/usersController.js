@@ -17,6 +17,12 @@ var getEvents = function(req, res) {
 
 };
 
+var getUsername = function(req, res) {
+  var token = req.headers['x-access-token'];
+  var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
+  res.send(userInfo);
+}
+
 var getJoinedEvents = function (req, res) {
   var token = req.headers['x-access-token'];
   var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
@@ -121,6 +127,7 @@ module.exports = {
   confirmEvent: confirmEvent,
   getHostedEvents: getHostedEvents,
   getJoinedEvents: getJoinedEvents,
-  setProfileImage: setProfileImage
+  setProfileImage: setProfileImage,
+  getUsername: getUsername
 };
 
