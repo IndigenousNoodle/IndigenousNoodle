@@ -1,11 +1,10 @@
-var Events = require('./eventsModel');
-var Eventst = require('../db/newdb').Events;
-var db = require('../db/newdb.js');
+var Events = require('../db/db').Events;
+var db = require('../db/db.js');
 
 var getEvents = function(req, res) {
   var city = req.params.city.toLowerCase();
   
-  Eventst.findAll({
+  Events.findAll({
     where: { city: city },
   }).then(function(events) {
       res.json(events);
@@ -13,8 +12,6 @@ var getEvents = function(req, res) {
 };
 
 var getEvent = function(req, res){
-  // return the event with the id
-
 
   db.Events.findOne({
     where: {
@@ -27,15 +24,6 @@ var getEvent = function(req, res){
     res.send(500,err);
   });
 
-  // Events.findOne({_id: req.body.id}).exec(function(err, data){
-  //   if (err){
-  //     console.log("ERR", err);
-  //     res.send(500, err);
-  //   }else{
-  //     console.log("SUCCESS", data);
-  //     res.send(data);
-  //   }
-  // });
 };
 
 module.exports = {

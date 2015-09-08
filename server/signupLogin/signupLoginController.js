@@ -1,4 +1,4 @@
-var db = require('../db/newdb');
+var db = require('../db/db');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jwt-simple');
 
