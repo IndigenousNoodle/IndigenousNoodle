@@ -2,12 +2,13 @@ var jwt = require('jwt-simple');
 var db = require('../db/db.js');
 
 var getUser = function(req, res) {
-  Users.find().exec(function(err,data){
-    if (err) {
-      res.send(500, err);
-    } else {
-      res.send(data);
-    }
+  var token = req.headers['x-access-token'];
+  var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
+  db.Users.findOne({where:{username:userInfo.username}}).then(function(user){
+    res.status(200);
+    res.json(user);
+  }).catch(function(err){
+    res.status(500).send(err)
   })
 };
 
@@ -95,11 +96,23 @@ var confirmEvent = function (req, res) {
   var acceptedUser = req.body.acceptedUser;
   var eventId = req.body.eventId;
   db.JoinersEvents.update({confirmed:true}, {where: {userId:acceptedUser, eventId: eventId}}).then(function(result){
-    console.log(result);
+    res.status(200).send(result);
   }).catch(function(err){
     res.status(500).send("error:", err);
   });
 };
+
+var setProfileImage = function(req, res) {
+  var token = req.headers['x-access-token'];
+  var user = jwt.decode(token, 'localHostsSecretHostlocal');
+  var imageUrl = req.body.imageUrl;
+  db.Users.update({photoUrl: imageUrl}, {where:{username:user.username}}).then(function(result){
+    res.status(200).send(result);
+    console.log(result);
+  }).catch(function(err){
+    res.status(500).send("error:", err);
+  })
+}
 
 module.exports = {
   getUser: getUser,
@@ -107,6 +120,7 @@ module.exports = {
   getProfile: getProfile,
   confirmEvent: confirmEvent,
   getHostedEvents: getHostedEvents,
-  getJoinedEvents: getJoinedEvents
+  getJoinedEvents: getJoinedEvents,
+  setProfileImage: setProfileImage
 };
 

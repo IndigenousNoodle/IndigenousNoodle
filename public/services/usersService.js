@@ -12,7 +12,9 @@
       getUserProfile: getUserProfile,
       confirmEvent: confirmEvent,
       getJoinedEvents: getJoinedEvents,
-      getHostedEvents: getHostedEvents
+      getHostedEvents: getHostedEvents,
+      getProfile: getProfile,
+      uploadImage: uploadImage
     };
 
 
@@ -83,6 +85,55 @@
           console.log("ERROR: ", error);
         }
     }
+
+    function getProfile(){
+      return $http.get('/user')
+        .then(getProfileComplete)
+        .catch(getProfileFailed);
+
+      function getProfileComplete(data){
+        return data;
+      }
+
+      function getProfileFailed(error){
+        console.log("ERROR: ", error);
+      }
+    }
+
+    function uploadImage () {
+      var file = document.getElementById("image").files[0];
+      console.log('here')
+      $http.get('/AWS/sign?file_name=' + file.name + "&file_type=" + file.type)
+        .then(getUrlComplete)
+        .catch(getUrlFailed)
+
+      function upload(file, signed_request, url, done) {
+        var xhr = new XMLHttpRequest()
+        xhr.open("PUT", signed_request)
+        xhr.setRequestHeader('x-amz-acl', 'public-read')
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            done()
+          }
+        }
+        xhr.send(file)
+      }
+
+      function getUrlComplete (response) {
+        upload(file, response.data.signed_request, response.data.url, function() {
+          var imageUrl = "https://s3-us-west-2.amazonaws.com/localhosts/" + file.name;
+          document.getElementById("profileImage").style.backgroundImage = 'url('+imageUrl+')';
+          $http.post('/user/profileImage', {imageUrl: imageUrl}).then(function(response){
+          }).catch(getUrlFailed);
+        });
+      }
+
+      function getUrlFailed (err) {
+        console.log("ERROR: ", err)
+      }
+    }
+
+
 
   }
 

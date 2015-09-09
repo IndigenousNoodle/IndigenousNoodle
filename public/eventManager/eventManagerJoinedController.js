@@ -3,9 +3,9 @@
 
   .controller('eventManagerJoinedController', eventManagerJoinedController);
 
-  eventManagerJoinedController.$inject = ['getJoinedEventsPrep', 'usersService'];
+  eventManagerJoinedController.$inject = ['getJoinedEventsPrep'];
 
-  function eventManagerJoinedController (getJoinedEventsPrep, usersService) {
+  function eventManagerJoinedController (getJoinedEventsPrep) {
     var vm = this;
     vm.eventData = getJoinedEventsPrep.data;
   }
