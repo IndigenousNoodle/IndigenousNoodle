@@ -1,8 +1,5 @@
-var Events = require('../events/eventsModel');
-var Users = require('../users/usersModel');
 var jwt = require('jwt-simple');
-// var db = require('../db/mongodb.js');
-var db = require('../db/newdb.js');
+var db = require('../db/db.js');
 
 var postEvents = function(req, res){
 
