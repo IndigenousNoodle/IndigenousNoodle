@@ -4,9 +4,13 @@
     Username: {{user.user.username}} <br />
     <div id="profileImage" class="profileImage" style="background-image: url({{user.user.photoUrl}}); height: 200px; width: 200px; border: 1px solid black; background-size: 200px 200px; background-repeat: no-repeat">
     </div>
+    <input type="file" name="file" id="image">
+    <button class="btn btn-primary" type="submit" ng-click="user.uploadImage()">upload photo</button> <br />
     Reviews: 
     <ul ng-repeat="reviews in user.user.reviews">
       <li ng-repeat="review in reviews.review">{{review}}</li>
     </ul>
   </div>
 </div>
+
+

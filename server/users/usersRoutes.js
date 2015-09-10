@@ -7,4 +7,5 @@ module.exports = function(app) {
   app.get('/user/hostedEventsManager', usersController.getHostedEvents);
   app.post('/user/userProfile/', usersController.getProfile);
   app.post('/user/confirmEvent/', usersController.confirmEvent);
+  app.post('/user/profileImage/', usersController.setProfileImage);
 };

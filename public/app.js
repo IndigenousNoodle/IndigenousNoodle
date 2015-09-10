@@ -11,11 +11,11 @@
     'app.userProfile',
     'app.eventDetail',
     'app.dataservice',
+    'app.profilePage',
     'ngAnimate'
     ])
   .config(router)
   .run(requireUserSignin)
-
 
   router.$inject = ['$urlRouterProvider', '$stateProvider', '$httpProvider'];
   requireUserSignin.$inject = ['$rootScope','$state', 'Auth'];
@@ -105,6 +105,15 @@
           getEvent: getEvent
         }
       })
+      .state('profilePage', {
+        url: '/profilePage',
+        templateUrl: './profilePage/profilePageTemplate.html',
+        controller: 'profilePageController',
+        controllerAs: 'user',
+        resolve: {
+          getUserProfilePrep: getUserProfileService
+        }
+      })      
       
       function getEventList($http, $stateParams, eventsService) {
         return eventsService.getEventList($stateParams.city);
@@ -124,6 +133,9 @@
       function getHostedEventsService ($http, usersService) {
         return usersService.getHostedEvents();
       }
+      function getUserProfileService ($http, usersService) {
+        return usersService.getProfile()
+      }
 
       $httpProvider.interceptors.push('AttachTokens');
     }
@@ -135,7 +147,18 @@
           event.preventDefault();
           $state.go('signin');
         }
+        if(toState.url === '/profilePage' && !Auth.isAuth()) {
+          event.preventDefault();
+          $state.go('signin');
+        }
+        if(toState.url === '/events/eventManager' && !Auth.isAuth()) {
+          event.preventDefault();
+          $state.go('signin');
+        }
       });
     }
 
 })();
+
+
+

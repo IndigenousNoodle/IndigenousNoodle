@@ -4,6 +4,7 @@ var usersRoutes = require('./users/usersRoutes');
 var eventsRoutes = require('./events/eventsRoutes');
 var usersAndEventsRoutes = require('./usersAndEvents/usersAndEventsRoutes');
 var signupLoginRoutes = require('./signupLogin/signupLoginRoutes');
+var AWSRoutes = require('./AWSRoutes/AWSRoutes')
 require('./db/db.js');
 
 module.exports = function(app){
@@ -14,4 +15,5 @@ module.exports = function(app){
   eventsRoutes(app);
   usersAndEventsRoutes(app);
   signupLoginRoutes(app);
+  AWSRoutes(app);
 };
