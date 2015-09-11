@@ -2,9 +2,14 @@
   
   <h2>Event Page</h2>
   <h3>{{event.details.host}}</h3>
+  <rating ng-init="rate = 4" ng-model="rate" max="5" readonly="isReadonly"></rating>
+  <br/>
   <button ng-click="event.join()">Join</button>
+  <button ng-click="event.review()">Review Event</button>
+
   <h3>{{event.details.title}} </h3>
   <h4>{{event.details.city}}</h4>
   <p>{{event.details.description}}</p>
+
 
 </div>

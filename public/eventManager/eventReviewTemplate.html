@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{modal.event.title}}</h3>
+  <h5>Hosted by: {{modal.event.host}}</h5>
+</div>
+
+<div class="modal-body">
+  <!-- star rating -->
+  <div>
+      <rating ng-model="review.rating" max="modal.max" readonly="isReadonly" titles="['one','two','three']" ></rating>
+      <span>Rate: {{review.rating}}</span>
+  </div>
+  <!-- textarea -->
+  <textarea ng-model="review.text" class="bigTextArea textField reviewText expandingTextSectionHeight" title="Write your review here" style="overflow: hidden; margin-top: 10px; height: 150px; width: 566px;"></textarea>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="modal.ok(review)">Submit</button>
+  <button class="btn btn-warning" type="button" ng-click="modal.cancel()">Cancel</button>
+</div>

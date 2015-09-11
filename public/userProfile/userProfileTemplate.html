@@ -5,8 +5,14 @@
     <div id="profileImage" class="profileImage" style="background-image: url({{user.user.photoUrl}}); height: 200px; width: 200px; border: 1px solid black; background-size: 200px 200px; background-repeat: no-repeat">
     </div>
     Reviews: 
-    <ul ng-repeat="reviews in user.user.reviews">
-      <li ng-repeat="review in reviews.review">{{review}}</li>
-    </ul>
+    <!-- <div ng-repeat="review in user.user.reviews">
+      <div ng-repeat="review in reviews.review" class="review">
+        <div class="thumb"><img ng-src="{{review.imageUrl}}"></div>
+        <a href=""><div class="review-username">{{ review.username }}</div></a>
+        <span>{{ review.createdAt }}</span>
+        <div class="review-event">{{ review.event }}</div>
+        <div class="review-text">{{ review.text }}</div>
+      </div>
+    </div> -->
   </div>
 </div>
