@@ -5,6 +5,7 @@
     'app.signupLogin',
     'ui.router',
     'ui.bootstrap',
+    'app.eventsDisplay',
     'eventList',
     'homepage',
     'app.eventManager',
@@ -12,17 +13,21 @@
     'app.eventDetail',
     'app.dataservice',
     'app.profilePage',
+    'uiGmapgoogle-maps',
+    'app.maps',
     'ngAnimate'
     ])
   .config(router)
   .run(requireUserSignin)
 
   router.$inject = ['$urlRouterProvider', '$stateProvider', '$httpProvider'];
+
   requireUserSignin.$inject = ['$rootScope','$state', 'Auth'];
 
   function router($urlRouterProvider, $stateProvider, $httpProvider) {
     $urlRouterProvider.otherwise("/");
 
+    // paths
     $stateProvider
       .state('homepage',{
         url: '/',
@@ -36,12 +41,27 @@
         controller: 'createEventController',
         controllerAs: 'event'
       })
-      .state('eventList', {
+      .state('eventsDisplay', {
+        url: '/eventsDisplay/:city',
+        templateUrl: './eventsDisplayPage/eventsDisplayTemplate.html'
+      })
+      .state('eventsDisplay.eventList', {
         url:'/eventList/:city',
-        templateUrl: './eventListPage/eventListTemplate.html',
+        templateUrl: './eventsDisplayPage/eventListTemplate.html',
         controller: 'eventListController',
         controllerAs: 'eventList',
         resolve: {
+          getEventList: getEventList
+        }
+      })
+      .state('eventsDisplay.map', {
+        url: '/map/:city',
+        templateUrl: './eventsDisplayPage/mapsTemplate.html',
+        controller: 'mapsController',
+        controllerAs: 'map',
+        resolve: {
+          getMaps: getMaps,
+          getCity: getCity,
           getEventList: getEventList
         }
       })
@@ -113,32 +133,41 @@
         resolve: {
           getUserProfilePrep: getUserProfileService
         }
-      })      
-      
-      function getEventList($http, $stateParams, eventsService) {
-        return eventsService.getEventList($stateParams.city);
-      }
-      function getEventsService ($http, usersService) {
-        return usersService.getUserEvents();
-      }
-      function getProfileService ($http, $stateParams, usersService) {
-        return usersService.getUserProfile($stateParams.username);
-      }
-      function getEvent($http, $stateParams, eventsService){
-        return eventsService.getEvent($stateParams.eventId);
-      }
-      function getJoinedEventsService ($http, usersService) {
-        return usersService.getJoinedEvents();
-      }
-      function getHostedEventsService ($http, usersService) {
-        return usersService.getHostedEvents();
-      }
-      function getUserProfileService ($http, usersService) {
-        return usersService.getProfile()
-      }
+      })
 
-      $httpProvider.interceptors.push('AttachTokens');
+    // resolve functions
+    function getEventList($http, $stateParams, eventsService) {
+      return eventsService.getEventList($stateParams.city);
     }
+    function getEventsService ($http, usersService) {
+      return usersService.getUserEvents();
+    }
+    function getProfileService ($http, $stateParams, usersService) {
+      return usersService.getUserProfile($stateParams.username);
+    }
+    function getEvent($http, $stateParams, eventsService){
+      return eventsService.getEvent($stateParams.eventId);
+    }
+    function getJoinedEventsService ($http, usersService) {
+      return usersService.getJoinedEvents();
+    }
+    function getHostedEventsService ($http, usersService) {
+      return usersService.getHostedEvents();
+    }
+    function getUserProfileService ($http, usersService) {
+      return usersService.getProfile();
+    }
+    function getMaps (googleMap){
+      return googleMap.getMapApi();
+    }
+    function getCity($stateParams){
+      return $stateParams.city;
+    }
+
+    // token authentication
+    $httpProvider.interceptors.push('AttachTokens');
+  
+  }
 
     // for .run() module, ask user to sign in if user is not signed in
     function requireUserSignin($rootScope, $state, Auth) {

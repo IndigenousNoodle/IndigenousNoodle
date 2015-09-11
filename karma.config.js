@@ -7,11 +7,9 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: './',
 
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
-
 
     // list of files / patterns to load in the browser
     files: ['./public/lib/angular/angular.min.js',
@@ -19,6 +17,7 @@ module.exports = function(config) {
         './public/lib/angular-animate/angular-animate.min.js',
         './public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
         './public/lib/angular-ui-router/release/angular-ui-router.min.js',
+        './test/mocks/**/*.js',
         './public/signupLogin/signupLoginController.js',
         './public/app.js',
         './public/services/data.service.js',
@@ -27,10 +26,13 @@ module.exports = function(config) {
         './public/services/signupLoginService.js',
         './public/services/usersAndEventsService.js',
         './public/services/usersService.js',
+        './public/services/googleMapService.js',
         './public/components/navBar/navBarDirective.js',
         './public/homepage/homepageController.js',
         './public/eventDetailPage/eventDetailController.js',
-        './public/eventListPage/eventListController.js',
+        './public/eventsDisplayPage/eventsDisplayController.js',
+        './public/eventsDisplayPage/mapsController.js',
+        './public/eventsDisplayPage/eventListController.js',
         './public/createEventPage/createEventController.js',
         './public/profilePage/profilePageController.js',
         './public/eventManager/eventManagerController.js',

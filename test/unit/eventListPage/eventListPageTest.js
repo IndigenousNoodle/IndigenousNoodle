@@ -26,7 +26,7 @@ describe("eventListController", function() {
     eventListController.findCity = 'san francisco';
     eventListController.displayEvents();
 
-    expect($state.go).toHaveBeenCalledWith('eventList', {city: eventListController.findCity});
+    expect($state.go).toHaveBeenCalledWith('eventsDisplay.eventList', {city: eventListController.findCity});
   }));
 
   it('should move to the eventDetail page after clicking a event', inject(function($state) {

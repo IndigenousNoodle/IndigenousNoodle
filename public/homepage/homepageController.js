@@ -2,13 +2,13 @@
   angular.module('homepage', [])
     .controller('homepageController', homepageController)
 
-  function homepageController($state) { 
+  function homepageController($state) {
     var vm = this;
     
     vm.displayEvents = displayEvents;
 
     function displayEvents() {
-      $state.go('eventList', {city: vm.findCity});
+      $state.go('eventsDisplay.eventList', {city: vm.findCity});
     }
   }
 
