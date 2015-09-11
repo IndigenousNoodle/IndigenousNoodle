@@ -8,4 +8,5 @@ module.exports = function(app) {
   app.post('/user/userProfile/', usersController.getProfile);
   app.post('/user/confirmEvent/', usersController.confirmEvent);
   app.post('/user/profileImage/', usersController.setProfileImage);
+  app.get('/username', usersController.getUsername);
 };

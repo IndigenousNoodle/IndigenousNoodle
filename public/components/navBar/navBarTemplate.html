@@ -1,20 +1,33 @@
-<nav ng-controller="navController" class="navbar navbar-default">
-  <div class="container-fluid">
-   <a class="navbar-brand" ui-sref="homepage">localhosts</a>
-    <div class="btn-group" id="dropdown" dropdown is-open="status.isopen">
-      <button ng-click="navController.checkAuth()" id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
-        Button dropdown <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-        <li role="menuitem"><a ui-sref="profilePage">Profile</a></li>
-        <li role="menuitem"><a href="#">Inbox</a></li>
-        <li role="menuitem"><a ui-sref="eventManager.joinedEvents">Tours</a></li>
-        <li role="menuitem"><a ui-sref="eventManager.hostedEvents">Hosted</a></li>
-        <li role="menuitem"><a ui-sref="createEvent">Create Event</a></li>
-        <li role="menuitem"><a href="#">Created</a></li>
-        <li class="divider"></li>
-        <li ng-click="navController.signinout()" role="menuitem"><a ui-serf="signin">{{navController.signinoutMessage}}</a></li>
+<header ng-controller="navController" class="navbar navbar-default navbar-inner">
+  <div class="container">
+    <nav>
+      <ul class="nav navbar-nav">
+        <a ui-sref="homepage" role="button" class="navbar-brand">
+          Loalhosts
+        </a>
       </ul>
-    </div>
-  </div><!-- /.container-fluid -->
-</nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a class="nav-right" ui-sref="messageList">
+            <i class="fa fa-envelope-o fa-lg"></i>
+          </a>
+        </li>
+        <li class="dropdown" dropdown="">
+          <a ng-click="navController.checkAuth()" role="button" class="dropdown-toggle" dropdown-toggle aria-haspopup="true" aria-expanded="false">
+            Dropdown <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Inbox</a></li>
+              <li><a ui-sref="eventManager">Tours</a></li>
+              <li><a ui-sref="eventManager">Hosted</a></li>
+              <li><a ui-sref="createEvent">Create Event</a></li>
+              <li><a href="#">Created</a></li>
+              <li role="separator" class="divider"></li>
+              <li ng-click="navController.signinout()" role="menuitem"><a href="#">{{navController.signinoutMessage}}</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

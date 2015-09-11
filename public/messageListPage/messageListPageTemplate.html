@@ -1,0 +1,13 @@
+<md-content>
+  <md-list>
+    <md-subheader class="md-no-sticky">Messages</md-subheader>
+    <md-list-item ng-repeat="msg in messageList.getAllMessages" ng-click="messageList.toMessage(msg)" class="md-2-line">
+    <!-- <img ng-src="" class="md-avatar"/> -->
+      <div class="md-list-item-text">
+        <h3>{{msg.username}}</h3>
+        <p>{{msg.msg}}</p>
+      </div>
+      <md-divider ></md-divider>
+    </md-list-item>
+  </md-list>
+</md-content>

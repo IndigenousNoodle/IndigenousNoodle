@@ -14,8 +14,23 @@
       getJoinedEvents: getJoinedEvents,
       getHostedEvents: getHostedEvents,
       getProfile: getProfile,
-      uploadImage: uploadImage
+      uploadImage: uploadImage,
+      getUsername: getUsername
     };
+
+    function getUsername() {
+      return $http.get('/username')
+        .then(haveUsername)
+        .catch(haveUsernameFailed)
+
+        function haveUsername (username) {
+          return username
+        }
+
+        function haveUsernameFailed(error) {
+          console.log("ERROR: ", error);
+        }
+    }
 
 
     function getUserEvents() {

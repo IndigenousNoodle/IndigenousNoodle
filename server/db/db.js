@@ -28,9 +28,18 @@ var Reviews = sequelize.define('reviews', {
   rating: Sequelize.INTEGER
 });
 
+
+var Messages = sequelize.define('Messages', {
+  text: Sequelize.STRING
+});
+
 var JoinersEvents = sequelize.define('joinersevents', {
   confirmed: Sequelize.BOOLEAN
 });
+
+
+Messages.belongsTo(Users, {foreignKey: 'sender'});
+Messages.belongsTo(Users, {foreignKey: 'receiver'});
 
 Users.belongsToMany(Events, {through: 'joinersevents'});
 Events.belongsToMany(Users, {through: 'joinersevents'});
@@ -43,10 +52,12 @@ Users.sync();
 Events.sync();
 Reviews.sync();
 JoinersEvents.sync();
+Messages.sync();
 
 module.exports = {
   Users: Users,
   Events: Events,
   Reviews: Reviews,
-  JoinersEvents: JoinersEvents
+  JoinersEvents: JoinersEvents,
+  Messages: Messages
 };
