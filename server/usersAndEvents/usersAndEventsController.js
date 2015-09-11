@@ -22,6 +22,8 @@ var postEvents = function(req, res){
         description: req.body.description,
         city: req.body.city,
         time: req.body.time, // might want to change it to datetime
+        address: req.body.address,
+        price: req.body.price,
         hostId: user.dataValues.id
       }).then(function(ev){
         res.status(200).send(ev);

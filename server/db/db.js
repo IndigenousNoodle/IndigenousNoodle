@@ -9,7 +9,7 @@ var Events = sequelize.define('events', {
   city: Sequelize.STRING,
   state: Sequelize.STRING,
   zipcode: Sequelize.STRING,
-  cost: Sequelize.STRING,
+  price: Sequelize.INTEGER,
   time: Sequelize.STRING,
   address: Sequelize.STRING,
   photoUrl: Sequelize.TEXT

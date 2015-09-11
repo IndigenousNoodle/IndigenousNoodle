@@ -7,8 +7,9 @@
   <button ng-click="event.join()">Join</button>
   <button ng-click="event.review()">Review Event</button>
 
-  <h3>{{event.details.title}} </h3>
-  <h4>{{event.details.city}}</h4>
+  <h3>Price: ${{event.details.price}}</h3> <!-- Might want a different way to detect the currency -->
+  <h3>{{event.details.title}}</h3>
+  <h3>{{event.details.city}}</h3>
   <p>{{event.details.description}}</p>
 
 

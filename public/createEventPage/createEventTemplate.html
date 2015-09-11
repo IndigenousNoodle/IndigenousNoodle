@@ -1,12 +1,16 @@
 <div>
+
   <div>Create Event</div>
   <form name="eventForm">
 <!--     Host: <input type="text" ng-model="event.host" /><br />
  -->    Title: <input type="text" ng-model="event.title" /><br />
     City: <input type="text" ng-model="event.city" /><br />
+    Street Address: <input type="text" ng-model="event.address" /><br />
+    Price: <input type="number" ng-model="event.price" min="0" max="2147483647"/><br />
     Time: <input type="datetime-local" id="exampleInput" name="input" ng-model="event.time"
            placeholder="yyyy-MM-ddTHH:mm:ss" min="2015-08-27T00:00:00" max="2100-12-31T00:00:00" required /> </br>
     Description: <textarea ng-model="event.description" ></textarea><br />
     <button ng-click="event.submit(eventForm.$valid)">Create</button>
   </form>
+  
 </div>
