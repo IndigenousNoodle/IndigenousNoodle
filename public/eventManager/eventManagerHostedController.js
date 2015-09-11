@@ -10,8 +10,8 @@
     vm.confirmUser = confirmUser;
     vm.eventData = getHostedEventsPrep.data;
 
-    function confirmUser (acceptedUser, eventId) {
-      usersService.confirmEvent(acceptedUser, eventId);
+    function confirmUser (acceptedUser, eventId, eventTimeId) {
+      usersService.confirmEvent(acceptedUser, eventId, eventTimeId);
     }
   }
 })();

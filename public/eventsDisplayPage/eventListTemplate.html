@@ -40,6 +40,9 @@
     <div class="action">
       <p>{{event.city}}</p>
       <p>${{event.price}}</p>
+      <p>{{event.host}}</p>
+      <br />
+      <p ng-repeat="time in event.time">{{time.time | date : 'fullDate'}}</p>
     </div>
   </div>
 </div>

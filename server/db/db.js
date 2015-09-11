@@ -10,7 +10,6 @@ var Events = sequelize.define('events', {
   state: Sequelize.STRING,
   zipcode: Sequelize.STRING,
   price: Sequelize.INTEGER,
-  time: Sequelize.STRING,
   address: Sequelize.STRING,
   photoUrl: Sequelize.TEXT
 });
@@ -37,27 +36,33 @@ var JoinersEvents = sequelize.define('joinersevents', {
   confirmed: Sequelize.BOOLEAN
 });
 
+var EventTimes = sequelize.define('eventtimes', {
+  time: Sequelize.STRING
+});
 
 Messages.belongsTo(Users, {foreignKey: 'sender'});
 Messages.belongsTo(Users, {foreignKey: 'receiver'});
-
-Users.belongsToMany(Events, {through: 'joinersevents'});
-Events.belongsToMany(Users, {through: 'joinersevents'});
+JoinersEvents.belongsTo(Users);
+JoinersEvents.belongsTo(Events);
 Users.hasMany(Reviews, {foreignKey: 'usersHostId'});
 Users.hasMany(Reviews, {foreignKey: 'usersJoinId'});
 Events.hasMany(Reviews);
-Users.hasMany(Events, {foreignKey: 'hostId'});
+Users.hasMany(Events, {foreignKey: 'hostId', unique: false});
+Events.hasMany(EventTimes, {foreighKey: 'eventId', unique: false});
+EventTimes.hasOne(JoinersEvents);
 
 Users.sync();
 Events.sync();
 Reviews.sync();
 JoinersEvents.sync();
 Messages.sync();
+EventTimes.sync();
 
 module.exports = {
   Users: Users,
   Events: Events,
   Reviews: Reviews,
+  Messages: Messages,
   JoinersEvents: JoinersEvents,
-  Messages: Messages
+  EventTimes: EventTimes
 };

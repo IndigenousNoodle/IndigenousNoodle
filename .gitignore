@@ -29,4 +29,7 @@ node_modules/
 public/lib/
 
 *.DS_Store
+
+aws.config.js
+
 aws.config.js

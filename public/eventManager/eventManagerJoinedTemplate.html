@@ -23,7 +23,7 @@
           </tr>
           <tr>
             <td>Time:</td>
-            <td>{{joinedEvent.time}}</td>
+            <td>{{joinedEvent.eventTime | date : 'fullDate'}}</td>
           </tr>
         </table>
       </div>
@@ -49,7 +49,7 @@
           </tr>
           <tr>
             <td>Time:</td>
-            <td>{{joinedEvent.time}}</td>
+            <td>{{joinedEvent.eventTime | date : 'fullDate' }}</td>
           </tr>
         </table>
       </div>

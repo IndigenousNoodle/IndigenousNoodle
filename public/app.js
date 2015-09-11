@@ -6,6 +6,7 @@
     'ui.router',
     'ui.bootstrap',
     'app.eventsDisplay',
+    'gm.datepickerMultiSelect',
     'eventList',
     'homepage',
     'app.eventManager',

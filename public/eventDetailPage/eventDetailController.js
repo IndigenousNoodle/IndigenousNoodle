@@ -12,13 +12,15 @@
     vm.details = getEvent.data;
 
 
-    function join(){
+    function join(time){
 
       var eventData = vm.details;
-
+      eventData.time = time;
       eventsService.joinEvent(eventData)
       .then(function(data){
-        $state.go("homepage");
+        // if (!data.data === 'joiningOwnEvent') {
+          $state.go("homepage");
+        // }
       }, function(err){
         console.log("ERROR === ", err);
       });
