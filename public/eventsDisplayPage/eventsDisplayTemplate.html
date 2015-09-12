@@ -1,5 +1,25 @@
 <div class="container">
-      <a class="btn btn-primary" ui-sref="eventsDisplay.eventList">Event List</a>
-      <a class="btn btn-primary" ui-sref="eventsDisplay.map">Map View</a>
-      <div ui-view></div>
+  <a class="btn btn-primary" ui-sref="eventsDisplay.eventList">Event List</a>
+  <a class="btn btn-primary" ng-click="eventsDisplay.setFiltered(eventsDisplay.filtered)" ui-sref="eventsDisplay.map">Map View</a>
+  <div class="col-md-9">
+    <md-content>
+      <div layout layout-sm="column" class="col-md-4">
+         <md-input-container flex>
+           <label>Minimum Price</label>
+           <input type="number" ng-init="eventsDisplay.minPrice = 0" ng-model="eventsDisplay.minPrice">
+         </md-input-container>
+         <md-input-container flex>
+           <label>Maximum Price</label>
+           <input type="number" ng-init="eventsDisplay.maxPrice = 100000" ng-model="eventsDisplay.maxPrice">
+         </md-input-container>
+      </div>
+      <div layout layout-sm="column" class="col-md-4">
+        <md-input-container flex>
+          <label>Title or Description</label>
+          <input ng-init="eventsDisplay.titleOrDescription = '' " ng-model="eventsDisplay.titleOrDescription">
+        </md-input-container>
+      </div>
+    </md-content>
   </div>
+  <div ui-view></div>
+</div>

@@ -25,9 +25,12 @@
     }
 
     // will mark all events at the addresses retrieved
-    function markAllAddresses($state, eventsData, map, geocoder){
 
+    function markAllAddresses($state, eventsData, map, geocoder){
       // iterate through all the events and mark their addresses
+      var markerStorage = {};
+      var counter = 0;
+
       eventsData.forEach(function(ev){
         
         var address = ev.address;
@@ -35,24 +38,31 @@
 
         geocoder.geocode({'address': address + " " + city}, setMarkers);
 
-        function setMarkers(results, status){
-          if (status == google.maps.GeocoderStatus.OK) {
-            map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
 
-            // same event being marked everytime
-            markerToEventDetail($state, marker, ev);
-          }
-          else{
+        function setMarkers(results, status){
+          if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+            counter++;
+            window.counter = counter;
+          } else if (status == google.maps.GeocoderStatus.OK) {
+              map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location
+              });
+
+              markerStorage[ev.address] = marker
+
+              // same event being marked everytime
+              markerToEventDetail($state, marker, ev);
+          } else{
             console.log("Geocode was not successful for the following reason: " + status);
           }
         }
 
 
       });
+
+      return markerStorage;
     }
 
     function markerToEventDetail($state, marker, eventData){
