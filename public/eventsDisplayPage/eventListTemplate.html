@@ -23,10 +23,16 @@
              <input type="number" ng-init="eventList.maxPrice = 100000" ng-model="eventList.maxPrice">
            </md-input-container>
         </div>
+        <div layout layout-sm="column" class="col-md-4">
+          <md-input-container flex>
+            <label>Title or Description</label>
+            <input ng-init="eventList.titleOrDescription = '' " ng-model="eventList.titleOrDescription">
+          </md-input-container>
+        </div>
       </md-content>
     </div>
   </div>
-  <div class="card" ng-click="eventList.toEventDetail(event)" ng-repeat="event in eventList.getEventList | filter:eventList.filterRange">
+  <div class="card" ng-click="eventList.toEventDetail(event)" ng-repeat="event in eventList.getEventList | filter:eventList.filter">
     <div class="content">
       <span class="title">{{event.title}}</span>
       <p>{{event.description}}</p>
