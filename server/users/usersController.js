@@ -28,6 +28,9 @@ var getJoinedEvents = function (req, res) {
   var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
   var data = {hostedEvents:[], joinedEvents:[]};
   db.JoinersEvents.findAll({where: {userId: userInfo.id }, raw:true}).then(function(joinedEvents){
+    if (joinedEvents.length === 0) {
+      res.status(200).send()
+    }
     joinedEvents.forEach(function(joinedEvent, joinedEventidx){
       db.Events.findOne({where: {id: joinedEvent.eventId}, raw:true}).then(function(event){
         event.confirmed = joinedEvent.confirmed
@@ -71,7 +74,8 @@ var getHostedEvents = function (req, res) {
           db.Users.findOne({where: {id: user.userId}, raw:true}). then(function(joinedUsername){
             user.username = joinedUsername.username;
             event.usersJoined.push(user);
-            if (idx === data.hostedEvents.length - 1) {
+            if (event.usersJoined.length === joinedUser.length) {
+              console.log(data.hostedEvents[0].usersJoined)
               res.status(200);
               res.json(data)
            }

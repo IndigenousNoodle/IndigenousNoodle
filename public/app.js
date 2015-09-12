@@ -211,7 +211,11 @@
           event.preventDefault();
           $state.go('signin');
         }
-        if(toState.url === '/events/eventManager' && !Auth.isAuth()) {
+        if(toState.url === '/events/eventManager:hostedEvents' && !Auth.isAuth()) {
+          event.preventDefault();
+          $state.go('signin');
+        }
+        if(toState.url === '/events/eventManager:joinedEvents' && !Auth.isAuth()) {
           event.preventDefault();
           $state.go('signin');
         }
