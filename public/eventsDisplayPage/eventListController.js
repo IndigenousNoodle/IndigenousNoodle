@@ -11,6 +11,8 @@
 
       vm.displayEvents = displayEvents;
 
+      vm.filterRange = filterRange;
+
       ////////////////////////////////////
 
       function toEventDetail(hostEvent){
@@ -22,6 +24,9 @@
         $state.go('eventsDisplay.eventList', {city: vm.findCity});
       }
 
+      function filterRange(event) {
+        return event.price >= vm.minPrice && event.price <= vm.maxPrice;
+      }
     }
     
 })();

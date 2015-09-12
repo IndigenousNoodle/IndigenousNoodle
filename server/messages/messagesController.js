@@ -86,6 +86,10 @@ var getAllMessages = function(req, res) {
       }
     })
 
+    if(!Object.keys(data).length) {
+      res.send(null);
+    }
+
     Object.keys(data).forEach(function(id, index) {
       db.Users.findOne({
         where: {
