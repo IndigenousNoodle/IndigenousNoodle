@@ -1,1 +1,3 @@
 <div id="map"></div>
+<div class="card" ng-repeat="event in map.filtered = (eventsDisplay.getEventList | filter:eventsDisplay.priceFilter | filter:eventsDisplay.titleDescFilter)">
+</div>

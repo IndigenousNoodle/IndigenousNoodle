@@ -10,7 +10,6 @@
       vm.toEventDetail = toEventDetail;
 
       vm.displayEvents = displayEvents;
-      vm.filter = filter;
 
       ////////////////////////////////////
 
@@ -21,13 +20,6 @@
 
       function displayEvents() {
         $state.go('eventsDisplay.eventList', {city: vm.findCity});
-      }
-
-      function filter(event) {
-        var title = event.title.toLowerCase();
-        var description = event.description.toLowerCase();
-        var titleOrDescription = vm.titleOrDescription.toLowerCase();
-        return event.price >= vm.minPrice && event.price <= vm.maxPrice && (title.indexOf(titleOrDescription) > -1 || description.indexOf(titleOrDescription) > -1);
       }
     }
     

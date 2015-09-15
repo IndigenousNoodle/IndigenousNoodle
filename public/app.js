@@ -15,14 +15,30 @@
     'app.dataservice',
     'app.profilePage',
     'uiGmapgoogle-maps',
-    'app.maps',
     'ngAnimate',
+    'app.maps',
     'message',
     'messageList',
-    'ngMaterial'
+    'ngMaterial',
     ])
   .config(router)
   .run(requireUserSignin)
+
+  .directive('pagination', function($parse){
+    return {
+      restrict: 'A',
+      template: '',
+      scope: {
+        limit: '=limit'
+      },
+      link: function(scope, elem, attrs) {
+        var dataExpr = $parse(attrs.data);
+        scope.$watchCollection(dataExpr, function(val) {
+          scope.data = val;
+        });
+      }
+    }
+  })
 
   router.$inject = ['$urlRouterProvider', '$stateProvider', '$httpProvider'];
 
@@ -66,7 +82,12 @@
       })
       .state('eventsDisplay', {
         url: '/eventsDisplay/:city',
-        templateUrl: './eventsDisplayPage/eventsDisplayTemplate.html'
+        templateUrl: './eventsDisplayPage/eventsDisplayTemplate.html',
+        controller: 'eventsDisplayController',
+        controllerAs: 'eventsDisplay',
+        resolve: {
+          getEventList: getEventList
+        }
       })
       .state('eventsDisplay.eventList', {
         url:'/eventList/:city',
