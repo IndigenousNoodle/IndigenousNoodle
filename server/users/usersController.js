@@ -69,6 +69,10 @@ var getHostedEvents = function (req, res) {
         if (joinedUser.length === 0) {
           data.hostedEvents.push(event);
         }
+        if (data.hostedEvents.length === events.length) {
+          res.status(200);
+          res.json(data)
+        }
         joinedUser.forEach(function(user, useridx){
           db.Users.findOne({where: {id: user.userId}, raw:true}).then(function(joinedUsername){
             user.username = joinedUsername.username;
@@ -79,7 +83,7 @@ var getHostedEvents = function (req, res) {
               if (event.usersJoined.length === joinedUser.length) {
                 data.hostedEvents.push(event);
               }
-              if ((data.hostedEvents.length) === events.length) {
+              if (data.hostedEvents.length === events.length) {
                 res.status(200);
                 res.json(data)
               }
@@ -92,7 +96,6 @@ var getHostedEvents = function (req, res) {
     res.status(500).send(err);
   });
 };
-
 
 var getProfile = function (req, res) {
   var username = req.body.username;
