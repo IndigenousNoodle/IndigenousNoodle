@@ -2,7 +2,6 @@ var aws = require('aws-sdk');
 var awsConfig = require('../../../aws.config.js');
 
 var getUrl = function(req, res) {
-  console.log("Getting URL ----------------------")
   //return the URL
   aws.config.update({accessKeyId: awsConfig.AWS_ACCESS_KEY, secretAccessKey: awsConfig.AWS_SECRET_KEY});
     var s3 = new aws.S3()
@@ -15,10 +14,8 @@ var getUrl = function(req, res) {
     }
 
     s3.getSignedUrl('putObject', options, function(err, data){
-      console.log("----------------ERROR", err)
       if(err) return res.send('Error with S3')
 
-      console.log("Data--------------------------------", data)
       res.json({
         signed_request: data,
         url: 'https://s3.amazonaws.com/' + awsConfig.S3_BUCKET + '/' + req.query.file_name

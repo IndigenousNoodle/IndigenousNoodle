@@ -11,9 +11,12 @@
               <a ui-sref="userProfile({username: user.username})">{{user.username}}</a>
             </td>
             <td>
-              <button ng-class="{true: 'btn btn-success disabled', false: 'btn btn-primary'}[user.confirmed]" ng-disabled="user.confirmed" ng-click="event.confirmUser(user.userId, user.eventId); user.confirmed = !user.confirmed" >
+              <button ng-class="{true: 'btn btn-success disabled', false: 'btn btn-primary'}[user.confirmed]" ng-disabled="user.confirmed" ng-click="event.confirmUser(user.userId, user.eventId, user.eventtimeId); user.confirmed = !user.confirmed" >
                 {{!user.confirmed && 'Accept' || 'Accepted'}}
               </button>
+            </td>
+            <td>
+              {{user.eventTime | date : 'fullDate'}}
             </td>
           </tr>
         </table>

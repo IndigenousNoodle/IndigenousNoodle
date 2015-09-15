@@ -1,14 +1,25 @@
-<div>  
-  <h2>Event Page</h2>
-  <h3>{{event.details.username}}</h3>
-  <rating ng-init="rate = 4" ng-model="rate" max="5" readonly="isReadonly"></rating>
-  <br/>
-  <button ng-click="event.join()">Join</button>
-  <button ng-click="event.review()">Review Event</button>
+<div class="container">
+  <div class="row">
+    <h2>Event Page</h2>
+    <h3>{{event.details.host}}</h3>
+    <a ui-sref="message({receiver:event.details.username})" class="btn btn-default">Inquire for Booking</a>
+    <rating ng-init="rate = 4" ng-model="rate" max="5" readonly="isReadonly"></rating>
+    <br/>
+    <button ng-click="event.review()">Review Event</button>
 
-  <h3>Price: ${{event.details.price}}</h3> <!-- Might want a different way to detect the currency -->
-  <h3>{{event.details.title}}</h3>
-  <h3>{{event.details.city}}</h3>
-  <p>{{event.details.description}}</p>
-  <a ui-sref="message({receiver:event.details.username})" class="btn btn-default">Inquire for Booking</a>
+    <h3>Price: ${{event.details.price}}</h3> <!-- Might want a different way to detect the currency -->
+    <h3>{{event.details.title}}</h3>
+    <h3>{{event.details.city}}</h3>
+    <p>{{event.details.description}}</p>
+    <div class="col-md-4" class="timeTable">
+      <table class="table">
+        <caption> Times:</caption>
+        <tr ng-repeat="time in event.details.time">
+          <td>{{time.time | date : 'fullDate'}}</td>
+          <td> <button class="btn btn-xs btn-primary"  ng-disabled="event.details.userId === event.details.hostId" ng-click="event.join(time.id)">Join</button> </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
+

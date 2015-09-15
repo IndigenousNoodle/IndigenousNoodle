@@ -37,7 +37,8 @@
     "fontawesome": "~4.4.0",
     "socket.io-client": "~1.3.6",
     "jquery": "~2.1.4",
-    "angular-material": "~0.11.0"
+    "angular-material": "~0.11.0",
+    "gm.datepicker-multi-select": "~1.0.6"
   },
   "directory": "public/lib"
 }

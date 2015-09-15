@@ -16,6 +16,7 @@ module.exports = {
       './build/public/lib/angular-ui-router/release/angular-ui-router.min.js',
       './build/public/lib/lodash/lodash.min.js',
       './build/public/lib/angular-google-maps/dist/angular-google-maps.min.js',
+      './build/public/lib/gm.datepicker-multi-select/dist/gm.datepickerMultiSelect.min.js',
       './build/public/signupLogin/signupLoginController.js',
       './build/public/factories/factories.js',
       './build/public/app.js',

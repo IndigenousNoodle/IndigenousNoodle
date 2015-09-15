@@ -1,16 +1,50 @@
-<div>
 
-  <div>Create Event</div>
-  <form name="eventForm">
-<!--     Host: <input type="text" ng-model="event.host" /><br />
- -->    Title: <input type="text" ng-model="event.title" /><br />
-    City: <input type="text" ng-model="event.city" /><br />
-    Street Address: <input type="text" ng-model="event.address" /><br />
-    Price: <input type="number" ng-model="event.price" min="0" max="2147483647"/><br />
-    Time: <input type="datetime-local" id="exampleInput" name="input" ng-model="event.time"
-           placeholder="yyyy-MM-ddTHH:mm:ss" min="2015-08-27T00:00:00" max="2100-12-31T00:00:00" required /> </br>
-    Description: <textarea ng-model="event.description" ></textarea><br />
-    <button ng-click="event.submit(eventForm.$valid)">Create</button>
-  </form>
-  
+<div class="container">
+  <div class="row">
+    <div>Create Event</div>
+    <div class ="from-group">
+      <form name="eventForm">
+    <!--     Host: <input type="text" ng-model="event.host" /><br />-->
+        <label for="titleInput">Title</label>
+        <input class="form-control" id="titleInput" type="text" ng-model="event.title" /><br />
+        <label for="cityInput">City</label>
+        <input class="form-control" id="cityInput" type="text" ng-model="event.city" /><br />
+        <label for="addressInput">Street Address</label>
+        <input class="form-control" id="addressInput" type="text" ng-model="event.address" /><br />
+        <label for="priceInput">Price</label>
+        <input class="form-control" id="priceInput" type="text" ng-model="event.price" min="0" max ="2147483647" /><br />
+        <!-- <label for="timeInput">Time</label> -->
+        <!-- <input class="form-control" id="timeInput" type="datetime-local" id="exampleInput" name="input" ng-model="event.time" -->
+               <!-- placeholder="yyyy-MM-ddTHH:mm:ss" min="2015-08-27T00:00:00" max="2100-12-31T00:00:00" required /> </br> -->
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="descriptionInput" ng-model="event.description" ></textarea><br />
+        <div>
+          <table>
+            <tr>
+              <td>
+                <datepicker ng-model='event.activeDate' show-weeks="false" min-date="event.minDate" multi-select='event.selectedDates' select-range='{{event.type=="range"}}'></datepicker>
+              </td>
+              <td style='width:50px'>
+              </td>
+              <td>
+                <div >
+                  Selected Dates:
+                  <div class='well well-sm'>
+                    <div ng-repeat='d in event.selectedDates | orderBy : event.identity'>
+                      {{d | date : 'fullDate'}}
+                      <button class='btn btn-xs btn-warning' style='margin:5px' ng-click='event.removeFromSelected(d)'>Remove</button>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+          
+        <button class='btn btn-primary' ng-click="event.submit()">Create</button>
+
+      </form>
+    </div>
+  </div>
 </div>
+

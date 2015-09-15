@@ -33,14 +33,18 @@ var getJoinedEvents = function (req, res) {
     }
     joinedEvents.forEach(function(joinedEvent, joinedEventidx){
       db.Events.findOne({where: {id: joinedEvent.eventId}, raw:true}).then(function(event){
-        event.confirmed = joinedEvent.confirmed
-        db.Users.findOne({where:{id:event.hostId}, raw: true }).then(function(user){
-          event.host = user.username;
-          data.joinedEvents.push(event);
-          if (joinedEventidx === joinedEvents.length - 1) {
-            res.status(200);
-            res.json(data);
-          }
+        event.confirmed = joinedEvent.confirmed;
+        db.EventTimes.findOne({where:{id:joinedEvent.eventtimeId}, raw:true}).then(function(eventTime){
+          event.eventTime = eventTime.time;  
+        }).then(function(){
+          db.Users.findOne({where:{id:event.hostId}, raw: true }).then(function(user){
+            event.host = user.username;
+            data.joinedEvents.push(event);
+            if (data.joinedEvents.length === joinedEvents.length) {
+              res.status(200);
+              res.json(data);
+            }
+          })
         })
       })
     })
@@ -60,35 +64,35 @@ var getHostedEvents = function (req, res) {
       res.send()
     }
     events.forEach(function(event, eventidx){
-      data.hostedEvents.push(event);
-    })
-  }).then(function(){
-    data.hostedEvents.forEach(function(event, idx){
-      event.usersJoined = []
-      db.JoinersEvents.findAll({where: {eventId:event.id}, raw:true}).then(function(joinedUser){
+      event.usersJoined = [];
+      db.JoinersEvents.findAll({where: {eventId:event.id},raw:true}).then(function(joinedUser){
         if (joinedUser.length === 0) {
-          res.status(200);
-          res.json(data);
+          data.hostedEvents.push(event);
         }
         joinedUser.forEach(function(user, useridx){
-          db.Users.findOne({where: {id: user.userId}, raw:true}). then(function(joinedUsername){
+          db.Users.findOne({where: {id: user.userId}, raw:true}).then(function(joinedUsername){
             user.username = joinedUsername.username;
-            event.usersJoined.push(user);
-            if (event.usersJoined.length === joinedUser.length) {
-              console.log(data.hostedEvents[0].usersJoined)
-              res.status(200);
-              res.json(data)
-           }
+          }).then(function(){
+            db.EventTimes.findOne({where:{id:user.eventtimeId}, raw:true}).then(function(eventTime){
+              user.eventTime = eventTime.time;
+              event.usersJoined.push(user);
+              if (event.usersJoined.length === joinedUser.length) {
+                data.hostedEvents.push(event);
+              }
+              if ((data.hostedEvents.length) === events.length) {
+                res.status(200);
+                res.json(data)
+              }
+            })
           })
         })
       })
     })
   }).catch(function(err){
     res.status(500).send(err);
-  })
-
-
+  });
 };
+
 
 var getProfile = function (req, res) {
   var username = req.body.username;
@@ -105,7 +109,7 @@ var confirmEvent = function (req, res) {
   var user = jwt.decode(token, 'localHostsSecretHostlocal');
   var acceptedUser = req.body.acceptedUser;
   var eventId = req.body.eventId;
-  db.JoinersEvents.update({confirmed:true}, {where: {userId:acceptedUser, eventId: eventId}}).then(function(result){
+  db.JoinersEvents.update({confirmed:true}, {where: {userId:acceptedUser, eventId: eventId, eventtimeId: req.body.eventTimeId}}).then(function(result){
     res.status(200).send(result);
   }).catch(function(err){
     res.status(500).send("error:", err);
@@ -118,7 +122,6 @@ var setProfileImage = function(req, res) {
   var imageUrl = req.body.imageUrl;
   db.Users.update({photoUrl: imageUrl}, {where:{username:user.username}}).then(function(result){
     res.status(200).send(result);
-    console.log(result);
   }).catch(function(err){
     res.status(500).send("error:", err);
   })

@@ -23,6 +23,7 @@ module.exports = function(config) {
         './public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
         './public/lib/angular-ui-router/release/angular-ui-router.min.js',
         './public/lib/lodash/lodash.min.js',
+        './public/lib/gm.datepicker-multi-select/dist/gm.datepickerMultiSelect.min.js',
         './public/lib/angular-google-maps/dist/angular-google-maps.min.js',
         './public/signupLogin/signupLoginController.js',
         './public/factories/factories.js',

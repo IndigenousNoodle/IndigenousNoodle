@@ -10,7 +10,6 @@
       vm.toEventDetail = toEventDetail;
 
       vm.displayEvents = displayEvents;
-
       vm.filter = filter;
 
       ////////////////////////////////////
