@@ -11,14 +11,14 @@ var Events = sequelize.define('events', {
   zipcode: Sequelize.STRING,
   price: Sequelize.INTEGER,
   address: Sequelize.STRING,
-  photoUrl: Sequelize.TEXT
+  photoUrl: {type: Sequelize.TEXT, defaultValue: "https://s3-us-west-2.amazonaws.com/localhosts/eventImagePlaceholder.jpg"}
 });
 
 
 var Users = sequelize.define('users', {
   username: {type: Sequelize.STRING, unique: true},
   password: Sequelize.STRING,
-  photoUrl: Sequelize.TEXT
+  photoUrl: {type: Sequelize.TEXT, defaultValue: "https://s3-us-west-2.amazonaws.com/localhosts/profileImagePlaceholder.png"}
 });
 
 

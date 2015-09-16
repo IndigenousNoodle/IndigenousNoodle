@@ -27,6 +27,7 @@ module.exports = {
       './build/public/services/usersAndEventsService.js',
       './build/public/services/usersService.js',
       './build/public/services/reviewService.js',
+      './build/public/services/amazonS3Service.js',
       './build/public/services/googleMapService.js',
       './build/public/services/filteredService.js',
       './build/public/services/messagesService.js',

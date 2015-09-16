@@ -36,6 +36,7 @@ module.exports = function(config) {
         './public/services/usersService.js',
         './public/services/reviewService.js',
         './public/services/googleMapService.js',
+        './public/services/amazonS3Service.js',
         './public/services/messagesService.js',
         './public/services/filteredService.js',
         './public/components/navBar/navBarDirective.js',

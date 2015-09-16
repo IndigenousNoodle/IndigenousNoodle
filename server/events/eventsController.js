@@ -116,7 +116,21 @@ var getEvent = function(req, res){
   });
 };
 
+
+//Not implemented yet
+var setEventImage = function(req, res) {
+  var token = req.headers['x-access-token'];
+  var user = jwt.decode(token, 'localHostsSecretHostlocal');
+  var imageUrl = req.body.imageUrl;
+  db.Events.update({photoUrl: imageUrl}, {where:{username:user.username}}).then(function(result){
+    res.status(200).send(result);
+  }).catch(function(err){
+    res.status(500).send("error:", err);
+  })
+}
+
 module.exports = {
   getEvents: getEvents,
-  getEvent: getEvent
+  getEvent: getEvent,
+  setEventImage: setEventImage
 };
