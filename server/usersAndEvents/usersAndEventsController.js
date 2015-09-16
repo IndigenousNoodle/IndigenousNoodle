@@ -24,7 +24,8 @@ var postEvents = function(req, res){
         city: req.body.city,
         address: req.body.address,
         price: req.body.price,
-        hostId: user.dataValues.id
+        hostId: user.dataValues.id,
+        photoUrl: req.body.photoUrl
       }).then(function(ev){
         userEventTimes.forEach(function(time){
           db.EventTimes.create({

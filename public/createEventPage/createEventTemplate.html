@@ -18,6 +18,12 @@
                <!-- placeholder="yyyy-MM-ddTHH:mm:ss" min="2015-08-27T00:00:00" max="2100-12-31T00:00:00" required /> </br> -->
         <label for="description">Description:</label>
         <textarea class="form-control" id="descriptionInput" ng-model="event.description" ></textarea><br />
+        <div id="profileImage" class="profileImage" style="background-image: url(https://s3-us-west-2.amazonaws.com/localhosts/eventImagePlaceholder.jpg); height: 200px; width: 200px; border: 1px solid black; background-size: 200px 200px; background-repeat: no-repeat">
+        </div>
+        <div class="event-image-upload">
+          <input type="file" name="file" id="image">
+          <button class="btn btn-primary" type="submit" ng-click="event.uploadImage()">upload photo</button>
+        </div>
         <div>
           <table>
             <tr>
