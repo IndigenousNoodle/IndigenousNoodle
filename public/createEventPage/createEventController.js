@@ -33,6 +33,7 @@
 
         var eventData = {title: this.title,
                         city: this.city.toLowerCase(),
+                        state: vm.state,
                         time: vm.selectedDates,
                         description: this.description,
                         address: this.address,

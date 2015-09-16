@@ -191,3 +191,151 @@ paper-input-container {
 .joined-user-waitlist {
   color: red;
 }
+
+/*----------create event----------*/
+.from-group {
+  margin: auto;
+  margin-top: 50px;
+  padding: 40px;
+  width: 90%;
+  background-color: #F1F1F1;
+  border-radius: 5px;
+}
+
+#upload-event-photo {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  position: relative;
+  height: 500px;
+  width: 100%;
+  background-image: url(https://wiseburnedfoundation.org/wp-content/themes/nevia/images/shop-01.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.choose-file-btn {
+  position: absolute;
+  margin: 20px;
+}
+
+.event-image-upload-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  width: 150px;
+}
+
+.date-row {
+  height: 30px;
+}
+
+.create-btn {
+  float: right;
+  bottom: 20px;
+  right: 20px;
+  width: 150px;
+}
+
+.remove-btn {
+  float: right;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.selected-dates {
+  color: #5E5E5E;
+}
+
+/*----------signin/up----------*/
+.auth-center, .auth-center input,
+.auth-center button, .auth-center p{
+  width: 320px;
+  height: 35px;
+  margin: auto;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.auth-title {
+  color: #8C8C8C;
+  margin-top: 60px;
+}
+/*----------event details----------*/
+
+.event-cover-photo {
+  height: 65vh;
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+}
+
+.user-event {
+  margin-top: 50px;
+}
+
+.event-user-thumb {
+  width: 125px;
+  height: 125px;
+  background-size: 125px 125px;
+  background-repeat: no-repeat;
+  border: 1px solid #D8D7D7;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+}
+
+.top-buffer {
+  margin-top: 40px;
+}
+
+.stars {
+  color: #F99D02;
+}
+
+.event-info {
+  background-color: black;
+  height: 500px;
+}
+
+.event-title {
+  color: #5E5E5E;
+  margin-top: -15px;
+}
+
+.event-details-block {
+  width: 100%;
+  padding: 10% 20%;
+  margin-top: 30px;
+  background-color: #282829;
+  color: white;
+}
+
+@media (max-width: 990px) {
+  .text-center-sm { text-align:center }
+}
+
+.host-info {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 20px;
+  color: #378DB1;
+}
+
+.break-line {
+  background-color: #454040;
+  height: 1px;
+  margin: 50px 0px;
+}
+
+.join-btn {
+  width: 60px;
+  float: right;
+}
+
+.inquire-btn {
+  margin-top: 20px;
+}
+/*----------------------------------------*/
+
+
+

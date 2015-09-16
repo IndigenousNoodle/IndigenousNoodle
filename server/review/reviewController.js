@@ -3,10 +3,12 @@ var db = require('../db/db.js');
 
 var saveReview = function(req, res){
   console.log('reciewctrl req: ', req);
+  // get user info
   var token = req.headers['x-access-token'];
   var user = jwt.decode(token, 'localHostsSecretHostlocal');
   console.log('reciewctrl user : ', user);
 
+  // save review
   db.Reviews.create({
     rating: req.body.rating,
     review: req.body.review,
@@ -24,23 +26,24 @@ var saveReview = function(req, res){
 var getUserReviews = function(req, res){
   console.log("in getUserReviews---------------");
   var reviewsData = [];
+  // get user info
   var token = req.headers['x-access-token'];
   var host = jwt.decode(token, 'localHostsSecretHostlocal');
-
+  // find all the reviews for login user's hosted events
   db.Reviews.findAll({ where : { usersHostId: host.id }, raw:true})
     .then(function(reviews) {
       if (reviews.length === 0) {
         res.status(200);
         res.json({reviewsData: reviewsData});
       }
-
+      // use foreach to avoid asynchronous problem
       reviews.forEach(function(review, index) {
         var singleReviewData = {
           createdAt: review.createdAt,
           rating: review.rating,
           review: review.review
         };
-
+        // find review author info
         db.Users.findOne({ where: {id: review.usersJoinId}})
           .then(function(user) {
               console.log('inside user findOne: ', review);
@@ -60,30 +63,6 @@ var getUserReviews = function(req, res){
           .catch(function(err) {
             console.log(err);
           });
-
-        //old code
-        // db.Users.findOne({ where: {id: review.usersJoinId}})
-        //   .then(function(user) {
-        //       console.log('inside user findOne: ', review);
-        //       singleReviewData.author = user.username;
-        //       singleReviewData.authorPhotoUrl = user.photoUrl; 
-        //   })
-        //   .catch(function(err) {
-        //     console.log('Users findOne err', err);
-        //   });
-
-        // db.Events.findOne({ where: {id: review.eventId} })
-        //   .then(function(event) {
-        //     singleReviewData.eventTitle = event.title;
-        //     reviewsData.push(singleReviewData);
-        //     if (index === reviews.length - 1) {
-        //       res.status(200);
-        //       res.json({reviewsData: reviewsData});
-        //     }
-        //   })
-        //   .catch(function(err) {
-        //     console.log('Events findOne err', err);
-        //   });
       }); 
     })
     .catch(function(err) {
@@ -92,36 +71,39 @@ var getUserReviews = function(req, res){
     });
 };
 
+// review for the public profile where other users can view
 var getPublicReviews = function(req, res) {
   console.log("in getPublicReviews---------------------");
   console.log('req.body--------', req.body);
 
   var reviewsData = [];
 
+  // find review author info
+  // username is passed in from app.js $stateParams.username => reviewService.js
   db.Users.findOne({ where: {username: req.body.username }, raw:true})
     .then(function(user) {
 
       console.log("req.body.username findone: ", user)
-
+      // find all reviews that are directed the user
       db.Reviews.findAll({ where : { usersHostId: user.id }, raw:true})
         .then(function(reviews) {
           if (reviews.length === 0) {
             res.status(200);
             res.json({reviewsData: reviewsData});
           }
-
+          // use foreach to avoid asynchronous problem
           reviews.forEach(function(review, index) {
             var singleReviewData = {
               createdAt: review.createdAt,
               rating: review.rating,
               review: review.review
             };
-
+            // find review author info
             db.Users.findOne({ where: {id: review.usersJoinId}})
               .then(function(user) {
                   singleReviewData.author = user.username;
                   singleReviewData.authorPhotoUrl = user.photoUrl; 
-
+                  // find the review's event info
                   db.Events.findOne({ where: {id: review.eventId} })
                     .then(function(event) {
                       singleReviewData.eventTitle = event.title;

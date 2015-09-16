@@ -1,23 +1,36 @@
-<div class="container">
-  <div class="row">
-    <h2>Event Page</h2>
-    <a ui-sref="userProfile({username: event.details.host})"><h3>{{event.details.host}}</h3></a>
-    <a ui-sref="message({receiver:event.details.username})" class="btn btn-default">Inquire for Booking</a>
-    <rating  ng-model="event.details.rating" max="5" readonly="true"></rating>
-    <br/>
+<div>
+  <div class="event-cover-photo" style="background-image: url({{event.details.photoUrl}})"></div>
 
-    <h3>Price: ${{event.details.price}}</h3> <!-- Might want a different way to detect the currency -->
-    <h3>{{event.details.title}}</h3>
-    <h3>{{event.details.city}}</h3>
-    <p>{{event.details.description}}</p>
-    <div class="col-md-4" class="timeTable">
-      <table class="table">
-        <caption> Times:</caption>
-        <tr ng-repeat="time in event.details.time">
-          <td>{{time.time | date : 'fullDate'}}</td>
-          <td> <button class="btn btn-xs btn-primary"  ng-disabled="event.details.userId === event.details.hostId" ng-click="event.join(time.id)">Join</button> </td>
-        </tr>
-      </table>
+  <div class=".container user-event">
+    <div class="row">
+      <div class="col-md-2 col-md-offset-4">
+        <a ui-sref="userProfile({username: event.details.host})"><div class="event-user-thumb" style="background-image: url({{event.details.hostProfilePhoto}})"></div></a>
+        <div class="host-info">{{ event.details.host }}</div>
+      </div>
+      <div class="col-md-4 text-center-sm event-title">
+        <h3>{{event.details.title}}</h3>
+        <h3><rating  class="stars" ng-model="event.details.rating" max="5" readonly="true"></rating><h3>
+          <h4>Cost: ${{event.details.price}}</h4>
+        <h4>{{event.details.city}}, {{event.details.state}}</h4>
+      </div>
+    </div>
+    <div class="event-details-block">
+        <h4>Event Details</h4>
+        <p>{{event.details.description}}</p>
+        <a ui-sref="message({receiver:event.details.username})" class="btn btn-sm btn-info inquire-btn">Inquire for Booking</a>
+        <div class="break-line"></div>
+        <div class="timeTable">
+          <table class="table">
+            <h4> Times:</h4>
+            <tr ng-repeat="time in event.details.time">
+              <td>{{time.time | date : 'fullDate'}}</td>
+              <td> <button class="btn btn-xs btn-warning join-btn"  ng-disabled="event.details.userId === event.details.hostId" ng-click="event.join(time.id)">Join</button> </td>
+            </tr>
+          </table>
+        </div>
     </div>
   </div>
+  
 </div>
+
+

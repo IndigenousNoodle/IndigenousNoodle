@@ -9,7 +9,7 @@
 
       var vm = this;
       vm.event = event;
-      vm.max = 5;
+      vm.max = 5; // max stars
 
       vm.hoveringOver = hoveringOver;
       vm.ok = ok;
@@ -20,8 +20,10 @@
       }
 
       function ok(review) {
+        // close modal, need to inject $modalInstance
         $modalInstance.close();
-        // validate form
+
+        // save review
         var reviewData = {
           rating: review.rating,
           review: review.text,
