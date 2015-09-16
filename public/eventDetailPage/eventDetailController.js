@@ -12,6 +12,7 @@
     vm.details = getEvent.data;
     console.log('vm.details', vm.details);
 
+    /////////////////////////
 
     function join(time){
 

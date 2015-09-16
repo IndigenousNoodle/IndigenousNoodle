@@ -130,6 +130,22 @@ var setProfileImage = function(req, res) {
   })
 }
 
+var setAboutMe = function(req, res){
+  var token = req.headers['x-access-token'];
+  var user = jwt.decode(token, 'localHostsSecretHostlocal');
+  var aboutMe = req.body.aboutMe;
+
+  console.log("aboutMe ===", aboutMe);
+
+  db.Users.update({aboutMe: aboutMe}, {where: {id: user.id}}).then(function(result){
+    console.log("resulting in proper update");
+    res.status(200).send(result);
+  }).catch(function(err){
+    console.log("ERROR", err);
+    res.status(500).send("error: ", err);
+  });
+};
+
 module.exports = {
   getUser: getUser,
   getEvents: getEvents,
@@ -138,6 +154,7 @@ module.exports = {
   getHostedEvents: getHostedEvents,
   getJoinedEvents: getJoinedEvents,
   setProfileImage: setProfileImage,
+  setAboutMe: setAboutMe,
   getUsername: getUsername
 };
 

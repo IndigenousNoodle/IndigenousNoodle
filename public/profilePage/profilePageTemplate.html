@@ -7,10 +7,19 @@
     </div>
     <input type="file" name="file" id="image">
     <button class="btn btn-primary" type="submit" ng-click="user.uploadImage()">upload photo</button> <br />
-    Reviews:
+    <label for="aboutMe">About me:</label>
+    <textarea class="form-control" id="aboutMe" ng-model="user.aboutMe"></textarea><br />
+    <button class="btn btn-primary" type="submit" ng-click="user.uploadAboutMe(user.aboutMe)">upload About Me</button> <br />
   </div>
 
-  <div ng-repeat="review in user.reviews" class="review">
+  <div>
+    <div class="importantHeader">About Me:</div>
+    <div class="description">{{user.user.aboutMe}}</div>
+  </div>
+  
+  <div>
+    Reviews:
+    <div ng-repeat="review in user.reviews" class="review">
         <div class="review-block">
 
           <img class="review-thumb" ng-src="{{ review.authorPhotoUrl }}">
@@ -26,6 +35,7 @@
         </div>
 
     </div>
+  </div>
 </div>
 
 
