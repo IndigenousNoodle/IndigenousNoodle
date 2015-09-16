@@ -8,7 +8,9 @@
   function reviewService ($http) {
 
     return {
-      saveReviewAjax: saveReviewAjax
+      saveReviewAjax: saveReviewAjax,
+      getReviews: getReviews,
+      getPublicReviews: getPublicReviews
     };
 
 
@@ -23,10 +25,37 @@
       }
 
       function saveReviewAjaxFailed(err){
-        console.log("saveReview ajax err: ", err);
+        console.log("saveReviewAjaxFailed: ", err);
       }
     }
 
+    function getReviews(){
+      console.log('inside getreviews')
+      return $http.get('/getUserReviews')
+        .then(getUserReviewsComplete)
+        .catch(getUserReviewsFailed)
+
+        function getUserReviewsComplete (data) {
+          return data;
+        }
+        function getUserReviewsFailed(err) {
+          console.log("getUserReviewsFailed: ", err);
+        }
+    }
+
+    function getPublicReviews(username){
+      console.log("getPublicReviews username: " , username);
+      return $http.post('/getPublicReviews', {username: username})
+        .then(getPublicReviewsComplete)
+        .catch(getPublicReviewsFailed);
+
+        function getPublicReviewsComplete (data) {
+          return data;
+        }
+        function getPublicReviewsFailed(err) {
+          console.log("getPublicReviewsFailed: ", err);
+        }
+    }
   }
 
 }());

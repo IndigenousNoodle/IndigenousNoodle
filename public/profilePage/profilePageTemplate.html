@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="row">
     <a class="btn btn-primary" ui-sref="eventManager.hostedEvents">Back to Event Manager</a> <br />
     Username: {{user.user.username}} <br />
@@ -6,11 +7,25 @@
     </div>
     <input type="file" name="file" id="image">
     <button class="btn btn-primary" type="submit" ng-click="user.uploadImage()">upload photo</button> <br />
-    Reviews: 
-    <ul ng-repeat="reviews in user.user.reviews">
-      <li ng-repeat="review in reviews.review">{{review}}</li>
-    </ul>
+    Reviews:
   </div>
+
+  <div ng-repeat="review in user.reviews" class="review">
+        <div class="review-block">
+
+          <img class="review-thumb" ng-src="{{ review.authorPhotoUrl }}">
+          <div class="review-text-block">
+            <a ui-sref="userProfile({username: review.author})"><span class="review-username">{{ review.author }}</span></a>
+            <span>{{ review.createdAt }}</span>
+            <br>
+            <span class="review-eventTitle">{{ review.eventTitle }}</span>
+            <rating ng-model="review.rating" max="5" readonly="true"></rating>
+            <div class="review-text">{{ review.review }}</div>
+          </div>
+          
+        </div>
+
+    </div>
 </div>
 
 
