@@ -12,7 +12,8 @@
       getMapObject: getMapObject,
       markAllAddresses: markAllAddresses,
       findCityLocation: findCityLocation,
-      findGeoLocation: findGeoLocation
+      findGeoLocation: findGeoLocation,
+      initializeAllMarkers: initializeAllMarkers
     };
 
     ///////////////////////////////////////////
@@ -22,6 +23,36 @@
       function getMaps(maps){
         return maps;
       }
+    }
+
+    function initializeAllMarkers($state, eventsData, geocoder){
+      var markerStorage = {};
+      var counter = 0;
+
+      eventsData.forEach(function(ev){
+        
+        var address = ev.address;
+        var city = ev.city;
+
+        geocoder.geocode({'address': address + " " + city}, setMarkers);
+
+
+        function setMarkers(results, status){
+          if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+            counter++;
+          } else if (status == google.maps.GeocoderStatus.OK) {
+              var marker = new google.maps.Marker({
+                  position: results[0].geometry.location
+              });
+
+              markerStorage[ev.address] = marker
+          } else{
+            console.log("Geocode was not successful for the following reason: " + status);
+          }
+        }
+      });
+
+      return markerStorage;
     }
 
     // will mark all events at the addresses retrieved
@@ -42,7 +73,6 @@
         function setMarkers(results, status){
           if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
             counter++;
-            window.counter = counter;
           } else if (status == google.maps.GeocoderStatus.OK) {
               map.setCenter(results[0].geometry.location);
               var marker = new google.maps.Marker({
