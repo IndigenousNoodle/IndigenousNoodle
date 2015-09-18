@@ -12,7 +12,10 @@
       uploadImageEvent: uploadImageEvent
     };
 
-   
+    //Sends request to server for valid AWS S3 URL
+    //Uses URL to send request to AWS to post image
+    //Server stores and references AWS URL in User table
+    //On Success, updates DOM profile image element to the file uploaded
     function uploadImageUser () {
       var file = document.getElementById("image").files[0];
       console.log('here')
@@ -46,6 +49,7 @@
       }
     }
 
+    //Same as uploadImageUser, but saves to event table
     function uploadImageEvent () {
       var file = document.getElementById("image").files[0];
       console.log('here')

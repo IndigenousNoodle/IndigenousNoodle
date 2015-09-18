@@ -1,8 +1,10 @@
 var aws = require('aws-sdk');
 var awsConfig = require('../../../aws.config.js');
 
+
+//Sends request to AWS.  AWS sends back URL for clients to use.  Valid for 60 seconds.
+//Server sends URL back to client, client uploads image directly to AWS S3
 var getUrl = function(req, res) {
-  //return the URL
   aws.config.update({accessKeyId: awsConfig.AWS_ACCESS_KEY, secretAccessKey: awsConfig.AWS_SECRET_KEY});
     var s3 = new aws.S3()
     var options = {

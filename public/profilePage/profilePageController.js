@@ -16,7 +16,7 @@
 
 
     ///////////////////////////
-
+    //Sends request to server to retrieve valid URL, browser sends image to AWS S3 directly
     function uploadImage () {
       amazonS3Service.uploadImageUser();
     }

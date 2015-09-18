@@ -19,6 +19,8 @@
       uploadAboutMe: uploadAboutMe
     };
 
+
+    //retrieve username 
     function getUsername() {
       return $http.get('/username')
         .then(haveUsername)
@@ -47,6 +49,7 @@
         }
     }
 
+    //Retrieve user profile for public profile page
     function getUserProfile(username) {
       return $http.post('/user/userProfile/', {username: username})
         .then(getUserProfileComplete)
@@ -61,6 +64,7 @@
         }
     }
 
+    //Hosts confirms users to event.  Changes joined user confirmed boolean to true
     function confirmEvent(acceptedUser, eventId, eventTimeId){
       return $http.post('/user/confirmEvent/', {acceptedUser: acceptedUser, eventId: eventId, eventTimeId: eventTimeId})
         .then(confirmEventComplete)
@@ -76,6 +80,7 @@
       }
     }
 
+    //Retrieves all the events a user has joined
     function getJoinedEvents() {
       return $http.get('/user/joinedEventsManager')
         .then(getJoinedEventsComplete)
@@ -89,6 +94,7 @@
         }
     }
 
+    //Retrieves all the events a user has created
     function getHostedEvents() {
       return $http.get('/user/hostedEventsManager')
         .then(getHostedEventsComplete)
@@ -102,6 +108,7 @@
         }
     }
 
+    //Retrieves private profile data
     function getProfile(){
       return $http.get('/user')
         .then(getProfileComplete)
