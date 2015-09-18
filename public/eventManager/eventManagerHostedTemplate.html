@@ -1,25 +1,30 @@
  <div class="container"> 
   <div class="row">
-    <h3>Hosted Events:</h3>
-      <div class="col-md-4" ng-repeat="hostedEvent in event.eventData.hostedEvents">
-        <table class="table">
-          <caption>
-            {{hostedEvent.title}}
-          </caption>
-          <tr ng-repeat="user in hostedEvent.usersJoined">
-            <td>
-              <a ui-sref="userProfile({username: user.username})">{{user.username}}</a>
-            </td>
-            <td>
-              <button ng-class="{true: 'btn btn-success disabled', false: 'btn btn-primary'}[user.confirmed]" ng-disabled="user.confirmed" ng-click="event.confirmUser(user.userId, user.eventId, user.eventtimeId); user.confirmed = !user.confirmed" >
-                {{!user.confirmed && 'Accept' || 'Accepted'}}
-              </button>
-            </td>
-            <td>
-              {{user.eventTime | date : 'fullDate'}}
-            </td>
-          </tr>
-        </table>
+    <h3 class="col-md-offset-2 col-md-10">Hosted Events:</h3>
+    <p class="col-md-offset-2 col-md-10" ng-show="event.eventData.length === 0">No events created</p>
+      <div class="col-md-offset-2 col-md-8">
+          <div ng-repeat="hostedEvent in event.eventData.hostedEvents |  orderBy:'title'">
+            <div class="row">
+              <div class="md-body-2 col-md-4">
+                {{hostedEvent.title}}
+              </div>
+              <div class="col-md-8">
+                  <div  class = "row" ng-repeat="user in hostedEvent.usersJoined | orderBy:'eventTime'">
+                    <div class="col-xs-3 col-md-3">
+                      <md-button ng-class="{true: 'md-raised md-primary disabled', false: 'md-raised md-primary'}[user.confirmed]" ng-disabled="user.confirmed" ng-click="event.confirmUser(user.userId, user.eventId, user.eventtimeId); user.confirmed = !user.confirmed" >
+                        {{!user.confirmed && 'Accept' || 'Accepted'}}
+                      </md-button>
+                    </div>
+                    <div layout="column" layout-align="center start" class="col-xs-9 col-md-9">
+                      <p class="hosted-events-joineduser-time"><a ui-sref="userProfile({username: user.username})">{{user.username}}</a></p>
+                      <p class="hosted-events-joineduser-time">{{user.eventTime | date : 'fullDate'}}</p>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <md-divider></md-divider>
+          </div>
       </div>
   </div>
 </div>
+
