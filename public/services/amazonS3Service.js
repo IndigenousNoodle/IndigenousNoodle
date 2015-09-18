@@ -35,7 +35,7 @@
       function getUrlComplete (response) {
         upload(file, response.data.signed_request, response.data.url, function() {
           var imageUrl = "https://s3-us-west-2.amazonaws.com/localhosts/" + file.name;
-          document.getElementById("profileImage").style.backgroundImage = 'url('+imageUrl+')';
+          document.getElementById("profile-image").style.backgroundImage = 'url('+imageUrl+')';
           $http.post('/user/profileImage', {imageUrl: imageUrl}).then(function(response){
           }).catch(getUrlFailed);
         });
