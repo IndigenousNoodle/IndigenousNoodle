@@ -34,6 +34,7 @@ var getJoinedEvents = function (req, res) {
     joinedEvents.forEach(function(joinedEvent, joinedEventidx){
       db.Events.findOne({where: {id: joinedEvent.eventId}, raw:true}).then(function(event){
         event.confirmed = joinedEvent.confirmed;
+        event.eventTimeId = joinedEvent.eventtimeId;
         db.EventTimes.findOne({where:{id:joinedEvent.eventtimeId}, raw:true}).then(function(eventTime){
           event.eventTime = eventTime.time;  
         }).then(function(){

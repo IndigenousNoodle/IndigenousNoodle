@@ -129,8 +129,16 @@ var setEventImage = function(req, res) {
   })
 }
 
+var cancelEvent = function(req,res) {
+  var token = req.headers['x-access-token'];
+  var user = jwt.decode(token, 'localHostsSecretHostlocal');
+  console.log(req.body)
+  db.JoinersEvents.destroy({where:{userId: user.id ,eventId: req.body.id, eventtimeId:req.body.eventTimeId, confirmed: false}})
+}
+
 module.exports = {
   getEvents: getEvents,
   getEvent: getEvent,
-  setEventImage: setEventImage
+  setEventImage: setEventImage,
+  cancelEvent: cancelEvent
 };

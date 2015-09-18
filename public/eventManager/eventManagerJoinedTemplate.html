@@ -3,7 +3,7 @@
     <h3 class="col-md-offset-2 col-md-10">Joined Events:</h3>
     <p class="col-md-offset-2 col-md-10" ng-show="event.eventData.length === 0">No events joined</p>
         <div class="row">
-          <div class="col-md-4" ng-repeat="joinedEvent in event.eventData.joinedEvents">
+          <div class="col-md-4" ng-repeat="joinedEvent in event.eventData.joinedEvents | orderBy:'eventTime'">
           <div class="joined-events-event-image" style="background-image: url({{joinedEvent.photoUrl}});"></div>
           <table class="table">
             <caption>
@@ -12,7 +12,11 @@
               </div>
               <div>
                 <!-- review button -->
-                <md-button ng-disabled="!joinedEvent.confirmed" class="md-raised md-primary" type="submit" ng-click="event.reviewModal(joinedEvent)" value="Review">Review</md-button> <span ng-class="{true: 'joined-user-confirmed', false: 'joined-user-waitlist'}[joinedEvent.confirmed]"> {{joinedEvent.confirmed && 'Confirmed' || 'WaitListed'}} </span>
+                <md-button ng-disabled="!joinedEvent.confirmed" class="md-raised md-primary" type="submit" ng-click="event.reviewModal(joinedEvent)" value="Review">Review</md-button>
+
+                <md-button ng-disabled="joinedEvent.confirmed" class="md-raised md-primary" type="submit" ng-click="event.cancelEvent(joinedEvent)">Cancel</md-button>
+
+                <span ng-class="{true: 'joined-user-confirmed', false: 'joined-user-waitlist'}[joinedEvent.confirmed]"> {{joinedEvent.confirmed && 'Confirmed' || 'WaitListed'}} </span>
               </div>
             </caption>
             <tr>
