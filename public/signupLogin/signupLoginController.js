@@ -13,6 +13,7 @@
       // vm.requireLogin = requireLogin;
       // vm.logCookies = logCookies;
 
+    // Auth.signup from signupLoginService.js
     function signup(user) {
       Auth.signup(user)
         .then(setSignupToken)
@@ -22,14 +23,13 @@
 
       function setSignupToken(token) {
         if(token) {
-          // console.log("signup taken: ", token);
           $window.localStorage.setItem('localHosts', token);
-          // console.log("signup $window.localStorage: ", $window.localStorage);
           $state.go('homepage');
         }
       }
     }
 
+    // Auth.signin from signupLoginService.js
     function signin(user) {
       Auth.signin(user)
         .then(setSigninToken)
@@ -39,9 +39,8 @@
 
       function setSigninToken(token) {
         if (token) {
-          // console.log("signin token: ", token);
+          // attach user info to localstorage for later usage
           $window.localStorage.setItem('localHosts', token);
-          // console.log("signin $window.localStorage: ", $window.localStorage);
           $state.go('homepage');
         }
       }

@@ -1,14 +1,9 @@
-<div>
-	<div>Sign Up</div>
+<div class="auth-center">
+	<h3 class="auth-title">Sign Up</h3>
 	<form>
-	  Username:<br>
-	  <input type="text" ng-model="user.username" value="username">
-	  <br>
-	  Password:<br>
-	  <input type="password" ng-model="user.password" value="password">
-	  <br><br>
-	  <input type="submit" ng-click="signupLogin.signup(user)" value="Submit">
+	  <input type="text" ng-model="user.username" placeholder="username">
+	  <input type="password" ng-model="user.password" placeholder="password">
+	  <button class="md-raised md-primary md-button md-default-theme" ng-click="signupLogin.signup(user)"><strong>Submit</strong></button>
 	</form>
-	Already have an account? 
-  <a ui-sref="signin">Sign In</a>
+	<p>Already have an account? <a ui-sref="signin">Sign</a></p> 
 </div>

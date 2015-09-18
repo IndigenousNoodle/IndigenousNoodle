@@ -22,6 +22,7 @@ var postEvents = function(req, res){
         title: req.body.title,
         description: req.body.description,
         city: req.body.city,
+        state: req.body.state,
         address: req.body.address,
         price: req.body.price,
         hostId: user.dataValues.id,

@@ -41,6 +41,7 @@ var signin = function(req, res) {
       if (!data) { 
         res.send(null);
       } else {
+        //compare passwords using bcrypt
         bcrypt.compare(req.body.password, data.password, function(err, result) {
           if (err) {
             console.log("Password compare err: ", err);
@@ -65,6 +66,7 @@ var checkAuth = function(req, res) {
   if (!token) {
     console.log("checkAuth empty token");
   } else {
+    // decode user info
     var user = jwt.decode(token, 'localHostsSecretHostlocal');
     Users.findOne({username: user.username})
       .exec(function(err, data) {

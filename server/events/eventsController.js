@@ -32,7 +32,7 @@ var getEvents = function(req, res) {
               } else {
                 averageRating = 0;
               }
-              // save rating to eventData and push to allEventsData
+              // save rating to eventData
               event.rating = averageRating;
             })
           })
@@ -68,13 +68,13 @@ var getEvent = function(req, res){
   var token = req.headers['x-access-token'];
   var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
   var userId = userInfo.id;
-
   var eventData = {};
   var averageRating = 0;
 
   db.Events.findOne({ where: {id: req.body.id}, raw: true })
   .then(function(ev){
     // eventData = ev;
+    console.log('eventInfo===================== ', ev)
 
     // count numbers of review
     db.Reviews.count({ where: {eventId: req.body.id} })
@@ -110,6 +110,7 @@ var getEvent = function(req, res){
             console.log('eventTimes===== ', eventTimes);
             ev.time = eventTimes;
             ev.userId = userId;
+            ev.hostProfilePhoto = user.photoUrl;
             res.status(200).send(ev);
           })
         })

@@ -12,6 +12,7 @@
     vm.reviewModal = reviewModal;
     vm.cancelEvent = cancelEvent;
 
+    // create modal view using ui.bootstrap
     function reviewModal(event) {
       var modalInstance = $modal.open({
         templateUrl: './eventManager/eventReviewTemplate.html',
