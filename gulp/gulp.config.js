@@ -2,7 +2,7 @@ module.exports = {
   build_dir: 'build',
 
   app_files: {
-    js: ['public/**/*.js', 'public/**/*.html', 'public/**/*.css', 'server/**/*.js', '!public/lib/**/*'],
+    js: ['public/**/*.js', 'public/**/*.html', 'public/**/*.css', 'server/**/*.js', '!public/lib/**/*', 'aws.config.js', 'package.json', 'bower.json'],
     tpl_src: ['./build/public/lib/socket.io-client/socket.io.js',
       './build/public/lib/jquery/dist/jquery.min.js',
       './build/public/lib/angular/angular.min.js',
