@@ -10,7 +10,8 @@
       getEventList: getEventList,
       joinEvent: joinEvent,
       getEvents: getEvents,
-      getEvent: getEvent
+      getEvent: getEvent,
+      cancelEvent: cancelEvent
     };
 
     function joinEvent(eventUserData){
@@ -57,6 +58,20 @@
 
       function getEventFailed(error){
         console.log("ERR === ", error);
+      }
+    }
+
+    function cancelEvent (eventJoined) {
+      return $http.post('/cancelEvent', eventJoined)
+        .then(cancelEventComplete)
+        .catch(cancelEventFailed);
+
+      function cancelEventComplete (data) {
+        return data;
+      }
+
+      function cancelEventFailed(err) {
+        console.log("ERROR :", err);
       }
     }
 

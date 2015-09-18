@@ -1,9 +1,8 @@
 var Sequelize = require('sequelize');
-var pgConfig = require('../../../postgres.config.js');
 
 if (process.env.DATABASE_URL){ // deployment
   console.log("Process.ENV", process.env.POSTGRES_URL);
-  var sequelize = new Sequelize(pgConfig.POSTGRES_URL);
+  var sequelize = new Sequelize(process.env.POSTGRES_URL);
 }else{ // local
   console.log("localhostsing", process.env.POSTGRES_URL);
   var sequelize = new Sequelize('localhosts', 'root', '1234', {
