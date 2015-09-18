@@ -1,6 +1,7 @@
 var jwt = require('jwt-simple');
 var db = require('../db/db.js');
 
+//Retrieves the user infromation of the logged in user
 var getUser = function(req, res) {
   var token = req.headers['x-access-token'];
   var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
@@ -23,6 +24,9 @@ var getUsername = function(req, res) {
   res.send(userInfo);
 }
 
+
+//Retrieves all events the signed in user has joined.
+//Includes event times, confirmation status, and host data
 var getJoinedEvents = function (req, res) {
   var token = req.headers['x-access-token'];
   var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
@@ -55,6 +59,8 @@ var getJoinedEvents = function (req, res) {
 
 };
 
+//Retrieves all events the signed in user hosted.
+//Includes event times, users joined, confirmation status
 var getHostedEvents = function (req, res) {
   var token = req.headers['x-access-token'];
   var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
@@ -107,6 +113,8 @@ var getProfile = function (req, res) {
   })
 };
 
+
+//Hosts can accept users who have joined their event.  Changes users joined confirmed to true.
 var confirmEvent = function (req, res) {
   var token = req.headers['x-access-token'];
   var user = jwt.decode(token, 'localHostsSecretHostlocal');
@@ -119,6 +127,7 @@ var confirmEvent = function (req, res) {
   });
 };
 
+//Changes the signed in users profile image URL
 var setProfileImage = function(req, res) {
   var token = req.headers['x-access-token'];
   var user = jwt.decode(token, 'localHostsSecretHostlocal');

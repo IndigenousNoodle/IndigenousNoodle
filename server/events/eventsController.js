@@ -2,6 +2,9 @@ var Events = require('../db/db').Events;
 var db = require('../db/db.js');
 var jwt = require('jwt-simple');
 
+//Retrieves all events from database based on city (input from client)
+//Includes reviews and times
+
 var getEvents = function(req, res) {
   console.log("Inside getEvents============");
   var city = req.params.city.toLowerCase();
@@ -58,6 +61,9 @@ var getEvents = function(req, res) {
     });
 };
 
+
+//Retrieves individual event information from database.
+//Includes reviews for event, host information and times for event.
 var getEvent = function(req, res){
   var token = req.headers['x-access-token'];
   var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
@@ -87,6 +93,7 @@ var getEvent = function(req, res){
       })
       .then(function() {
         console.log('getEvent ev: ', ev);
+        //includes host information to data
         db.Users.findOne({
           where: {
             id: ev.hostId
@@ -94,6 +101,7 @@ var getEvent = function(req, res){
           raw: true
         }).then(function(user) {
           ev.host = user.username;
+          //includes event times
           db.EventTimes.findAll({
             where: {
               "eventId": ev.id

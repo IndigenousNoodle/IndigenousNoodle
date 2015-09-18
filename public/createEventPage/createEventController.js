@@ -25,7 +25,7 @@
 
 
     /////////////////////////////////
-
+    //Sends data from form to server to create a new document/event in database
     function submit(validTime){
       if (this.title && this.city && this.description && this.address && this.price){
         var file = document.getElementById("image").files[0];
@@ -51,6 +51,7 @@
       }
     }
 
+    //Requests URL from server and then directly uploads image to AWS S3
     function uploadImage () {
       amazonS3Service.uploadImageEvent();
     }
