@@ -5,7 +5,8 @@
   signupLoginController.$inject = ['$rootScope', '$window', '$state', 'Auth'];
 
   function signupLoginController($rootScope, $window, $state, Auth) {
-    
+      $('#nav-header').addClass("nav-color")
+
       var vm = this;
       vm.signup = signup;
       vm.signin = signin;

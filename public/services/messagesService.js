@@ -10,7 +10,8 @@
     return {
       postMessage: postMessage,
       getMessages: getMessages,
-      getAllMessages: getAllMessages
+      getAllMessages: getAllMessages,
+      getProfilePictures: getProfilePictures
     }
 
     function postMessage(data){
@@ -55,7 +56,21 @@
         console.log(err);
       }
     }
-  }
 
+    function getProfilePictures(receiver) {
+      console.log(receiver)
+      return $http({method: 'GET', url: '/getProfilePictures/' + receiver})
+        .then(getProfilePicturesComplete)
+        .catch(getProfilePicturesFailed)
+
+      function getProfilePicturesComplete(data){
+        return data;
+      }
+
+      function getProfilePicturesFailed(err){
+        console.log(err);
+      }
+    }
+  }
 
 }());

@@ -1,30 +1,14 @@
 <div class="container">
   <div class="row">
-    <form ng-submit='eventList.displayEvents()'>
-      <div class='col-md-4 col-md-offset-4'>
-        <paper-input-container>
-          <input is="iron-input" ng-model="eventList.findCity" placeholder="Where do you want to go?"></input>
-          <iron-icon suffix icon="search"></iron-icon>
-        </paper-input-container>
-      </div>
-    </form>
-    <div class="col-md-12">
-      <h2 class="text-muted">Tour List</h2>
-    </div>
-  </div>
-  <div class="card" ng-click="eventList.toEventDetail(event)" ng-repeat="event in eventsDisplay.filtered = (eventsDisplay.getEventList | filter:eventsDisplay.priceFilter | filter:eventsDisplay.titleDescFilter)">
-    <div class="content">
-      <span class="title">{{event.title}}</span>
-      <br>
-      <rating class="stars" ng-model="event.rating" max="5" readonly="true"></rating>
-      <p>{{event.description}}</p>
-    </div>
-    <div class="action">
-      <p>{{event.city}}</p>
-      <p>${{event.price}}</p>
-      <p>{{event.host}}</p>
-      <br />
-      <p ng-repeat="time in event.time">{{time.time | date : 'fullDate'}}</p>
-    </div>
+    <md-content ng-click="eventList.toEventDetail(event)" ng-repeat="event in eventsDisplay.filtered = (eventsDisplay.getEventList | filter:eventsDisplay.priceFilter | filter:eventsDisplay.titleDescFilter)" class="md-padding col-md-4 col-sm-6 col-xs-12">
+      <md-card>
+        <img ng-src="{{event.photoUrl}}" class="md-card-image" alt="washed out">
+        <md-card-content>
+          <h2 class="md-title">{{event.title}}</h2>
+          <p>${{event.price}}</p>
+          <rating  ng-model="event.rating" max="5" readonly="true"></rating>
+        </md-card-content>
+      </md-card>
+    </md-content>
   </div>
 </div>

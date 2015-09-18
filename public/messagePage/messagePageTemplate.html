@@ -1,6 +1,21 @@
-<ul id="messages">
-  <li ng-repeat="msg in message.getMessages"><span ng-show="msg.sender === message.userId">{{message.username}}: </span><span ng-hide="msg.sender === message.userId">{{message.receiver}}: </span>{{msg.text}}</li>
+<div class="arrow"></div>
+<ul class="ChatLog">
+  <li class="ChatLog__entry" ng-class="{'ChatLog__entry_mine' : msg.sender === message.userId}" ng-repeat="msg in message.getMessages">
+    <img class="ChatLog__avatar" ng-src="{{message.pictures}}" />
+    <p class="ChatLog__message">
+      {{msg.text}}
+    </p>
+  </li>
 </ul>
-<form class="messagebox" ng-submit="message.emitMessage()">
-  <input class="messageInput" ng-model="message.text" id="m" autocomplete="off" /><button class="messageButton">Send</button>
-</form>
+
+<md-content>
+  <form name="messageForm" ng-submit="message.emitMessage()">
+    <div class="col-md-4 col-md-offset-4">
+      <md-input-container>
+        <label>Type a message...</label>
+        <input ng-model="message.text">
+      </md-input-container>
+    </div>
+    <div class="col-md-4"></div>
+  </form>
+</md-content>

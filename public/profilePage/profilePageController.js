@@ -6,6 +6,8 @@
   profilePageController.$inject = ['$http','getUserProfilePrep', 'usersService', 'getUserReviewsServicePrep', 'reviewService', 'amazonS3Service'];
 
   function profilePageController ($http, getUserProfilePrep, usersService, getUserReviewsServicePrep, reviewService, amazonS3Service) {
+    $('#nav-header').addClass("nav-color")
+
     var vm = this;
 
     vm.user = getUserProfilePrep.data;
