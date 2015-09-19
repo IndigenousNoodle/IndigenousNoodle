@@ -6,6 +6,8 @@
   eventManagerHostedController.$inject = ['getHostedEventsPrep', 'usersService'];
 
   function eventManagerHostedController (getHostedEventsPrep, usersService) {
+    $('#nav-header').addClass("nav-color")
+
     var vm = this;
     vm.confirmUser = confirmUser;
     vm.eventData = getHostedEventsPrep.data;
