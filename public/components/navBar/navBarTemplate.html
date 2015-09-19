@@ -1,34 +1,27 @@
-<header ng-controller="navController" class=" navbar-default navbar-inner">
-  <div class="container">
-    <nav>
-      <ul class="nav navbar-nav">
-        <a ui-sref="homepage" role="button" class="navbar-brand">
-          Localhosts
-        </a>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a class="nav-right" ui-sref="messageList">
-            <i class="fa fa-envelope-o fa-lg"></i>
-          </a>
-        </li>
-        <li class="dropdown" dropdown="">
-          <a ng-click="navController.checkAuth()" role="button" class="dropdown-toggle" dropdown-toggle aria-haspopup="true" aria-expanded="false">
-            Dropdown <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-              <li><a ui-sref="profilePage">Profile</a></li>
-              <li><a href="#">Inbox</a></li>
-              <li><a ui-sref="eventManager.joinedEvents">Tours</a></li>
-              <li><a ui-sref="eventManager.hostedEvents">Hosted</a></li>
-              <li><a ui-sref="createEvent">Create Event</a></li>
-              <li><a href="#">Created</a></li>
-              <li role="separator" class="divider"></li>
-              <li ng-click="navController.signinout()" role="menuitem"><a href="#">{{navController.signinoutMessage}}</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </div>
+<header id="nav-header" class="nav-color" ng-controller="navController">
+ <a class="logo" ui-sref="homepage" role="button">
+   Localhosts
+ </a>
+ <nav class="navi nav-menu">
+   <a class="btn-message" ui-sref="messageList">
+     <img alt class="icon" src="http://ingikim.com/wp-content/uploads/2015/09/ic_message_white_24dp_1x.png">
+   </a>
+   <div class="profile-menu">
+     <li class="dropdown" dropdown="">
+       <a ng-click="navController.checkAuth()" role="button" class="dropdown-toggle" dropdown-toggle aria-haspopup="true" aria-expanded="false">
+         <img alt src="http://ingikim.com/wp-content/uploads/2015/09/ic_view_headline_white_24dp_1x.png">
+       </a>
+       <ul class="dropdown-menu">
+           <li><a ui-sref="profilePage">Profile</a></li>
+           <li><a href="#">Inbox</a></li>
+           <li><a ui-sref="eventManager.joinedEvents">Tours</a></li>
+           <li><a ui-sref="eventManager.hostedEvents">Hosted</a></li>
+           <li><a ui-sref="createEvent">Create Event</a></li>
+           <li><a href="#">Created</a></li>
+           <li role="separator" class="divider"></li>
+           <li ng-click="navController.signinout()" role="menuitem"><a href="#">{{navController.signinoutMessage}}</a></li>
+       </ul>
+     </li>
+   </div>
+ </nav>
 </header>
-

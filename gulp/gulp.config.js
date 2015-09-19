@@ -13,6 +13,7 @@ module.exports = {
       './build/public/lib/angular-material/angular-material.min.js',
       './build/public/lib/webcomponentsjs/webcomponents-lite.min.js',
       './build/public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      './build/public/lib/angular-material-icons/angular-material-icons.min.js',
       './build/public/lib/angular-ui-router/release/angular-ui-router.min.js',
       './build/public/lib/lodash/lodash.min.js',
       './build/public/lib/angular-google-maps/dist/angular-google-maps.min.js',
@@ -54,8 +55,9 @@ module.exports = {
       './build/public/lib/iron-input/iron-input.html',
       './build/public/lib/polymer/polymer.html',
       './build/public/lib/angular-material/angular-material.min.css',
+      './build/public/angular-material-icons.css',
+      './build/public/lib/bootstrap/dist/css/bootstrap.min.css',
       './build/public/assets/css/**/*.css',
-      './build/public/lib/fontawesome/css/font-awesome.min.css', 
-      './build/public/lib/bootstrap/dist/css/bootstrap.min.css']
+      './build/public/lib/fontawesome/css/font-awesome.min.css'] 
   }
 };

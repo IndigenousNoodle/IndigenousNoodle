@@ -5,6 +5,8 @@
   createEventController.$inject = ['$state', 'usersAndEventsService', 'amazonS3Service'];
 
   function createEventController($state, usersAndEventsService, amazonS3Service){
+    $('#nav-header').addClass("nav-color")
+
     // use the navBarApp?
     var vm = this;
     vm.submit = submit;
@@ -18,11 +20,6 @@
     vm.removeFromSelected = function(dt) {
       vm.selectedDates.splice(vm.selectedDates.indexOf(dt), 1);
     }
-    // Testing
-    // vm.title = "Hiking";
-    // vm.city = "San Francisco";
-    // vm.description = "Come with me to hike in Yosemite";
-
 
     /////////////////////////////////
     //Sends data from form to server to create a new document/event in database

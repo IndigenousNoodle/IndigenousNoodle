@@ -106,9 +106,21 @@ var getAllMessages = function(req, res) {
   })
 }
 
+var getProfilePictures = function(req, res) {
+  db.Users.findOne({
+    where: {
+      username: req.params.receiver
+    }
+  }).then(function(receiver) {
+    var photoUrl = receiver.dataValues.photoUrl;
+    res.send(photoUrl);
+  })
+}
+
 
 module.exports = {
   postMessage: postMessage,
   getMessages: getMessages,
-  getAllMessages: getAllMessages
+  getAllMessages: getAllMessages,
+  getProfilePictures: getProfilePictures
 };

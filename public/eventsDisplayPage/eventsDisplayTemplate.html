@@ -1,25 +1,50 @@
-<div class="container">
-  <a class="btn btn-primary" ui-sref="eventsDisplay.eventList">Event List</a>
-  <a class="btn btn-primary" ng-click="eventsDisplay.setFiltered(eventsDisplay.filtered)" ui-sref="eventsDisplay.map">Map View</a>
-  <div class="col-md-9">
-    <md-content>
-      <div layout layout-sm="column" class="col-md-4">
-         <md-input-container flex>
-           <label>Minimum Price</label>
-           <input type="number" ng-init="eventsDisplay.minPrice = 0" ng-model="eventsDisplay.minPrice">
-         </md-input-container>
-         <md-input-container flex>
-           <label>Maximum Price</label>
-           <input type="number" ng-init="eventsDisplay.maxPrice = 100000" ng-model="eventsDisplay.maxPrice">
-         </md-input-container>
+<div class="city-header">
+  <div class="bg-blur bg-cover"></div>
+  <div class="city-title">
+    <h2 class="eng">{{eventsDisplay.city}}</h2>
+    <p class="city-description">You're an awesome person.</p>
+  </div>
+</div>
+
+<div class="search-box">
+  <form ng-submit='eventsDisplay.displayEvents()' class="search-mobile">
+    <div class='input-group input-group-lg add-on input-margin'>
+      <input ng-model='eventsDisplay.findCity' type='text' class='form-control input-center' placeholder='{{eventsDisplay.city}}'>
+      <div class="input-group-btn">
+        <button ng-click="eventsDisplay.displayEvents()" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
       </div>
-      <div layout layout-sm="column" class="col-md-4">
-        <md-input-container flex>
-          <label>Title or Description</label>
-          <input ng-init="eventsDisplay.titleOrDescription = '' " ng-model="eventsDisplay.titleOrDescription">
-        </md-input-container>
+    </div>
+  </form>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <md-content>
+        <div layout layout-sm="column" class="col-md-4">
+           <md-input-container flex>
+             <label>Minimum Price</label>
+             <input type="number" ng-init="eventsDisplay.minPrice = 0" ng-model="eventsDisplay.minPrice">
+           </md-input-container>
+           <md-input-container flex>
+             <label>Maximum Price</label>
+             <input type="number" ng-init="eventsDisplay.maxPrice = 100000" ng-model="eventsDisplay.maxPrice">
+           </md-input-container>
+        </div>
+        <div layout layout-sm="column" class="col-md-4">
+          <md-input-container flex>
+            <label>Title or Description</label>
+            <input ng-init="eventsDisplay.titleOrDescription = '' " ng-model="eventsDisplay.titleOrDescription">
+          </md-input-container>
+        </div>
+      </div>
+    
+      <div class="col-md-3">
+        <md-button ui-sref="eventsDisplay.eventList">Event List</md-button>
+        <md-button ng-click="eventsDisplay.setFiltered(eventsDisplay.filtered)" ui-sref="eventsDisplay.map">Map View</md-button>
       </div>
     </md-content>
   </div>
-  <div ui-view></div>
 </div>
+<div ui-view></div>

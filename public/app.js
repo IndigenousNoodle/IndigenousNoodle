@@ -20,6 +20,7 @@
     'message',
     'messageList',
     'ngMaterial',
+    'ngMdIcons'
     ])
   .config(router)
   .run(requireUserSignin)
@@ -62,7 +63,8 @@
         controllerAs: 'message',
         resolve: {
           getUsername: getUsername,
-          getMessages: getMessages
+          getMessages: getMessages,
+          getProfilePictures: getProfilePictures
         }
       })
       .state('messageList', {
@@ -224,6 +226,10 @@
       }
       function getUserReviewsService (reviewService) {
         return reviewService.getReviews();
+      }
+      function getProfilePictures($http, messagesService, $stateParams) {
+        console.log('first')
+        return messagesService.getProfilePictures($stateParams.receiver);
       }
 
     // token authentication
