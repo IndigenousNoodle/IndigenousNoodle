@@ -1,6 +1,7 @@
 var Events = require('../db/db').Events;
 var db = require('../db/db.js');
 var jwt = require('jwt-simple');
+var jwtSecret = require('../../../jwt.config.js');
 
 //Retrieves all events from database based on city (input from client)
 //Includes reviews and times
@@ -66,7 +67,7 @@ var getEvents = function(req, res) {
 //Includes reviews for event, host information and times for event.
 var getEvent = function(req, res){
   var token = req.headers['x-access-token'];
-  var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
+  var userInfo = jwt.decode(token, jwtSecret.secret);
   var userId = userInfo.id;
   var eventData = {};
   var averageRating = 0;
@@ -129,7 +130,7 @@ var getEvent = function(req, res){
 //Not implemented yet
 var setEventImage = function(req, res) {
   var token = req.headers['x-access-token'];
-  var user = jwt.decode(token, 'localHostsSecretHostlocal');
+  var user = jwt.decode(token, jwtSecret.secret);
   var imageUrl = req.body.imageUrl;
   db.Events.update({photoUrl: imageUrl}, {where:{username:user.username}}).then(function(result){
     res.status(200).send(result);
@@ -140,7 +141,7 @@ var setEventImage = function(req, res) {
 
 var cancelEvent = function(req,res) {
   var token = req.headers['x-access-token'];
-  var user = jwt.decode(token, 'localHostsSecretHostlocal');
+  var user = jwt.decode(token, jwtSecret.secret);
   console.log(req.body)
   db.JoinersEvents.destroy({where:{userId: user.id ,eventId: req.body.id, eventtimeId:req.body.eventTimeId, confirmed: false}})
 }

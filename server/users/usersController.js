@@ -1,10 +1,11 @@
 var jwt = require('jwt-simple');
 var db = require('../db/db.js');
+var jwtSecret = require('../../../jwt.config.js');
 
 //Retrieves the user infromation of the logged in user
 var getUser = function(req, res) {
   var token = req.headers['x-access-token'];
-  var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
+  var userInfo = jwt.decode(token, jwtSecret.secret);
   db.Users.findOne({where:{username:userInfo.username}}).then(function(user){
     res.status(200);
     res.json(user);
@@ -14,13 +15,9 @@ var getUser = function(req, res) {
 };
 
 
-var getEvents = function(req, res) {
-
-};
-
 var getUsername = function(req, res) {
   var token = req.headers['x-access-token'];
-  var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
+  var userInfo = jwt.decode(token, jwtSecret.secret);
   res.send(userInfo);
 }
 
@@ -29,7 +26,7 @@ var getUsername = function(req, res) {
 //Includes event times, confirmation status, and host data
 var getJoinedEvents = function (req, res) {
   var token = req.headers['x-access-token'];
-  var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
+  var userInfo = jwt.decode(token, jwtSecret.secret);
   var data = {hostedEvents:[], joinedEvents:[]};
   db.JoinersEvents.findAll({where: {userId: userInfo.id }, raw:true}).then(function(joinedEvents){
     if (joinedEvents.length === 0) {
@@ -64,7 +61,7 @@ var getJoinedEvents = function (req, res) {
 //Includes event times, users joined, confirmation status
 var getHostedEvents = function (req, res) {
   var token = req.headers['x-access-token'];
-  var userInfo = jwt.decode(token, 'localHostsSecretHostlocal');
+  var userInfo = jwt.decode(token, jwtSecret.secret);
   var data = {hostedEvents:[], joinedEvents:[]};
   db.Events.findAll({where:{hostId:userInfo.id}, raw:true}).then(function(events){
     if (events.length === 0) {
@@ -118,7 +115,7 @@ var getProfile = function (req, res) {
 //Hosts can accept users who have joined their event.  Changes users joined confirmed to true.
 var confirmEvent = function (req, res) {
   var token = req.headers['x-access-token'];
-  var user = jwt.decode(token, 'localHostsSecretHostlocal');
+  var user = jwt.decode(token, jwtSecret.secret);
   var acceptedUser = req.body.acceptedUser;
   var eventId = req.body.eventId;
   db.JoinersEvents.update({confirmed:true}, {where: {userId:acceptedUser, eventId: eventId, eventtimeId: req.body.eventTimeId}}).then(function(result){
@@ -131,7 +128,7 @@ var confirmEvent = function (req, res) {
 //Changes the signed in users profile image URL
 var setProfileImage = function(req, res) {
   var token = req.headers['x-access-token'];
-  var user = jwt.decode(token, 'localHostsSecretHostlocal');
+  var user = jwt.decode(token, jwtSecret.secret);
   var imageUrl = req.body.imageUrl;
   db.Users.update({photoUrl: imageUrl}, {where:{username:user.username}}).then(function(result){
     res.status(200).send(result);
@@ -142,7 +139,7 @@ var setProfileImage = function(req, res) {
 
 var setAboutMe = function(req, res){
   var token = req.headers['x-access-token'];
-  var user = jwt.decode(token, 'localHostsSecretHostlocal');
+  var user = jwt.decode(token, jwtSecret.secret);
   var aboutMe = req.body.aboutMe;
 
   console.log("aboutMe ===", aboutMe);
@@ -158,7 +155,6 @@ var setAboutMe = function(req, res){
 
 module.exports = {
   getUser: getUser,
-  getEvents: getEvents,
   getProfile: getProfile,
   confirmEvent: confirmEvent,
   getHostedEvents: getHostedEvents,

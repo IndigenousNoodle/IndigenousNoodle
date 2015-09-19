@@ -1,5 +1,6 @@
 var db = require('../db/db');
 var jwt = require('jwt-simple');
+var jwtSecret = require('../../../jwt.config.js');
 
 var postMessage = function(req, res) {
   var sender;
@@ -30,7 +31,7 @@ var postMessage = function(req, res) {
 var getMessages = function(req, res) {
 
   var token = req.headers['x-access-token'];
-  var hoster = jwt.decode(token, 'localHostsSecretHostlocal');
+  var hoster = jwt.decode(token, jwtSecret.secret);
 
   req.body["senderId"] = hoster.id;
 
@@ -59,7 +60,7 @@ var getMessages = function(req, res) {
 
 var getAllMessages = function(req, res) {
   var token = req.headers['x-access-token'];
-  var user = jwt.decode(token, 'localHostsSecretHostlocal');
+  var user = jwt.decode(token, jwtSecret.secret);
   var data = {};
 
   console.log("user", user);

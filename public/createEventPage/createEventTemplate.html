@@ -5,21 +5,33 @@
       <form name="eventForm">
     <!--     Host: <input type="text" ng-model="event.host" /><br />-->
         <div id="upload-event-photo">
-          <input class="choose-file-btn" type="file" name="file" id="image">
+          <input class="choose-file-btn" type="file" name="file" id="image" required />
           <button class="btn btn-info btn-md event-image-upload-btn" type="submit" ng-click="event.uploadImage()">upload photo</button>
         </div>
         <div class="event-image-upload">
         <br />
         </div>
-        <input class="form-control" id="titleInput" type="text" placeholder="Event Title" ng-model="event.title" /><br />
-        <input class="form-control" id="addressInput" type="text" placeholder="Street Address" ng-model="event.address" /><br />
-        <input class="form-control" id="cityInput" type="text" placeholder="City" ng-model="event.city" /><br />
-        <input class="form-control" id="stateInput" type="text" placeholder="State" ng-model="event.state" /><br />
-        <input class="form-control" id="priceInput" type="text" placeholder="Price" ng-model="event.price" min="0" max ="2147483647" /><br />
+        <input class="form-control" id="titleInput" type="text" placeholder="Event Title" ng-model="event.title" name="title" required/>
+        <span class="form-errors-messages" ng-show="eventForm.title.$dirty && eventForm.title.$error.required">Event title is required.</span>
+        <br />
+        <input class="form-control" id="addressInput" type="text" placeholder="Street Address" ng-model="event.address" name="address" required/>
+        <span class="form-errors-messages" ng-show="eventForm.address.$dirty && eventForm.address.$error.required">Street address title is required.</span>
+        <br />
+        <input class="form-control" id="cityInput" type="text" placeholder="City" ng-model="event.city" name="city" required/>
+        <span class="form-errors-messages" ng-show="eventForm.city.$dirty && eventForm.city.$error.required">City is required.</span>
+        <br />
+        <input class="form-control" id="stateInput" type="text" placeholder="State" ng-model="event.state" name="state" required/>
+        <span class="form-errors-messages" ng-show="eventForm.state.$dirty && eventForm.state.$error.required">State is required.</span>
+        <br />
+        <input class="form-control" id="priceInput" type="text" placeholder="Price" ng-model="event.price" min="0" max ="2147483647" name="price" required/>
+        <span class="form-errors-messages" ng-show="eventForm.price.$dirty && eventForm.price.$error.required">Price is required.</span>
+        <br />
         <!-- <label for="timeInput">Time</label> -->
         <!-- <input class="form-control" id="timeInput" type="datetime-local" id="exampleInput" name="input" ng-model="event.time" -->
                <!-- placeholder="yyyy-MM-ddTHH:mm:ss" min="2015-08-27T00:00:00" max="2100-12-31T00:00:00" required /> </br> -->
-        <textarea class="form-control" id="descriptionInput" placeholder="Event Description" ng-model="event.description" ></textarea><br />
+        <textarea class="form-control" id="descriptionInput" placeholder="Event Description" ng-model="event.description" name="description" required></textarea>
+        <span class="form-errors-messages" ng-show="eventForm.description.$dirty && eventForm.description.$error.required">Description is required.</span>
+        <br />
         <div class="row">
           <div class="col-md-4">
             <datepicker class="calendar" ng-model='event.activeDate' show-weeks="false" min-date="event.minDate" multi-select='event.selectedDates' select-range='{{event.type=="range"}}'></datepicker>
@@ -33,7 +45,7 @@
                 <button class="btn btn-xs btn-warning remove-btn" ng-click='event.removeFromSelected(d)'>Remove</button>
               </div>
             </div>
-            <button class='btn btn-info btn-md create-btn' ng-click="event.submit()">Create Event</button>
+            <button class='btn btn-info btn-md create-btn' type="submit" ng-disabled="eventForm.$invalid" ng-click="event.submit()">Create Event</button>
           </div>
      
         </div>
@@ -43,27 +55,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-<!-- <div>
-  <table>
-    <tr>
-      <td>
-        <datepicker ng-model='event.activeDate' show-weeks="false" min-date="event.minDate" multi-select='event.selectedDates' select-range='{{event.type=="range"}}'></datepicker>
-      </td>
-      <td>
-        <div >
-          Selected Dates:
-          <div class='well well-sm'>
-            <div ng-repeat='d in event.selectedDates | orderBy : event.identity'>
-              {{d | date : 'fullDate'}}
-              <button class='btn btn-xs btn-warning' style='margin:5px' ng-click='event.removeFromSelected(d)'>Remove</button>
-            </div>
-          </div>
-        </div>
-      </td>
-    </tr>
-  </table>
-</div> -->

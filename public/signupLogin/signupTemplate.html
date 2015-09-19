@@ -1,9 +1,14 @@
 <div class="auth-center">
 	<h3 class="auth-title">Sign Up</h3>
-	<form>
-	  <input type="text" ng-model="user.username" placeholder="username">
-	  <input type="password" ng-model="user.password" placeholder="password">
+	<form name="signupForm">
+	  <input type="text" ng-model="user.username" placeholder="username" name="username" required>
+	  <span class="form-errors-messages" ng-show="signupForm.username.$dirty && signupForm.username.$error.required">Username is required.</span>
+	  <input type="password" ng-model="user.password" placeholder="password" name="password" required>
+	  <span class="form-errors-messages" ng-show="signupForm.password.$dirty && signupForm.password.$error.required">Password is required.</span>
 	  <button class="md-raised md-primary md-button md-default-theme" ng-click="signupLogin.signup(user)"><strong>Submit</strong></button>
 	</form>
-	<p>Already have an account? <a ui-sref="signin">Sign</a></p> 
+	<p>Already have an account? <a ui-sref="signin">Sign In</a></p> 
 </div>
+
+
+<!-- ng-disabled="signupForm.$invalid" -->

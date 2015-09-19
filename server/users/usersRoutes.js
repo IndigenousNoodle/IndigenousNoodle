@@ -2,7 +2,6 @@ var usersController = require('./usersController.js');
 
 module.exports = function(app) {
   app.get('/user', usersController.getUser);
-  app.get('/user/eventsManager', usersController.getEvents);
   app.get('/user/joinedEventsManager', usersController.getJoinedEvents);
   app.get('/user/hostedEventsManager', usersController.getHostedEvents);
   app.get('/username', usersController.getUsername);

@@ -1,9 +1,11 @@
 var db = require('../db/db');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jwt-simple');
+var jwtSecret = require('../../../jwt.config.js');
 
 var signup = function(req, res) {
 	console.log("Post to signup: ", req.body);
+
 
   // find user by username
   db.Users.findOne({ where: {username: req.body.username} })
@@ -16,7 +18,7 @@ var signup = function(req, res) {
             db.Users.create({username: req.body.username, password: hash})
               .then(function(data) {
                 console.log("newUser saved data: ", data);
-                var token = jwt.encode(data, 'localHostsSecretHostlocal');
+                var token = jwt.encode(data, jwtSecret.secret);
                 console.log("token: ", token);
                 res.json({token: token});
               }).catch(function(err) { // if save user err
@@ -34,7 +36,7 @@ var signup = function(req, res) {
 
 var signin = function(req, res) {
   console.log("Post to signin: ", req.body);
- 
+
   // find user by username
   db.Users.findOne({ where: {username: req.body.username} })
     .then(function(data) {
@@ -47,7 +49,8 @@ var signin = function(req, res) {
             console.log("Password compare err: ", err);
           } else if (result) {
             console.log("Signin matched user data: ", data);
-            var token = jwt.encode(data, 'localHostsSecretHostlocal');
+            var token = jwt.encode(data, jwtSecret.secret);
+            console.log("jwtSecret.secret=======: ", jwtSecret.secret);
             console.log("token: ", token);
             res.json({token: token});
           } else {

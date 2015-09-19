@@ -1,11 +1,12 @@
 var jwt = require('jwt-simple');
 var db = require('../db/db.js');
+var jwtSecret = require('../../../jwt.config.js');
 
 var saveReview = function(req, res){
   console.log('reciewctrl req: ', req);
   // get user info
   var token = req.headers['x-access-token'];
-  var user = jwt.decode(token, 'localHostsSecretHostlocal');
+  var user = jwt.decode(token, jwtSecret.secret);
   console.log('reciewctrl user : ', user);
 
   // save review
@@ -28,7 +29,7 @@ var getUserReviews = function(req, res){
   var reviewsData = [];
   // get user info
   var token = req.headers['x-access-token'];
-  var host = jwt.decode(token, 'localHostsSecretHostlocal');
+  var host = jwt.decode(token, jwtSecret.secret);
   // find all the reviews for login user's hosted events
   db.Reviews.findAll({ where : { usersHostId: host.id }, raw:true})
     .then(function(reviews) {

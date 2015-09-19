@@ -192,6 +192,11 @@ paper-input-container {
   color: red;
 }
 
+.form-errors-messages {
+  color: red;
+  display: block;
+  margin-top: 5px;
+}
 /*----------create event----------*/
 .from-group {
   margin: auto;

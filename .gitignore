@@ -32,6 +32,7 @@ public/lib
 # config files
 postgres.config.js
 aws.config.js
+jwt.config.js
 
 
 
