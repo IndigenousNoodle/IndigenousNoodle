@@ -43,8 +43,6 @@
 
   router.$inject = ['$urlRouterProvider', '$stateProvider', '$httpProvider'];
 
-  requireUserSignin.$inject = ['$rootScope','$state', 'Auth'];
-
   function router($urlRouterProvider, $stateProvider, $httpProvider) {
     $urlRouterProvider.otherwise("/");
 
@@ -236,6 +234,8 @@
     $httpProvider.interceptors.push('AttachTokens');
   
   }
+
+    requireUserSignin.$inject = ['$rootScope','$state', 'Auth'];
 
     // for .run() module, ask user to sign in if user is not signed in
     function requireUserSignin($rootScope, $state, Auth) {

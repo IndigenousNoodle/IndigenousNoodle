@@ -80,10 +80,11 @@
                   position: results[0].geometry.location
               });
 
-              markerStorage[ev.address] = marker
+              markerStorage[ev.address] = marker;
 
               // same event being marked everytime
-              markerToEventDetail($state, marker, ev);
+              // markerToEventDetail($state, marker, ev);
+              displayEventWindow($state, marker, map, ev);
           } else{
             console.log("Geocode was not successful for the following reason: " + status);
           }
@@ -101,6 +102,27 @@
       function toEventDetail(){
         $state.go('eventDetail', {eventId: eventData.id});
       }
+    }
+
+    function displayEventWindow($state, marker, map, eventData){
+      console.log("eventData ===", eventData);
+
+      var eventDetailNum = "#eventDetail/" + eventData.id;
+      var strLimit = 25;
+      if (eventData.title.length > strLimit){// arbitrary length
+        eventData.title = eventData.title.substring(0,strLimit);
+        eventData.title = eventData.title + "...";
+      }
+      var eventString = "<a href=" + eventDetailNum + ">" + "<img class='image-thumbnail' src=" + eventData.photoUrl + "></a>" +
+                        "<a class='info-window-title' href=" + eventDetailNum + ">" + "<h6 class='info-window-title'>" + eventData.title + "</h6>" + "</a>" +
+                        "<p class='info-window-price'>Price: $" + eventData.price + "</p>";
+      var infoWindow = new google.maps.InfoWindow({
+        content: eventString
+      });
+
+      marker.addListener('click', function(){
+        infoWindow.open(map, marker);
+      });
     }
 
     // gets the passed cities location and moves map there
@@ -121,7 +143,7 @@
     function getMapObject(){
       return {
         center: new google.maps.LatLng(-40, 130),
-        zoom: 8
+        zoom: 12
       };
     }
 

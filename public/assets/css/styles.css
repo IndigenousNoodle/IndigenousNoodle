@@ -848,4 +848,23 @@ paper-input-container {
 .inquire-btn {
   margin-top: 20px;
 }
+
+/*------------Maps Template-----------------*/
+#map{
+  margin: 0 auto;
+}
+
+.image-thumbnail{
+  width: 125px;
+  height: 100px;
+}
+
+.info-window-title{
+  margin:5px 0 0 0;
+}
+
+.info-window-price{
+  margin:0 0 0 0;
+}
+
 /*----------------------------------------*/
