@@ -1,4 +1,4 @@
-# Project Name #
+# Localhosts #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -17,13 +17,13 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > localhosts
+  > Localhosts
 
 ## Sub-Heading ##
   > People who want to get familiar with an area and enjoy themselves in a new location.
 
 ## Summary ##
-  > Imagine you're planning a trip to San Francisco and you want to find the best local attractions.  You decide to use the new app you heard about called localhosts.  You get in contact with locals in the area and will show you around.
+  > Imagine you're planning a trip to San Francisco and you want to find the best local attractions.  You decide to use the new app you heard about called Localhosts.  You get in contact with locals in the area who will show you around.
 
 ## Problem ##
   > Complicated vacation planning, spending a lot of time and money.  Seeing the main attractions and more.
@@ -38,7 +38,7 @@ Once the project moves into development, the press release can be used as a touc
   > Sign up, search for local events, and send a request to join the event.
 
 ## Customer Quote ##
-  > "I would have never gone to half of the awesome places if it wasn't for localhosts." - M.G.
+  > "I would have never gone to half of the awesome places if it wasn't for Localhosts." - M.G.
 
 ## Closing and Call to Action ##
   > go to localhosts.herokuapp.com and search for your next vacation.
