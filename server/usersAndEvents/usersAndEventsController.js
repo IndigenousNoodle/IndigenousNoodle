@@ -1,17 +1,14 @@
 var jwt = require('jwt-simple');
 var db = require('../db/db.js');
+var jwtSecret = require('../../../jwt.config.js');
 
 var postEvents = function(req, res){
   var token = req.headers['x-access-token'];
-  var hoster = jwt.decode(token, 'localHostsSecretHostlocal');
+  var hoster = jwt.decode(token, jwtSecret.secret);
   var userEventTimes = req.body.time;
 
   req.body["host"] = hoster.username;
-
-  // get the users id?
-  // then create the event
-  // then set the events hostId to be the users id
-
+  
   db.Users.findOne({
       where: {
         username: hoster.username
@@ -54,7 +51,7 @@ var postEvents = function(req, res){
 
 var joinEvent = function(req, res){
   var token = req.headers['x-access-token'];
-  var joiner = jwt.decode(token, 'localHostsSecretHostlocal');
+  var joiner = jwt.decode(token, jwtSecret.secret);
 
   // match the username
   // match the event id of an event (object) in hostedEvents (array)
