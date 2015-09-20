@@ -12,18 +12,31 @@
 
     var vm = this;
 
+
     vm.priceFilter = priceFilter;
     vm.titleDescFilter = titleDescFilter;
 
+    // save filtered data to send to mapsController
     vm.setFiltered = filteredService.setFiltered;
 
     vm.getEventList = getEventList.data;
-    getEventList.data[0].city.split('');
 
-    vm.city = getEventList.data[0].city;
-    console.log(vm.city);
+    // handle the error when user search the city which doesn't have any events.
+    if(getEventList.data[0] === undefined) {
+      vm.city = "Oops! we can't find any events in the city.";
+      $('.city-description').css("display", "none");
+      $('.row').css("display", "none");
+      $('.city-header').css("height", "780px");
+    } else {
+      vm.city = capitalize_Words(getEventList.data[0].city);
+    }
 
     vm.displayEvents = displayEvents;
+    
+    // capitalize city name
+    function capitalize_Words(str){  
+      return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});  
+    } 
 
     function priceFilter(event) {
       return event.price >= vm.minPrice && event.price <= vm.maxPrice;
