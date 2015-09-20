@@ -40,8 +40,7 @@
         
         usersAndEventsService.postEvent(eventData)
         .then(function(data){
-          console.log("going homepage");
-          $state.go('homepage');
+          $state.go('eventManager.hostedEvents');
         }, function(err){
           console.log("ERROR === ",err);
         });
