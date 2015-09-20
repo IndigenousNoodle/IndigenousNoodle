@@ -22,7 +22,7 @@
       eventsService.joinEvent(eventData)
       .then(function(data){
         // if (!data.data === 'joiningOwnEvent') {
-          $state.go("homepage");
+          $state.go("eventManager.joinedEvents");
         // }
       }, function(err){
         console.log("ERROR === ", err);
