@@ -23,26 +23,42 @@
     <h2>Recommendation Tours</h2>
     <p>Not sure where to travel? We've created recommendation tours for cities all around the world.</p>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-8">
         <div class="thumbnail">
-          <img src="http://goo.gl/0sX3jq">
-        </div>
-        <div class="thumbnail">
-          <img src="http://goo.gl/an2HXY">
+          <a ui-sref="eventsDisplay.eventList({city: home.newYork})">
+            <img src="https://files.slack.com/files-pri/T04E3V190-F0B13BC83/newyork.jpg">
+          </a>
         </div>
       </div>
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <img src="http://goo.gl/Av1pac">
-          </div>
-          <div class="thumbnail">
-            <img src="http://goo.gl/vw43v1">
-          </div>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <a ui-sref="eventsDisplay.eventList({city: home.sanFrancisco})">
+            <img src="https://files.slack.com/files-pri/T04E3V190-F0B15MCEB/san-francisco-cropped.jpg">
+          </a>
         </div>
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <img src="http://goo.gl/0Kd7UO">
-          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <a ui-sref="eventsDisplay.eventList({city: home.losAngeles})">
+            <img src="https://files.slack.com/files-pri/T04E3V190-F0B1AHD25/2892.jpg">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <a ui-sref="eventsDisplay.eventList({city: home.seattle})">
+            <img src="https://files.slack.com/files-pri/T04E3V190-F0B16DNAZ/308.jpg">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <a ui-sref="eventsDisplay.eventList({city: home.austin})">
+            <img src="https://files.slack.com/files-pri/T04E3V190-F0B13L9DZ/austin.jpg">
+          </a>
+        </div>
       </div>
     </div>
   </div>
