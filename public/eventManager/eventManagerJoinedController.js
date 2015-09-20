@@ -6,7 +6,8 @@
   eventManagerJoinedController.$inject = ['getJoinedEventsPrep', 'usersService', '$modal', 'eventsService'];
 
   function eventManagerJoinedController (getJoinedEventsPrep, usersService, $modal, eventsService) {
-    
+    $('#nav-header').addClass("nav-color")
+
     var vm = this;
     vm.eventData = getJoinedEventsPrep.data;
     vm.reviewModal = reviewModal;
