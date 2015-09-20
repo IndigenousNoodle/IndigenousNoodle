@@ -37,13 +37,14 @@
           </div>
               
           <div class="col-md-8 selected-dates">
-            <h4>Selected Dates:</h4>
-            <div class='well well-sm'>
-              <div class="date-row" ng-repeat='d in event.selectedDates | orderBy : event.identity'>
-                {{d | date : 'fullDate'}}
-                <button class="btn btn-xs btn-warning remove-btn" ng-click='event.removeFromSelected(d)'>Remove</button>
-              </div>
-            </div>
+            <table class="table">
+              <h5>Selected Dates:</h5>
+              <tr class="well well-sm" ng-repeat='d in event.selectedDates | orderBy : event.identity'>
+                <td>{{d | date : 'fullDate'}}</td>
+                <td><button class="btn btn-xs btn-warning remove-btn" ng-click='event.removeFromSelected(d)'>Remove</button></td>
+              </tr>
+            </table>
+
             <button class='btn btn-info btn-md create-btn' type="submit" ng-disabled="eventForm.$invalid" ng-click="event.submit()">Create Event</button>
           </div>
      

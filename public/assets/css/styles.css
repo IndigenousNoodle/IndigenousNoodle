@@ -724,10 +724,6 @@ paper-input-container {
   width: 150px;
 }
 
-.date-row {
-  height: 30px;
-}
-
 .create-btn {
   float: right;
   bottom: 20px;
@@ -737,8 +733,6 @@ paper-input-container {
 
 .remove-btn {
   float: right;
-  margin-top: 5px;
-  margin-bottom: 5px;
 }
 
 .selected-dates {
