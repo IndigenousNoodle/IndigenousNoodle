@@ -103,7 +103,6 @@
         $state.go('eventDetail', {eventId: eventData.id});
       }
     }
-
     function displayEventWindow($state, marker, map, eventData){
       console.log("eventData ===", eventData);
 

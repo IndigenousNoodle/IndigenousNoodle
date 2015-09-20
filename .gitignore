@@ -30,10 +30,8 @@ build/
 public/lib
 
 # config files
-postgres.config.js
-aws.config.js
 jwt.config.js
-
+aws.config.js
 
 
 *.DS_Store

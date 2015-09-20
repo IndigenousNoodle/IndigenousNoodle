@@ -248,11 +248,19 @@
           event.preventDefault();
           $state.go('signin');
         }
-        if(toState.url === '/events/eventManager:hostedEvents' && !Auth.isAuth()) {
+        if(toState.url === '/hostedEvents' && !Auth.isAuth()) {
           event.preventDefault();
           $state.go('signin');
         }
-        if(toState.url === '/events/eventManager:joinedEvents' && !Auth.isAuth()) {
+        if(toState.url === '/joinedEvents' && !Auth.isAuth()) {
+          event.preventDefault();
+          $state.go('signin');
+        }
+        if(toState.url === '/messageList' && !Auth.isAuth()){
+          event.preventDefault();
+          $state.go('signin');
+        }
+        if(toState.url === '/createEvent' && !Auth.isAuth()){
           event.preventDefault();
           $state.go('signin');
         }
