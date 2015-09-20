@@ -12,9 +12,9 @@
               </div>
               <div>
                 <!-- review button -->
-                <md-button ng-disabled="!joinedEvent.confirmed" class="md-raised md-primary" type="submit" ng-click="event.reviewModal(joinedEvent)" value="Review">Review</md-button>
+                <button ng-disabled="!joinedEvent.confirmed" class="btn btn-md btn-info" type="submit" ng-click="event.reviewModal(joinedEvent)" value="Review">Review</button>
 
-                <md-button ng-disabled="joinedEvent.confirmed" class="md-raised md-primary" type="submit" ng-click="event.cancelEvent(joinedEvent)">Cancel</md-button>
+                <button ng-disabled="joinedEvent.confirmed" class="btn btn-md btn-warning" type="submit" ng-click="event.cancelEvent(joinedEvent)">Cancel</button>
 
                 <span ng-class="{true: 'joined-user-confirmed', false: 'joined-user-waitlist'}[joinedEvent.confirmed]"> {{joinedEvent.confirmed && 'Confirmed' || 'WaitListed'}} </span>
               </div>
