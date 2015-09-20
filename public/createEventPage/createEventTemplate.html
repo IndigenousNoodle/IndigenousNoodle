@@ -4,8 +4,9 @@
       <form name="eventForm">
     <!--     Host: <input type="text" ng-model="event.host" /><br />-->
         <div id="upload-event-photo">
-          <input class="choose-file-btn" type="file" name="file" id="image" required />
-          <button class="btn btn-info btn-md event-image-upload-btn" type="submit" ng-click="event.uploadImage()">upload photo</button>
+          <span class="btn btn-default btn-file">
+            Upload Photo <input type="file" id="image"/>
+          </span>
         </div>
         <div class="event-image-upload">
         <br />
