@@ -12,9 +12,6 @@ describe("createEventController", function() {
     });
   }));
 
-  it('should have a submit function', function(){
-    expect(createEventController.submit).toBeDefined();
-  });
 
   beforeEach(inject(function ($state){
     spyOn($state, "go");

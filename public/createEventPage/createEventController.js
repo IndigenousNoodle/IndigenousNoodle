@@ -16,6 +16,9 @@
     vm.selectedDates = [new Date().setHours(0, 0, 0, 0)];
     vm.identity = angular.identity;
     vm.uploadImage = uploadImage;
+    document.getElementById("image").onchange = function() {
+      vm.uploadImage();
+    }
 
     vm.removeFromSelected = function(dt) {
       vm.selectedDates.splice(vm.selectedDates.indexOf(dt), 1);
