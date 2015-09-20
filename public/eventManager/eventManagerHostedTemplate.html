@@ -11,9 +11,9 @@
               <div class="col-md-8">
                   <div  class = "row" ng-repeat="user in hostedEvent.usersJoined | orderBy:'eventTime'">
                     <div class="col-xs-3 col-md-3">
-                      <md-button ng-class="{true: 'md-raised md-primary disabled', false: 'md-raised md-primary'}[user.confirmed]" ng-disabled="user.confirmed" ng-click="event.confirmUser(user.userId, user.eventId, user.eventtimeId); user.confirmed = !user.confirmed" >
+                      <button ng-class="{true: 'btn btn-md btn-success disabled', false: 'btn btn-md btn-warning'}[user.confirmed]" ng-disabled="user.confirmed" ng-click="event.confirmUser(user.userId, user.eventId, user.eventtimeId); user.confirmed = !user.confirmed" >
                         {{!user.confirmed && 'Accept' || 'Accepted'}}
-                      </md-button>
+                      </button>
                     </div>
                     <div layout="column" layout-align="center start" class="col-xs-9 col-md-9">
                       <p class="hosted-events-joineduser-time"><a ui-sref="userProfile({username: user.username})">{{user.username}}</a></p>
