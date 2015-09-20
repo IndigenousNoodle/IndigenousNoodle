@@ -5,7 +5,9 @@ var jwtSecret = require('../../../jwt.config.js');
 
 var signup = function(req, res) {
 	console.log("Post to signup: ", req.body);
-
+  if (req.body.username === undefined) {
+    res.status(200).send('userame required');
+  }
 
   // find user by username
   db.Users.findOne({ where: {username: req.body.username} })
