@@ -5,8 +5,6 @@
   eventDetailController.$inject = ['$state', 'eventsService', 'getEvent'];
 
   function eventDetailController($state, eventsService, getEvent){
-    $('#nav-header').addClass("nav-color")
-
     var vm = this;
     vm.join = join;
 

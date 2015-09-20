@@ -11,6 +11,11 @@
     
     vm.displayEvents = displayEvents;
 
+    vm.newYork = 'new york';
+    vm.sanFrancisco = 'san francisco';
+    vm.losAngeles = 'los angeles';
+    vm.seattle = 'seattle';
+    vm.austin = 'austin';
 
     function displayEvents() {
       $state.go('eventsDisplay.eventList', {city: vm.findCity});
