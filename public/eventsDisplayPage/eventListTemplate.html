@@ -1,6 +1,23 @@
 <div class="container">
   <div class="row">
-    <md-content ng-click="eventList.toEventDetail(event)" ng-repeat="event in eventsDisplay.filtered = (eventsDisplay.getEventList | filter:eventsDisplay.priceFilter | filter:eventsDisplay.titleDescFilter)" class="md-padding col-md-4 col-sm-6 col-xs-12">
+    <md-content>
+      <md-card ng-click="eventList.toEventDetail(event)" ng-repeat="event in eventsDisplay.filtered = (eventsDisplay.getEventList | filter:eventsDisplay.priceFilter | filter:eventsDisplay.titleDescFilter)" class="md-padding col-md-4 col-sm-6 col-xs-12 img-resize">
+        <div class="md-card-image img-resize" style="background-image: url({{event.photoUrl}}); background-size: cover; background-position:center"></div>
+        <!-- <img ng-src="{{event.photoUrl}}" class="md-card-image" alt="washed out"> -->
+        <md-card-content>
+          <h2 class="md-title">{{event.title}}</h2>
+          <p>${{event.price}}</p>
+          <rating  ng-model="event.rating" max="5" readonly="true"></rating>
+        </md-card-content>
+      </md-card>
+    </md-content>
+  </div>
+</div>
+
+
+<!-- <div class="container">
+  <div class="row">
+    <md-content ng-click="eventList.toEventDetail(event)" ng-repeat="event in eventsDisplay.filtered = (eventsDisplay.getEventList | filter:eventsDisplay.priceFilter | filter:eventsDisplay.titleDescFilter)" class="md-padding col-md-4 col-sm-6 col-xs-12 img-resize">
       <md-card>
         <img ng-src="{{event.photoUrl}}" class="md-card-image" alt="washed out">
         <md-card-content>
@@ -11,4 +28,33 @@
       </md-card>
     </md-content>
   </div>
-</div>
+</div> -->
+
+
+<!-- <md-content>
+  <div layout="row" layout-wrap>
+    <div ng-click="eventList.toEventDetail(event)" ng-repeat="event in eventsDisplay.filtered = (eventsDisplay.getEventList | filter:eventsDisplay.priceFilter | filter:eventsDisplay.titleDescFilter)" class="col-md-4">
+        <md-card>
+          <img ng-src="{{event.photoUrl}}" class="md-card-image" alt="washed out">
+          <md-card-content>
+            <h2 class="md-title">{{event.title}}</h2>
+            <p>${{event.price}}</p>
+            <rating  ng-model="event.rating" max="5" readonly="true"></rating>
+          </md-card-content>
+        </md-card>
+      I'm above on mobile, and to the left on larger devices.
+    </div>
+  </div>
+</md-content> -->
+
+
+<!-- <md-content ng-click="eventList.toEventDetail(event)" ng-repeat="event in eventsDisplay.filtered = (eventsDisplay.getEventList | filter:eventsDisplay.priceFilter | filter:eventsDisplay.titleDescFilter)" class="md-padding col-md-4 col-sm-6 col-xs-12">
+  <md-card>
+    <img ng-src="{{event.photoUrl}}" class="md-card-image" alt="washed out">
+    <md-card-content>
+      <h2 class="md-title">{{event.title}}</h2>
+      <p>${{event.price}}</p>
+      <rating  ng-model="event.rating" max="5" readonly="true"></rating>
+    </md-card-content>
+  </md-card>
+</md-content> -->
