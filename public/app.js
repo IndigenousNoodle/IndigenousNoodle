@@ -235,11 +235,13 @@
   
   }
 
-    requireUserSignin.$inject = ['$rootScope','$state', 'Auth'];
+    requireUserSignin.$inject = ['$rootScope','$state', '$window', 'Auth'];
 
     // for .run() module, ask user to sign in if user is not signed in
-    function requireUserSignin($rootScope, $state, Auth) {
+    function requireUserSignin($rootScope, $state, $window, Auth) {
       $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        $window.scrollTo(0,0);
+
         if(toState.url === '/eventDetail/:eventId' && !Auth.isAuth()) {
           event.preventDefault();
           $state.go('signin');

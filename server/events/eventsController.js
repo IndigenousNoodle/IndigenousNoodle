@@ -75,7 +75,7 @@ var getEvent = function(req, res){
   db.Events.findOne({ where: {id: req.body.id}, raw: true })
   .then(function(ev){
     // eventData = ev;
-    console.log('eventInfo===================== ', ev)
+    console.log('eventInfo===================== ', ev);
 
     // count numbers of review
     db.Reviews.count({ where: {eventId: req.body.id} })
@@ -142,7 +142,7 @@ var setEventImage = function(req, res) {
 var cancelEvent = function(req,res) {
   var token = req.headers['x-access-token'];
   var user = jwt.decode(token, jwtSecret.secret);
-  console.log(req.body)
+  console.log(req.body);
   db.JoinersEvents.destroy({where:{userId: user.id ,eventId: req.body.id, eventtimeId:req.body.eventTimeId, confirmed: false}})
 }
 
